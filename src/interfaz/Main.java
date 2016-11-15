@@ -43,6 +43,7 @@ public class Main extends Application {
                 for(int j=0; j<datos.getLength(); j++){
                     Element aux = (Element)datos.item(j);
                     Person auxPerson = new Person();
+                    //nepe grone
 
                 }
             }
