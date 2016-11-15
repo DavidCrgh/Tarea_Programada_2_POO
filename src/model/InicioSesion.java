@@ -1,6 +1,6 @@
 package model;
 
-import interfaz.Person;
+import interfaz.Cliente;
 import org.w3c.dom.*;
 
 import javax.xml.parsers.*;
@@ -11,12 +11,13 @@ import java.util.ArrayList;
  * Created by Bryan on 11/15/2016.
  */
 public class InicioSesion {
-    private ArrayList<Person> cuentas;
+    public ArrayList<Cliente> cuentas;
 
     public InicioSesion(){
+        cuentas = new ArrayList<>();
         try {
 
-            File fXmlFile = new File("C:\\Users\\Bryan\\Desktop\\Tarea_Programada_2_POO\\src\\model\\Cuentas.xml");
+            File fXmlFile = new File("C:\\Users\\Francisco Contreras\\Desktop\\ProjectosJava\\Tarea_Programada_2_POO\\src\\model\\Cuentas.xml");
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(fXmlFile);
@@ -35,52 +36,35 @@ public class InicioSesion {
 
                 Node nNode = nList.item(temp);
 
-                System.out.println("\nCurrent Element :" + nNode.getNodeName());
+            //    System.out.println("\nCurrent Element :" + nNode.getNodeName());
 
                 if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 
                     Element eElement = (Element) nNode;
-                    System.out.println("First Name : " + eElement.getElementsByTagName("firstName").item(0).getTextContent());
-                    System.out.println("Last Name : " + eElement.getElementsByTagName("lastName").item(0).getTextContent());
-                    System.out.println("Nick Name : " + eElement.getElementsByTagName("email").item(0).getTextContent());
-                    System.out.println("Salary : " + eElement.getElementsByTagName("clave").item(0).getTextContent());
+                  //  System.out.println("First Name : " + eElement.getElementsByTagName("firstName").item(0).getTextContent());
+                   // System.out.println("Last Name : " + eElement.getElementsByTagName("lastName").item(0).getTextContent());
+                    //System.out.println("Salary : " + eElement.getElementsByTagName("clave").item(0).getTextContent());
+                    String usuario=eElement.getElementsByTagName("usuario").item(0).getTextContent();
+                    String clave= eElement.getElementsByTagName("clave").item(0).getTextContent();
+                    String numeroCelular= eElement.getElementsByTagName("numeroCelular").item(0).getTextContent();
+                    String direccion= eElement.getElementsByTagName("direccion").item(0).getTextContent();
+                    String esAdmin= eElement.getElementsByTagName("admin").item(0).getTextContent();
 
+                    Cliente actual = new Cliente(usuario,clave,numeroCelular,direccion,esAdmin);
+                    cuentas.add(actual);
                 }
+
+
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    /*
-    private static void printNote(NodeList nodeList) {
-        for (int count = 0; count < nodeList.getLength(); count++) {
-            Node tempNode = nodeList.item(count);
-            if (tempNode.getNodeType() == Node.ELEMENT_NODE) {
-                // get node name and value
-                System.out.println("\nNode Name =" + tempNode.getNodeName() + " [OPEN]");
-                System.out.println("Node Value =" + tempNode.getTextContent());
-                if (tempNode.hasAttributes()) {
-                    // get attributes names and values
-                    NamedNodeMap nodeMap = tempNode.getAttributes();
-                    for (int i = 0; i < nodeMap.getLength(); i++) {
-                        Node node = nodeMap.item(i);
-                        System.out.println("attr name : " + node.getNodeName());
-                        System.out.println("attr value : " + node.getNodeValue());
-                    }
-                }
-                if (tempNode.hasChildNodes()) {
-                    // loop again if has child nodes
-                    printNote(tempNode.getChildNodes());
-                }
-                System.out.println("Node Name =" + tempNode.getNodeName() + " [CLOSE]");
-            }
-        }
-    }
-    */
-    public Person buscarCuenta(String usuario, String contrasenna){
-        int iteraciones = cuentas.size();
+
+    public Cliente buscarCuenta(String usuario, String contrasenna){
+        int iteraciones = cuentas.size()-1;
         while(iteraciones>=0) {
-            Person actual = cuentas.get(iteraciones);
+            Cliente actual = cuentas.get(iteraciones);
             if (actual.getClave().equals(contrasenna) && actual.getUsuario().equals(usuario))
                 return actual;
             iteraciones--;

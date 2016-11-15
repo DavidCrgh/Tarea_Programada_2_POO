@@ -35,9 +35,11 @@ public class ControladorInicio implements Initializable{
             @Override
             public void handle(ActionEvent event) {
                 InicioSesion inicioSesion = new InicioSesion();
+
                 String usuario = textUsuario.getText();
                 String contrasenna = textPassword.getText();
-                Person buscado = inicioSesion.buscarCuenta(usuario, contrasenna);
+                Cliente buscado = inicioSesion.buscarCuenta(usuario, contrasenna);
+
                 if(buscado!=null) {
                     if (buscado.isAdmin()) {
                         try{
@@ -64,6 +66,7 @@ public class ControladorInicio implements Initializable{
                     }
                 }
             }
+
         });
 
         botonCrear.setOnAction(new EventHandler<ActionEvent>(){
