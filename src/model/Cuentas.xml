@@ -1,18 +1,17 @@
 <?xml version="1.0"?>
 <clients>
     <person>
-        <firstName>Bryan</firstName>
-        <lastName>Mena</lastName>
-        <email>bryan97mena@outlook.com</email>
+        <usuario>carlitos</usuario>
         <clave>123abc</clave>
         <numeroCelular>86121929</numeroCelular>
+        <direccion>efjhrjfb</direccion>
         <admin>true</admin>
     </person>
     <person>
-        <lastName>David</lastName>
-        <email>bryan97mena@outlook.com</email>
+        <usuario>juancito</usuario>
         <clave>456def</clave>
         <numeroCelular>86121929</numeroCelular>
+        <direccion>efjhrjfb</direccion>
         <admin>false</admin>
     </person>
 </clients>
