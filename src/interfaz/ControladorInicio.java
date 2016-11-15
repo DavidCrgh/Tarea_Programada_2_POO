@@ -8,8 +8,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
+import model.InicioSesion;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -20,6 +22,12 @@ public class ControladorInicio implements Initializable{
     private Button botonInicio;
     @FXML
     private  Button botonCrear;
+    @FXML
+    private TextField textUsuario;
+    @FXML
+    private PasswordField textPassword;
+
+    private
 
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
         assert botonInicio != null : "fx:id=\"botonInicio\" was not injected: check your FXML file 'Inicio.fxml'.";
@@ -28,30 +36,42 @@ public class ControladorInicio implements Initializable{
         botonInicio.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                try{
-                    Stage primaryStage = new Stage();
-                    Parent root = FXMLLoader.load(getClass().getResource("PrincipalAdministrador.fxml"));
-                    primaryStage.setTitle("Log as admin");
-                    primaryStage.setScene(new Scene(root, 600, 400));
-                    primaryStage.show();
-                } catch (IOException e){
-                    System.out.println(e);
+                InicioSesion inicioSesion = new InicioSesion();
+                String usuario = textUsuario.getText();
+                String contrasenna = textPassword.getText();
+                Person buscado = inicioSesion.buscarCuenta(usuario, contrasenna);
+                if(buscado!=null) {
+                    if (buscado.isAdmin()) {
+                        try{
+                            Stage primaryStage = new Stage();
+                            Parent root = FXMLLoader.load(getClass().getResource("PrincipalAdministrador.fxml"));
+                            primaryStage.setTitle("Log as admin");
+                            primaryStage.setScene(new Scene(root, 600, 400));
+                            primaryStage.show();
+                        }
+                        catch (IOException e){
+                            System.out.println(e);
+                        }
+                    }
+                    else{
+                        try{
+                            Stage primaryStage = new Stage();
+                            Parent root = FXMLLoader.load(getClass().getResource("PrincipalCliente.fxml"));
+                            primaryStage.setTitle("Log as Client");
+                            primaryStage.setScene(new Scene(root, 600, 400));
+                            primaryStage.show();
+                        } catch (IOException e){
+                            System.out.println(e);
+                        }
+                    }
                 }
             }
         });
 
-        botonCrear.setOnAction(new EventHandler<ActionEvent>() {
+        botonCrear.setOnAction(new EventHandler<ActionEvent>(){
             @Override
-            public void handle(ActionEvent event) {
-                try{
-                    Stage primaryStage = new Stage();
-                    Parent root = FXMLLoader.load(getClass().getResource("PrincipalCliente.fxml"));
-                    primaryStage.setTitle("Log as Client");
-                    primaryStage.setScene(new Scene(root, 600, 400));
-                    primaryStage.show();
-                } catch (IOException e){
-                    System.out.println(e);
-                }
+            public void handle(ActionEvent event){
+
             }
         });
 

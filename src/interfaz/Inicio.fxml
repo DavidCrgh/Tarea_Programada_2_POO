@@ -12,8 +12,8 @@
    <children>
       <VBox layoutX="55.0" layoutY="91.0" spacing="15.0">
          <children>
-            <TextField layoutX="56.0" layoutY="60.0" promptText="Nombre de Usuario" />
-            <PasswordField layoutX="55.0" layoutY="96.0" promptText="Contraseña" />
+            <TextField fx:id="textUsuario" layoutX="56.0" layoutY="60.0" promptText="Nombre de Usuario" />
+            <PasswordField fx:id="textPassword" layoutX="55.0" layoutY="96.0" promptText="Contraseña" />
          </children>
       </VBox>
       <Text fx:id="label1" layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inicio de Sesión" />

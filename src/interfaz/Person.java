@@ -7,18 +7,13 @@ import javafx.beans.property.SimpleStringProperty;
  * el 10-Nov-16.
  */
 public class Person {
-
-    private final SimpleStringProperty firstName;
-    private final SimpleStringProperty lastName;
-    private final SimpleStringProperty email;
+    private SimpleStringProperty usuario;
     private final SimpleStringProperty clave;
     private final SimpleStringProperty numeroCelualar;
     private boolean admin;
 
-    public Person(String fName, String lName, String email, String pClave, String pNumeroCelular) {
-        this.firstName = new SimpleStringProperty(fName);
-        this.lastName = new SimpleStringProperty(lName);
-        this.email = new SimpleStringProperty(email);
+    public Person(String fName, String pClave, String pNumeroCelular) {
+        this.usuario = new SimpleStringProperty(fName);
         this.clave = new SimpleStringProperty(pClave);
         this.numeroCelualar = new SimpleStringProperty(pNumeroCelular);
         this.admin = false;
@@ -48,27 +43,7 @@ public class Person {
         this.numeroCelualar.set(numeroCelualar);
     }
 
-    public String getFirstName() {
-        return firstName.get();
-    }
-
-    public void setFirstName(String fName) {
-        firstName.set(fName);
-    }
-
-    public String getLastName() {
-        return lastName.get();
-    }
-
-    public void setLastName(String fName) {
-        lastName.set(fName);
-    }
-
-    public String getEmail() {
-        return email.get();
-    }
-
-    public void setEmail(String fName) {
-        email.set(fName);
+    public String getUsuario() {
+        return usuario.get();
     }
 }
