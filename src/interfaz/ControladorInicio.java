@@ -27,8 +27,6 @@ public class ControladorInicio implements Initializable{
     @FXML
     private PasswordField textPassword;
 
-    private
-
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
         assert botonInicio != null : "fx:id=\"botonInicio\" was not injected: check your FXML file 'Inicio.fxml'.";
         assert botonCrear != null : "fx:id=\"botonCrear\" was not injected: check your FXML file 'Inicio.fxml'.";
