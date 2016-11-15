@@ -33,7 +33,7 @@ public class Servidor {
 
     }
 
-    public void esucharPeticiones() throws  IOException{
+    public void esucharPeticiones() throws IOException {
         administrador = servidor.accept();
         cliente = servidor.accept();
     }
