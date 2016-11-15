@@ -16,13 +16,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class Main extends Application {
-    public static ArrayList<Person> cuentas;
-
-    Main(){
-        cuentas=new ArrayList<Person>();
-    }
-
+public class Main extends Application{
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("Inicio.fxml"));
@@ -33,29 +27,6 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
-        try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document doc = builder.parse("Cuentas.xml");
-            NodeList list = doc.getElementsByTagName("person");
-            for(int i=0; i<list.getLength(); i++){
-                NodeList datos = (NodeList) list.item(i).getChildNodes();
-                for(int j=0; j<datos.getLength(); j++){
-                    Element aux = (Element)datos.item(j);
-                    //Person auxPerson = new Person();
-
-                }
-            }
             launch(args);
-        }
-        catch (SAXException e1) {
-            e1.printStackTrace();
-        }
-        catch (ParserConfigurationException e1) {
-            e1.printStackTrace();
-        }
-        catch (IOException e1) {
-            e1.printStackTrace();
-        }
     }
 }
