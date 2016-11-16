@@ -2,6 +2,9 @@ package model;
 
 import javafx.beans.property.SimpleStringProperty;
 
+import java.io.IOException;
+import java.net.Socket;
+
 /**
  * Creado por David Valverde Garro - 2016034774
  * el 10-Nov-16.
@@ -12,6 +15,7 @@ public class Usuario {
     private final SimpleStringProperty numeroCelular;
     private final SimpleStringProperty direccion;
     private boolean admin;
+    private Socket cliente;
 
     public String getDireccion() {
         return direccion.get();
@@ -26,7 +30,6 @@ public class Usuario {
         this.clave = new SimpleStringProperty(pClave);
         this.numeroCelular = new SimpleStringProperty(pNumeroCelular);
         this.direccion= new SimpleStringProperty(pDireccion);
-
         this.admin = esAdmin(pEsAdmin);
     }
 
@@ -64,5 +67,13 @@ public class Usuario {
             return true;
         return false;
 
+    }
+
+    public void abrirConexion() {
+        try {
+            this.cliente = new Socket("localhost", 8080);
+            new UsuarioThread(cliente, this).start();
+        }
+        catch (IOException e) {System.out.println(e);}
     }
 }

@@ -37,7 +37,6 @@ public class ControladorInicio implements Initializable{
             @Override
             public void handle(ActionEvent event) {
                 InicioSesion inicioSesion = new InicioSesion();
-
                 String usuario = textUsuario.getText();
                 String contrasenna = textPassword.getText();
                 Usuario buscado = inicioSesion.buscarCuenta(usuario, contrasenna);
@@ -50,7 +49,8 @@ public class ControladorInicio implements Initializable{
                             primaryStage.setTitle("Log as admin");
                             primaryStage.setScene(new Scene(root, 600, 400));
                             primaryStage.show();
-                            inicioSesion.abrirConexion();
+                            buscado.abrirConexion();
+
                         }
                         catch (IOException e){
                             System.out.println(e);
@@ -63,8 +63,9 @@ public class ControladorInicio implements Initializable{
                             primaryStage.setTitle("Log as Client");
                             primaryStage.setScene(new Scene(root, 600, 400));
                             primaryStage.show();
-                            inicioSesion.abrirConexion();
-                        } catch (IOException e){
+                            buscado.abrirConexion();
+                        }
+                        catch (IOException e){
                             System.out.println(e);
                         }
                     }

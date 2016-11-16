@@ -9,8 +9,7 @@ import java.net.*;
 public class Servidor {
     private ServerSocket servidor;
     private int puerto;
-    private Socket administrador;
-    private Socket cliente;
+    private Socket usuario;
     private ObjectInputStream entradaObjeto;
     private ObjectOutputStream salidaObjeto;
     private DataInputStream entrada;
@@ -18,14 +17,13 @@ public class Servidor {
 
     public Servidor(int _puerto){
         this.puerto=_puerto;
-        iniciarsServidor();
+        iniciarServidor();
     }
 
-    public void iniciarsServidor(){
+    public void iniciarServidor(){
         try{
             servidor = new ServerSocket(puerto);
-            administrador = new Socket();
-            cliente = new Socket();
+            usuario = new Socket();
         }
         catch (Exception e){
             System.out.println(e);
@@ -33,11 +31,11 @@ public class Servidor {
 
     }
 
-    public void esucharPeticiones() throws IOException {
-        System.out.println("escuchando peticiones");
-        administrador = servidor.accept();
-        System.out.println("administrador aceptado");
-        cliente = servidor.accept();
-        System.out.println("cliente aceptado");
+    public void esucharPeticiones() throws IOException{
+        usuario = servidor.accept();
+
+        System.out.println("UsuarioAceptado");
+
+        servidor.accept();
     }
 }

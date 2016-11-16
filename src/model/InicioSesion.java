@@ -32,30 +32,20 @@ public class InicioSesion {
             System.out.println("----------------------------");
 
             for (int temp = 0; temp < nList.getLength(); temp++) {
-
                 Node nNode = nList.item(temp);
-
-            //    System.out.println("\nCurrent Element :" + nNode.getNodeName());
-
                 if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-
                     Element eElement = (Element) nNode;
-                  //  System.out.println("First Name : " + eElement.getElementsByTagName("firstName").item(0).getTextContent());
-                   // System.out.println("Last Name : " + eElement.getElementsByTagName("lastName").item(0).getTextContent());
-                    //System.out.println("Salary : " + eElement.getElementsByTagName("clave").item(0).getTextContent());
                     String usuario=eElement.getElementsByTagName("usuario").item(0).getTextContent();
                     String clave= eElement.getElementsByTagName("clave").item(0).getTextContent();
                     String numeroCelular= eElement.getElementsByTagName("numeroCelular").item(0).getTextContent();
                     String direccion= eElement.getElementsByTagName("direccion").item(0).getTextContent();
                     String esAdmin= eElement.getElementsByTagName("admin").item(0).getTextContent();
-
                     Usuario actual = new Usuario(usuario,clave,numeroCelular,direccion,esAdmin);
                     cuentas.add(actual);
                 }
-
-
             }
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -69,11 +59,5 @@ public class InicioSesion {
             iteraciones--;
         }
         return null;
-    }
-    public void abrirConexion() {
-        try {
-            Socket cliente = new Socket("localhost", 8080);
-        }
-        catch (IOException e) {System.out.println(e);}
     }
 }
