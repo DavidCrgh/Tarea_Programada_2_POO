@@ -48,6 +48,7 @@ public class ControladorInicio implements Initializable{
                             primaryStage.setTitle("Log as admin");
                             primaryStage.setScene(new Scene(root, 600, 400));
                             primaryStage.show();
+                            inicioSesion.abrirConexion();
                         }
                         catch (IOException e){
                             System.out.println(e);
@@ -60,6 +61,7 @@ public class ControladorInicio implements Initializable{
                             primaryStage.setTitle("Log as Client");
                             primaryStage.setScene(new Scene(root, 600, 400));
                             primaryStage.show();
+                            inicioSesion.abrirConexion();
                         } catch (IOException e){
                             System.out.println(e);
                         }

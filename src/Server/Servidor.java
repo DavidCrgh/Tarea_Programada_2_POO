@@ -34,7 +34,10 @@ public class Servidor {
     }
 
     public void esucharPeticiones() throws IOException {
+        System.out.println("escuchando peticiones");
         administrador = servidor.accept();
+        System.out.println("administrador aceptado");
         cliente = servidor.accept();
+        System.out.println("cliente aceptado");
     }
 }

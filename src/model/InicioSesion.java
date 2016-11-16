@@ -5,6 +5,8 @@ import org.w3c.dom.*;
 
 import javax.xml.parsers.*;
 import java.io.File;
+import java.io.IOException;
+import java.net.Socket;
 import java.util.ArrayList;
 
 /**
@@ -17,13 +19,11 @@ public class InicioSesion {
         cuentas = new ArrayList<>();
         try {
 
-            File fXmlFile = new File("C:\\Users\\Francisco Contreras\\Desktop\\ProjectosJava\\Tarea_Programada_2_POO\\src\\model\\Cuentas.xml");
+            File fXmlFile = new File("C:\\Users\\David\\IDE_Projects\\IdeaProjects\\Tarea_Programada_2_POO\\src\\model\\Cuentas.xml");
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(fXmlFile);
 
-            //optional, but recommended
-            //read this - http://stackoverflow.com/questions/13786607/normalization-in-dom-parsing-with-java-how-does-it-work
             doc.getDocumentElement().normalize();
 
             System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
@@ -70,5 +70,11 @@ public class InicioSesion {
             iteraciones--;
         }
         return null;
+    }
+    public void abrirConexion() {
+        try {
+            Socket cliente = new Socket("localhost", 8080);
+        }
+        catch (IOException e) {System.out.println(e);}
     }
 }
