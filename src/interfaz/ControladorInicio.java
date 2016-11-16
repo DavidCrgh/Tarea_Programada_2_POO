@@ -12,6 +12,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.InicioSesion;
+import model.Usuario;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -38,7 +40,7 @@ public class ControladorInicio implements Initializable{
 
                 String usuario = textUsuario.getText();
                 String contrasenna = textPassword.getText();
-                Cliente buscado = inicioSesion.buscarCuenta(usuario, contrasenna);
+                Usuario buscado = inicioSesion.buscarCuenta(usuario, contrasenna);
 
                 if(buscado!=null) {
                     if (buscado.isAdmin()) {

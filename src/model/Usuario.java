@@ -1,4 +1,4 @@
-package interfaz;
+package model;
 
 import javafx.beans.property.SimpleStringProperty;
 
@@ -6,7 +6,7 @@ import javafx.beans.property.SimpleStringProperty;
  * Creado por David Valverde Garro - 2016034774
  * el 10-Nov-16.
  */
-public class Cliente {
+public class Usuario {
     private SimpleStringProperty usuario;
     private final SimpleStringProperty clave;
     private final SimpleStringProperty numeroCelular;
@@ -21,7 +21,7 @@ public class Cliente {
         return direccion;
     }
 
-    public Cliente(String fName, String pClave, String pNumeroCelular, String pDireccion,String pEsAdmin) {
+    public Usuario(String fName, String pClave, String pNumeroCelular, String pDireccion, String pEsAdmin) {
         this.usuario = new SimpleStringProperty(fName);
         this.clave = new SimpleStringProperty(pClave);
         this.numeroCelular = new SimpleStringProperty(pNumeroCelular);

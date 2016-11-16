@@ -1,6 +1,5 @@
 package model;
 
-import interfaz.Cliente;
 import org.w3c.dom.*;
 
 import javax.xml.parsers.*;
@@ -13,13 +12,13 @@ import java.util.ArrayList;
  * Created by Bryan on 11/15/2016.
  */
 public class InicioSesion {
-    public ArrayList<Cliente> cuentas;
+    public ArrayList<Usuario> cuentas;
 
     public InicioSesion(){
         cuentas = new ArrayList<>();
         try {
 
-            File fXmlFile = new File("C:\\Users\\David\\IDE_Projects\\IdeaProjects\\Tarea_Programada_2_POO\\src\\model\\Cuentas.xml");
+            File fXmlFile = new File("recursos\\Cuentas.xml");
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(fXmlFile);
@@ -50,7 +49,7 @@ public class InicioSesion {
                     String direccion= eElement.getElementsByTagName("direccion").item(0).getTextContent();
                     String esAdmin= eElement.getElementsByTagName("admin").item(0).getTextContent();
 
-                    Cliente actual = new Cliente(usuario,clave,numeroCelular,direccion,esAdmin);
+                    Usuario actual = new Usuario(usuario,clave,numeroCelular,direccion,esAdmin);
                     cuentas.add(actual);
                 }
 
@@ -61,10 +60,10 @@ public class InicioSesion {
         }
     }
 
-    public Cliente buscarCuenta(String usuario, String contrasenna){
+    public Usuario buscarCuenta(String usuario, String contrasenna){
         int iteraciones = cuentas.size()-1;
         while(iteraciones>=0) {
-            Cliente actual = cuentas.get(iteraciones);
+            Usuario actual = cuentas.get(iteraciones);
             if (actual.getClave().equals(contrasenna) && actual.getUsuario().equals(usuario))
                 return actual;
             iteraciones--;
