@@ -1,17 +1,2 @@
-<?xml version="1.0"?>
-<clients>
-    <person>
-        <usuario>carlitos</usuario>
-        <clave>123abc</clave>
-        <numeroCelular>86121929</numeroCelular>
-        <direccion>efjhrjfb</direccion>
-        <admin>true</admin>
-    </person>
-    <person>
-        <usuario>juancito</usuario>
-        <clave>456def</clave>
-        <numeroCelular>86121929</numeroCelular>
-        <direccion>efjhrjfb</direccion>
-        <admin>false</admin>
-    </person>
-</clients>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><clients>
+<person><usuario>David</usuario><clave>gilipollas</clave><numeroCelular>9236547372</numeroCelular><direccion>Curri</direccion><admin>false</admin></person></clients>

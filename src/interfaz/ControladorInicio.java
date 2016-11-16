@@ -1,5 +1,5 @@
 package interfaz;
-
+import model.Utilitarias;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -19,6 +19,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ControladorInicio implements Initializable{
+    Utilitarias objetoUtilitario = new Utilitarias();
 
     @FXML
     private Button botonInicio;
@@ -28,6 +29,14 @@ public class ControladorInicio implements Initializable{
     private TextField textUsuario;
     @FXML
     private PasswordField textPassword;
+    @FXML
+    private TextField nombreUsuario;
+    @FXML
+    private PasswordField contrasennaUsuario;
+    @FXML
+    private TextField numeroUsuario;
+    @FXML
+    private TextField direccionUsuario;
 
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
         assert botonInicio != null : "fx:id=\"botonInicio\" was not injected: check your FXML file 'Inicio.fxml'.";
@@ -78,6 +87,15 @@ public class ControladorInicio implements Initializable{
             @Override
             public void handle(ActionEvent event){
 
+                String usuario= nombreUsuario.getText();
+                String contrasenna= contrasennaUsuario.getText();
+                String direccion= direccionUsuario.getText();
+                String numero = numeroUsuario.getText();
+                try {
+                    objetoUtilitario.escribirXML(usuario, contrasenna, numero, direccion, false);
+                }catch(Exception e){
+                    System.out.println(e);
+                }
             }
         });
 

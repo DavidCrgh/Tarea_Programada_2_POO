@@ -13,39 +13,14 @@ import java.util.ArrayList;
  */
 public class InicioSesion {
     public ArrayList<Usuario> cuentas;
-
+    Utilitarias objetoUtilitario = new Utilitarias();
     public InicioSesion(){
         cuentas = new ArrayList<>();
+
         try {
-
-            File fXmlFile = new File("recursos\\Cuentas.xml");
-            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-            Document doc = dBuilder.parse(fXmlFile);
-
-            doc.getDocumentElement().normalize();
-
-            System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
-
-            NodeList nList = doc.getElementsByTagName("person");
-
-            System.out.println("----------------------------");
-
-            for (int temp = 0; temp < nList.getLength(); temp++) {
-                Node nNode = nList.item(temp);
-                if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-                    Element eElement = (Element) nNode;
-                    String usuario=eElement.getElementsByTagName("usuario").item(0).getTextContent();
-                    String clave= eElement.getElementsByTagName("clave").item(0).getTextContent();
-                    String numeroCelular= eElement.getElementsByTagName("numeroCelular").item(0).getTextContent();
-                    String direccion= eElement.getElementsByTagName("direccion").item(0).getTextContent();
-                    String esAdmin= eElement.getElementsByTagName("admin").item(0).getTextContent();
-                    Usuario actual = new Usuario(usuario,clave,numeroCelular,direccion,esAdmin);
-                    cuentas.add(actual);
-                }
+            cuentas =objetoUtilitario.cargarCuentas(cuentas);
             }
-        }
-        catch (Exception e) {
+         catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -59,5 +34,11 @@ public class InicioSesion {
             iteraciones--;
         }
         return null;
+    }
+    public void abrirConexion() {
+        try {
+            Socket cliente = new Socket("localhost", 8080);
+        }
+        catch (IOException e) {System.out.println(e);}
     }
 }
