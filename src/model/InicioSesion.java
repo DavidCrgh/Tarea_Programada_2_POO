@@ -12,6 +12,7 @@ import java.util.ArrayList;
 public class InicioSesion {
     public ArrayList<Usuario> cuentas;
     private Socket cliente;
+
     Utilitarias objetoUtilitario = new Utilitarias();
 
     public InicioSesion(){
@@ -35,10 +36,15 @@ public class InicioSesion {
         }
         return null;
     }
-    public void abrirConexion() {
+    public Socket abrirConexion() {
         try {
             cliente = new Socket("localhost", 8080);
+
         }
         catch (IOException e) {System.out.println(e);}
+
+        return cliente;
     }
+
+
 }

@@ -15,11 +15,14 @@ import model.InicioSesion;
 import sockets.client.Usuario;
 
 import java.io.IOException;
+import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ControladorInicio implements Initializable{
     Utilitarias objetoUtilitario = new Utilitarias();
+    private Socket cliente;
+
 
     @FXML
     public Button botonInicio;
