@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?><clients>
-<person><usuario>David</usuario><clave>gilipollas</clave><numeroCelular>9236547372</numeroCelular><direccion>Curri</direccion><admin>false</admin></person></clients>
+<person><usuario>David</usuario><clave>gilipollas</clave><numeroCelular>9236547372</numeroCelular><direccion>Curri</direccion><admin>false</admin></person><person><usuario>DavidCR</usuario><clave>12345678</clave><numeroCelular>87195974</numeroCelular><direccion>Sto. Domingo</direccion><admin>true</admin></person></clients>

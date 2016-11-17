@@ -1,32 +1,68 @@
 package model;
 
 
+import sockets.client.Usuario;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
  * Created by Francisco Contreras on 16/11/2016.
  */
 public class Utilitarias {
+    public ArrayList<Platillo> cargarMenu(String ubicacion) throws ParserConfigurationException, IOException, SAXException{
+        ArrayList<Platillo> platillos = new ArrayList<>();
+        File fXmlFile = new File(ubicacion);
+        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+        Document doc = dBuilder.parse(fXmlFile);
 
+        doc.getDocumentElement().normalize();
 
-    public Utilitarias(){
+        NodeList nList = doc.getElementsByTagName("producto");
 
+        for(int i = 0; i < nList.getLength(); i++){
+            Node nNode = nList.item(i);
+            if(nNode.getNodeType() == Node.ELEMENT_NODE){
+                Element eElement = (Element)nNode;
+                String codigo = eElement.getElementsByTagName("codigo").item(0).getTextContent();
+                String nombre = eElement.getElementsByTagName("nombre").item(0).getTextContent();
+                String descripcion = eElement.getElementsByTagName("descripcion").item(0).getTextContent();
+                int tamanoPorcion = Integer.parseInt(eElement.getElementsByTagName("tamanoPorcion").item(0).getTextContent());
+                int piezasPorPorcion = Integer.parseInt(eElement.getElementsByTagName("piezasPorPorcion").item(0).getTextContent());
+                int caloriasPorPorcion = Integer.parseInt(eElement.getElementsByTagName("caloriasPorPorcion").item(0).getTextContent());
+                int precio = Integer.parseInt(eElement.getElementsByTagName("precio").item(0).getTextContent());
+                String imagen = eElement.getElementsByTagName("imagem").item(0).getTextContent();
+                String tagDisponible = eElement.getElementsByTagName("disponible").item(0).getTextContent();
+                boolean disponible;
+                if(tagDisponible.equals("Si")){
+                    disponible = true;
+                } else{
+                    disponible = false;
+                }
+
+                Platillo platilloActual = new Platillo(codigo,nombre,descripcion,tamanoPorcion,caloriasPorPorcion,piezasPorPorcion,precio,imagen,disponible);
+                platillos.add(platilloActual);
+            }
+        }
+
+        return platillos;
     }
 
-
-    public void escribirXML(String usuario,String contrasenna,String numeroCelular,String direccion,boolean quienRegistra)throws Exception{
+    public void guardarUsuarioXML(String usuario, String contrasenna, String numeroCelular, String direccion, boolean quienRegistra)throws Exception{
 
         File archivoXML = new File("recursos\\Cuentas.xml");
         DocumentBuilderFactory factory=DocumentBuilderFactory.newInstance();
@@ -71,8 +107,8 @@ public class Utilitarias {
 
     }
 
-    public ArrayList<Usuario> cargarCuentas (ArrayList<Usuario> cuentas)throws Exception {
-
+    public ArrayList<Usuario> cargarCuentas ()throws Exception {
+        ArrayList<Usuario> cuentas = new ArrayList<>();
         File fXmlFile = new File("recursos\\Cuentas.xml");
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
@@ -109,11 +145,10 @@ public class Utilitarias {
     }
 
     private String registroCuenta(boolean quienRegistra){
-
         if(quienRegistra)
             return "true";
         return "false";
-
     }
+
 
 }

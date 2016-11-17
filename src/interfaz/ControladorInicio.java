@@ -12,7 +12,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.InicioSesion;
-import model.Usuario;
+import sockets.client.Usuario;
 
 import java.io.IOException;
 import java.net.URL;
@@ -22,7 +22,7 @@ public class ControladorInicio implements Initializable{
     Utilitarias objetoUtilitario = new Utilitarias();
 
     @FXML
-    private Button botonInicio;
+    public Button botonInicio;
     @FXML
     private  Button botonCrear;
     @FXML
@@ -58,8 +58,7 @@ public class ControladorInicio implements Initializable{
                             primaryStage.setTitle("Log as admin");
                             primaryStage.setScene(new Scene(root, 600, 400));
                             primaryStage.show();
-                            buscado.abrirConexion();
-
+                            inicioSesion.abrirConexion();
                         }
                         catch (IOException e){
                             System.out.println(e);
@@ -72,7 +71,7 @@ public class ControladorInicio implements Initializable{
                             primaryStage.setTitle("Log as Client");
                             primaryStage.setScene(new Scene(root, 600, 400));
                             primaryStage.show();
-                            buscado.abrirConexion();
+                            inicioSesion.abrirConexion();
                         }
                         catch (IOException e){
                             System.out.println(e);
@@ -80,7 +79,6 @@ public class ControladorInicio implements Initializable{
                     }
                 }
             }
-
         });
 
         botonCrear.setOnAction(new EventHandler<ActionEvent>(){
@@ -92,7 +90,7 @@ public class ControladorInicio implements Initializable{
                 String direccion= direccionUsuario.getText();
                 String numero = numeroUsuario.getText();
                 try {
-                    objetoUtilitario.escribirXML(usuario, contrasenna, numero, direccion, false);
+                    objetoUtilitario.guardarUsuarioXML(usuario, contrasenna, numero, direccion, false);
                 }catch(Exception e){
                     System.out.println(e);
                 }
@@ -100,5 +98,14 @@ public class ControladorInicio implements Initializable{
         });
 
     }
+
+
+    public void actualizarVentana(){
+
+        textUsuario.setText("ME PICA LA PICHA");
+
+
+    }
+
 
 }

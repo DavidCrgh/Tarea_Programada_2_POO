@@ -1,11 +1,14 @@
 package model;
 
+import java.io.Serializable;
+
 /**
  * Creado por David Valverde Garro - 2016034774
  * el 15-Nov-16.
  */
-public class Platillo {
+public class Platillo implements Serializable{
     private String codigo;
+    private String nombre;
     private String descripcion;
     private int tamanoPorcion;
     private int caloriasPorcion;
@@ -14,9 +17,9 @@ public class Platillo {
     private String imagen;
     private boolean disponible;
 
-    public Platillo(String codigo, String descripcion, int tamanoPorcion, int caloriasPorcion,
-                    int piezasPorcion, int precio, String imagen, boolean disponible) {
+    public Platillo(String codigo, String nombre, String descripcion, int tamanoPorcion, int caloriasPorcion, int piezasPorcion, int precio, String imagen, boolean disponible) {
         this.codigo = codigo;
+        this.nombre = nombre;
         this.descripcion = descripcion;
         this.tamanoPorcion = tamanoPorcion;
         this.caloriasPorcion = caloriasPorcion;
@@ -32,6 +35,14 @@ public class Platillo {
 
     public void setCodigo(String codigo) {
         this.codigo = codigo;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getDescripcion() {

@@ -1,9 +1,7 @@
 package model;
 
-import org.w3c.dom.*;
+import sockets.client.Usuario;
 
-import javax.xml.parsers.*;
-import java.io.File;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -13,12 +11,14 @@ import java.util.ArrayList;
  */
 public class InicioSesion {
     public ArrayList<Usuario> cuentas;
+    private Socket cliente;
     Utilitarias objetoUtilitario = new Utilitarias();
+
     public InicioSesion(){
         cuentas = new ArrayList<>();
 
         try {
-            cuentas =objetoUtilitario.cargarCuentas(cuentas);
+            cuentas =objetoUtilitario.cargarCuentas();
             }
          catch (Exception e) {
             e.printStackTrace();
@@ -37,7 +37,7 @@ public class InicioSesion {
     }
     public void abrirConexion() {
         try {
-            Socket cliente = new Socket("localhost", 8080);
+            cliente = new Socket("localhost", 8080);
         }
         catch (IOException e) {System.out.println(e);}
     }
