@@ -1,4 +1,4 @@
-package server;
+package sockets.server;
 
 import java.io.*;
 import java.net.*;
@@ -9,7 +9,8 @@ import java.net.*;
 public class Servidor {
     private ServerSocket servidor;
     private int puerto;
-    private Socket usuario;
+    private Socket cliente1;
+    private Socket cliente2;
     private ObjectInputStream entradaObjeto;
     private ObjectOutputStream salidaObjeto;
     private DataInputStream entrada;
@@ -23,7 +24,8 @@ public class Servidor {
     public void iniciarServidor(){
         try{
             servidor = new ServerSocket(puerto);
-            usuario = new Socket();
+            cliente1 = new Socket();
+            cliente2 = new Socket();
         }
         catch (Exception e){
             System.out.println(e);
@@ -32,10 +34,12 @@ public class Servidor {
     }
 
     public void esucharPeticiones() throws IOException{
-        usuario = servidor.accept();
+        cliente1 = servidor.accept();
+        new ThreadServidor(this,cliente1);
+        System.out.println("Cliente Aceptado");
 
-        System.out.println("UsuarioAceptado");
-
-        servidor.accept();
+        cliente2 = servidor.accept();
+        new ThreadServidor(this,cliente2);
+        System.out.println("Cliente Aceptado");
     }
 }

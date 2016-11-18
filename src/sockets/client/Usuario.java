@@ -1,4 +1,4 @@
-package model;
+package sockets.client;
 
 import javafx.beans.property.SimpleStringProperty;
 
@@ -72,7 +72,6 @@ public class Usuario {
     public void abrirConexion() {
         try {
             this.cliente = new Socket("localhost", 8080);
-            new UsuarioThread(cliente, this).start();
         }
         catch (IOException e) {System.out.println(e);}
     }
