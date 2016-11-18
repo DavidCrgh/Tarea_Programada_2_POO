@@ -1,7 +1,13 @@
 package sockets.server;
 
+import model.Platillo;
+import model.Utilitarias;
+import org.xml.sax.SAXException;
+
+import javax.xml.parsers.ParserConfigurationException;
 import java.io.*;
 import java.net.*;
+import java.util.ArrayList;
 
 /**
  * Created by Bryan on 11/15/2016.
@@ -17,22 +23,25 @@ public class Servidor {
     private DataOutputStream salida;
     private ThreadPeticiones hiloPeticiones;
 
+    ArrayList<Platillo> platillos;
+
     public Servidor(int _puerto){
         this.puerto=_puerto;
         hiloPeticiones= new ThreadPeticiones(this);
         iniciarServidor();
+        try {
+            platillos = Utilitarias.cargarMenu();
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (SAXException e) {
+            e.printStackTrace();
+        }
     }
 
     public void iniciarServidor(){
-    //    try{
-            hiloPeticiones.start();
-          //  cliente1 = new Socket();
-        //    cliente2 = new Socket();
- //       }
-    //    catch (Exception e){
-   //         System.out.println(e);
-       // }
-
+        hiloPeticiones.start();
     }
 
     public void esucharPeticiones() throws IOException{

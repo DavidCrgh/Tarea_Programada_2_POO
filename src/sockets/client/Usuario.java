@@ -3,6 +3,7 @@ package sockets.client;
 import javafx.beans.property.SimpleStringProperty;
 
 import java.io.IOException;
+import java.net.InetAddress;
 import java.net.Socket;
 
 /**
@@ -66,7 +67,6 @@ public class Usuario {
         if(esAdmin.equals("true"))
             return true;
         return false;
-
     }
 
     public void abrirConexion() {

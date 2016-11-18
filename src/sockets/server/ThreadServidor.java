@@ -23,38 +23,29 @@ public class ThreadServidor extends Thread {
     private ObjectInputStream entradaObjeto;
     private ObjectOutputStream salidaObjeto;
 
-   // Utilitarias
-
-
-
     public ThreadServidor(Servidor _servidor, Socket _usuarioSocket){
         this.servidor = _servidor;
-        this.usuarioSocket=_usuarioSocket;
+        this.usuarioSocket = _usuarioSocket;
     }
 
     public void run(){
         try{
-            salidaDato= new DataOutputStream(usuarioSocket.getOutputStream());
-            entradaDato= new DataInputStream(usuarioSocket.getInputStream());
-            entradaObjeto= new ObjectInputStream(usuarioSocket.getInputStream());
-            salidaObjeto= new ObjectOutputStream(usuarioSocket.getOutputStream());
+            salidaDato = new DataOutputStream(usuarioSocket.getOutputStream());
+            entradaDato = new DataInputStream(usuarioSocket.getInputStream());
+            entradaObjeto = new ObjectInputStream(usuarioSocket.getInputStream());
+            salidaObjeto = new ObjectOutputStream(usuarioSocket.getOutputStream());
         }catch(Exception e){
-
             e.printStackTrace();
         }
-        int opcion =0;
-
-
-
+        int opcion;
         while(true){
             try{
                 sleep(1000);
-                ArrayList<Platillo> platillos = Utilitarias.cargarMenu();
                 opcion= entradaDato.readInt();
                 switch(opcion){
                     case 1:
                         salidaDato.writeInt(1);
-                        salidaObjeto.writeObject(platillos);
+                        salidaObjeto.writeObject(servidor.platillos);
                         break;
                 }
             } catch (Exception e){
@@ -62,6 +53,5 @@ public class ThreadServidor extends Thread {
             }
         }
     }
-
 }
 
