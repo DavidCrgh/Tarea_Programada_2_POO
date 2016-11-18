@@ -23,9 +23,9 @@ import java.util.ArrayList;
  * Created by Francisco Contreras on 16/11/2016.
  */
 public class Utilitarias {
-    public ArrayList<Platillo> cargarMenu(String ubicacion) throws ParserConfigurationException, IOException, SAXException{
+    public static ArrayList<Platillo> cargarMenu() throws ParserConfigurationException, IOException, SAXException{
         ArrayList<Platillo> platillos = new ArrayList<>();
-        File fXmlFile = new File(ubicacion);
+        File fXmlFile = new File("recursos\\Menu.xml" );
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
         Document doc = dBuilder.parse(fXmlFile);
@@ -45,7 +45,7 @@ public class Utilitarias {
                 int piezasPorPorcion = Integer.parseInt(eElement.getElementsByTagName("piezasPorPorcion").item(0).getTextContent());
                 int caloriasPorPorcion = Integer.parseInt(eElement.getElementsByTagName("caloriasPorPorcion").item(0).getTextContent());
                 int precio = Integer.parseInt(eElement.getElementsByTagName("precio").item(0).getTextContent());
-                String imagen = eElement.getElementsByTagName("imagem").item(0).getTextContent();
+                String imagen = eElement.getElementsByTagName("imagen").item(0).getTextContent();
                 String tagDisponible = eElement.getElementsByTagName("disponible").item(0).getTextContent();
                 boolean disponible;
                 if(tagDisponible.equals("Si")){
