@@ -44,6 +44,7 @@ public class ThreadCliente extends Thread {
                 switch(opcion){
                     case 1:
                         ArrayList<Platillo> platillos = (ArrayList<Platillo>) entradaObjeto.readObject();
+
                         if(controladorCliente != null){
                             Platform.runLater(() -> {
                                 controladorCliente.construirTabla(platillos);
@@ -51,7 +52,9 @@ public class ThreadCliente extends Thread {
                         }
                         if(controladorAdministrador != null){
                             Platform.runLater(() -> {
+                                controladorAdministrador.platillos=platillos;
                                 controladorAdministrador.construirTabla(platillos);
+
                             });
                         }
                         break;

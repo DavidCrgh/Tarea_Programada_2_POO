@@ -12,7 +12,7 @@
         <caloriasPorPorcion>326</caloriasPorPorcion>
         <precio>1500</precio>
         <imagen>recursos\imagenes\classicgrilledchickenburrito[2].png</imagen>
-        <disponible>Si</disponible>
+        <disponible>No</disponible>
     </producto>
     <producto>
         <codigo>ENT-021</codigo>
@@ -23,7 +23,7 @@
         <caloriasPorPorcion>210</caloriasPorPorcion>
         <precio>1500</precio>
         <imagen>recursos\imagenes\maxresdefault.jpg</imagen>
-        <disponible>Si</disponible>
+        <disponible>No</disponible>
     </producto>
     <producto>
         <codigo>BEB-011</codigo>

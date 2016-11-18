@@ -16,6 +16,7 @@ public class Platillo implements Serializable{
     private int precio;
     private String imagen;
     private boolean disponible;
+    private String disponibleString;
 
     public Platillo(String codigo, String nombre, String descripcion, int tamanoPorcion, int caloriasPorcion, int piezasPorcion, int precio, String imagen, boolean disponible) {
         this.codigo = codigo;
@@ -27,6 +28,7 @@ public class Platillo implements Serializable{
         this.precio = precio;
         this.imagen = imagen;
         this.disponible = disponible;
+        this.disponibleString = disponibleString(this.disponible);
     }
 
     public String getCodigo() {
@@ -99,5 +101,21 @@ public class Platillo implements Serializable{
 
     public void setDisponible(boolean disponible) {
         this.disponible = disponible;
+    }
+
+    public String getDisponibleString() {
+        return disponibleString;
+    }
+
+    public void setDisponibleString(String disponibleString) {
+        this.disponibleString = disponibleString;
+    }
+
+
+    private String disponibleString(boolean disponible){
+
+        if(disponible)
+            return "Si";
+        return "No";
     }
 }

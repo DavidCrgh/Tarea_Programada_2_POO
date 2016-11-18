@@ -28,6 +28,10 @@ public class ControladorPrincipalAdministrador implements Initializable {
     private TableColumn columnaCalorias;
     @FXML
     private TableColumn columnaPrecio;
+    @FXML
+    private TableColumn columnaDisponible;
+
+    public ArrayList<Platillo> platillos;
 
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
         columnaCodigo.setCellValueFactory(
@@ -41,6 +45,9 @@ public class ControladorPrincipalAdministrador implements Initializable {
         );
         columnaPrecio.setCellValueFactory(
                 new PropertyValueFactory<Platillo,String>("precio")
+        );
+        columnaDisponible.setCellValueFactory(
+                new PropertyValueFactory<Platillo,String>("disponibleString")
         );
     }
 

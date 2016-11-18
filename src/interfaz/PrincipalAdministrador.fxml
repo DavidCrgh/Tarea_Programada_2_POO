@@ -41,6 +41,7 @@
                               <TableColumn fx:id="columnaNombre" prefWidth="75.0" text="Nombre" />
                               <TableColumn fx:id="columnaCalorias" prefWidth="75.0" text="Calorias" />
                               <TableColumn fx:id="columnaPrecio" prefWidth="75.0" text="Precio" />
+                              <TableColumn fx:id="columnaDisponible" prefWidth="75.0" text="Disponible" />
                            </columns></TableView>
                         <HBox layoutX="381.0" layoutY="2.0" spacing="10.0">
                            <children>

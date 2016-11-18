@@ -28,10 +28,13 @@ public class ControladorPrincipalCliente implements Initializable {
     @FXML
     private TableColumn columnaPrecio;
 
+
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
         columnaCodigo.setCellValueFactory(
                 new PropertyValueFactory<Platillo,String>("codigo")
         );
+
+
         columnaNombre.setCellValueFactory(
                 new PropertyValueFactory<Platillo,String>("nombre")
         );
@@ -41,9 +44,18 @@ public class ControladorPrincipalCliente implements Initializable {
         columnaPrecio.setCellValueFactory(
                 new PropertyValueFactory<Platillo,String>("precio")
         );
+
     }
 
     public void construirTabla(ArrayList<Platillo> platillos){
+        for(int i=0;i<platillos.size();i++){
+            if(!(platillos.get(i).isDisponible())){
+                platillos.remove(i);
+                i--;
+            }
+
+        }
+
         tablaProductos.setItems(FXCollections.observableList(platillos));
     }
 }
