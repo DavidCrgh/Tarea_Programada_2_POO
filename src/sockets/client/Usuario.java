@@ -112,7 +112,7 @@ public class Usuario {
 
     public void abrirConexion() {
         try {
-            this.socket = new Socket("localhost", 8080);
+            this.socket = new Socket("192.168.1.110", 8080);
         }
         catch (IOException e) {
             e.printStackTrace();

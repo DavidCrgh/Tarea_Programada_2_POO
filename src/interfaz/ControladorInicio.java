@@ -26,7 +26,7 @@ public class ControladorInicio implements Initializable{
     @FXML
     public Button botonInicio;
     @FXML
-    private  Button botonCrear;
+    private Button botonCrear;
     @FXML
     private TextField textUsuario;
     @FXML
