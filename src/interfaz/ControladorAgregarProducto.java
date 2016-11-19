@@ -14,9 +14,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import model.Platillo;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -40,8 +42,6 @@ public class ControladorAgregarProducto implements Initializable {
     @FXML
     private TextField textoPiezasPorcion;
     @FXML
-    private TextField textoCaloriasPieza;
-    @FXML
     private TextField textoPrecio;
     @FXML
     private Button botonImagen;
@@ -49,11 +49,46 @@ public class ControladorAgregarProducto implements Initializable {
     private RadioButton botonSi;
     @FXML
     private RadioButton botonNo;
+    @FXML
+    private Button botonAceptar;
 
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
 
 
+        botonImagen.setOnAction(
+                new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(final ActionEvent e) {
+                        Stage primaryStage = new Stage();
+                        // FXMLLoader loader = new FXMLLoader();
+                        try {
+                            Parent root = FXMLLoader.load(getClass().getResource("AgregarProducto.fxml"));
+                            // ControladorPrincipalAdministrador controladorAdministrador = (ControladorPrincipalAdministrador) loader.getController();
+                            primaryStage.setTitle("Agregar Producto");
+                            primaryStage.setScene(new Scene(root, 600, 400));
+                        }catch(Exception r){
+                            r.printStackTrace();
+                        }
+                        FileChooser fileChooser = new FileChooser();
+                        configurarFileChooser(fileChooser);
+
+                        File contactos = fileChooser.showOpenDialog(primaryStage);
+                        if (contactos != null) {
+
+                        }
+                    }
+                });
+
 
     }
+
+
+    private static void configurarFileChooser(FileChooser fileChooser) {
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("PNG", "*.png"/*,"JPG","*.jpg"*/)
+        );
+    }
+
+
 
 }

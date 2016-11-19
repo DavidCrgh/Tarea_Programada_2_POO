@@ -70,6 +70,10 @@ public class ControladorPrincipalAdministrador implements Initializable {
             public void handle(ActionEvent event){
 
                 Platillo platillo = (Platillo) tablaProductos.getSelectionModel().getSelectedItem();
+
+
+
+
                 try {
                     Stage primaryStage = new Stage();
                    // FXMLLoader loader = new FXMLLoader();

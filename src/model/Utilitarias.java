@@ -107,6 +107,8 @@ public class Utilitarias {
 
     }
 
+
+
     public ArrayList<Usuario> cargarCuentas ()throws Exception {
         ArrayList<Usuario> cuentas = new ArrayList<>();
         File fXmlFile = new File("recursos\\Cuentas.xml");
