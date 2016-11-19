@@ -120,12 +120,6 @@ public class ControladorAgregarProducto implements Initializable {
     }
 
 
-    private static void configurarFileChooser(FileChooser fileChooser) {
-        fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("PNG", "*.png"/*,"JPG","*.jpg"*/)
-        );
-    }
-
     public void precargarDatos(Platillo platillo){
         textoCodigo.setText(platillo.getCodigo());
         textoNombre.setText(platillo.getNombre());

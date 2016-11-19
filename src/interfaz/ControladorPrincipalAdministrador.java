@@ -87,7 +87,7 @@ public class ControladorPrincipalAdministrador implements Initializable {
                     e.printStackTrace();
                 }
             }
-        });
+        );
         botonModificar.setOnAction(event -> {
             Platillo platilloBuscado = (Platillo) tablaProductos.getSelectionModel().getSelectedItem();
             for (Platillo platillo: platillos) {
