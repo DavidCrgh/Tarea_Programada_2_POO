@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="387.0" prefWidth="531.0" xmlns="http://javafx.com/javafx/8.0.76-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaz.ControladorVerDetalles">
+   <children>
+      <Label layoutX="17.0" layoutY="301.0" text="Descripcion" />
+      <Label fx:id="descripcion" layoutX="17.0" layoutY="326.0" text="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" />
+      <HBox layoutX="304.0" layoutY="21.0" prefHeight="269.0" prefWidth="202.0" spacing="30.0">
+         <children>
+            <VBox layoutX="289.0" layoutY="21.0" spacing="25.0">
+               <children>
+                  <Label layoutX="328.0" layoutY="21.0" text="Codigo" />
+                  <Label layoutX="325.0" layoutY="52.0" text="Nombre" />
+                  <Label layoutX="289.0" layoutY="82.0" text="Tamano de la Porcion" />
+                  <Label layoutX="303.0" layoutY="114.0" text="Piezas por Porcion" />
+                  <Label layoutX="291.0" layoutY="141.0" text="Calorias por Porcion" />
+                  <Label layoutX="330.0" layoutY="171.0" text="Precio" />
+                  <Label text="Disponible" />
+               </children>
+            </VBox>
+            <VBox layoutX="427.0" layoutY="21.0" spacing="25.0">
+               <children>
+                  <Label fx:id="codigo" layoutX="470.0" layoutY="51.0" text="XXX-XXX" />
+                  <Label fx:id="nombre" layoutX="501.0" layoutY="72.0" text="XXXXXX" />
+                  <Label fx:id="tamanoPorcion" layoutX="495.0" layoutY="125.0" text="XX" />
+                  <Label fx:id="piezasPorcion" layoutX="487.0" layoutY="190.0" text="XX" />
+                  <Label fx:id="caloriasPorcion" layoutX="483.0" layoutY="222.0" text="XX" />
+                  <Label fx:id="precio" layoutX="479.0" layoutY="248.0" text="XX" />
+                  <Label fx:id="disponible" text="XX" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <ImageView fx:id="imagen" fitHeight="269.0" fitWidth="262.0" layoutX="17.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true" />
+   </children>
+</Pane>

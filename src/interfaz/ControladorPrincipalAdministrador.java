@@ -44,6 +44,9 @@ public class ControladorPrincipalAdministrador implements Initializable {
     private Button botonEliminar;
     @FXML
     private Button botonModificar;
+    @FXML
+    private Button botonVerDetalles;
+
     public Usuario usuario;
 
 
@@ -103,6 +106,21 @@ public class ControladorPrincipalAdministrador implements Initializable {
                 controlador.precargarDatos(platilloBuscado);
                 controlador.controladorAdministrador = this;
                 stage.setScene(new Scene(root,600,400));
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        botonVerDetalles.setOnAction(event -> {
+            try {
+                Stage stage = new Stage();
+                FXMLLoader loader = new FXMLLoader();
+                Parent root = loader.load(getClass().getResource("VerDetalles.fxml").openStream());
+                ControladorVerDetalles controlador = (ControladorVerDetalles) loader.getController();
+                Platillo platillo = (Platillo) tablaProductos.getSelectionModel().getSelectedItem();
+                controlador.precargarDatos(platillo);
+                stage.setTitle("Detalles de Producto");
+                stage.setScene(new Scene(root, 600,400));
                 stage.show();
             } catch (IOException e) {
                 e.printStackTrace();
