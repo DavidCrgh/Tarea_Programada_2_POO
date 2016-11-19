@@ -1,4 +1,5 @@
 package interfaz;
+
 import model.Utilitarias;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -16,23 +17,11 @@ import sockets.client.ThreadCliente;
 import sockets.client.Usuario;
 
 import java.io.*;
-import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ControladorInicio implements Initializable{
-    Utilitarias objetoUtilitario = new Utilitarias();
-    private Socket cliente;
-    private Socket administrador;
-    private DataOutputStream salidaDatoCliente;
-    private DataInputStream entradaDatoCliente;
-    private ObjectInputStream entradaObjetoCliente;
-    private ObjectOutputStream salidaObjetoCliente;
-
-    private DataOutputStream salidaDatoAdmin;
-    private DataInputStream entradaDatoAdmin;
-    private ObjectInputStream entradaObjetoAdmin;
-    private ObjectOutputStream salidaObjetoAdmin;
+    private Utilitarias objetoUtilitario = new Utilitarias();
 
     @FXML
     public Button botonInicio;
@@ -110,19 +99,15 @@ public class ControladorInicio implements Initializable{
             }
         });
 
-        botonCrear.setOnAction(new EventHandler<ActionEvent>(){
-            @Override
-            public void handle(ActionEvent event){
-
-                String usuario= nombreUsuario.getText();
-                String contrasenna= contrasennaUsuario.getText();
-                String direccion= direccionUsuario.getText();
-                String numero = numeroUsuario.getText();
-                try {
-                    objetoUtilitario.guardarUsuarioXML(usuario, contrasenna, numero, direccion, false);
-                }catch(Exception e){
-                    System.out.println(e);
-                }
+        botonCrear.setOnAction(event -> {
+            String usuario= nombreUsuario.getText();
+            String contrasenna= contrasennaUsuario.getText();
+            String direccion= direccionUsuario.getText();
+            String numero = numeroUsuario.getText();
+            try {
+                objetoUtilitario.guardarUsuarioXML(usuario, contrasenna, numero, direccion, false);
+            }catch(Exception e){
+                System.out.println(e);
             }
         });
     }
