@@ -58,14 +58,14 @@ public class ControladorAgregarProducto implements Initializable {
     @FXML
     private Button botonAceptar;
 
-    boolean disponible;
+    //boolean disponible;
 
     public ControladorPrincipalAdministrador controladorAdministrador;
     public Platillo platillo;
 
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
 
-        botonSi.setOnAction(new EventHandler<ActionEvent>() {
+        /*botonSi.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 disponible=true;
@@ -76,12 +76,9 @@ public class ControladorAgregarProducto implements Initializable {
             public void handle(ActionEvent event) {
                 disponible =false;
             }
-        });
+        });*/
 
-        botonAceptar.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-
+        botonAceptar.setOnAction(event ->  {
                 if(platillo!=null){
                     platillo.setCodigo(textoCodigo.getText());
                     platillo.setNombre(textoNombre.getText());
@@ -90,9 +87,14 @@ public class ControladorAgregarProducto implements Initializable {
                     platillo.setCaloriasPorcion(Integer.parseInt(textoCaloriasPorcion.getText()));
                     platillo.setPiezasPorcion(Integer.parseInt(textoPiezasPorcion.getText()));
                     platillo.setPrecio(Integer.parseInt(textoPrecio.getText()));
+                    if(botonSi.isSelected()){
+                        platillo.setDisponible(true);
+                        platillo.setDisponibleString("Si");
+                    }else{
+                        platillo.setDisponible(false);
+                        platillo.setDisponibleString("No");
+                    }
                     controladorAdministrador.enviarPlatoModificado();
-
-
                 }
                 else{
                     String codigo= textoCodigo.getText();
@@ -103,6 +105,7 @@ public class ControladorAgregarProducto implements Initializable {
                     int piezasPorcion = Integer.parseInt(textoPiezasPorcion.getText());
                     int precio = Integer.parseInt(textoPrecio.getText());
                     String imagen ="pathTemporal";
+                    boolean disponible = botonSi.isSelected();
 
                     Platillo platilloNuevo = new Platillo(codigo,nombre,descripcion,tamanoPorcion,caloriasPorcion,piezasPorcion,precio,imagen,disponible);
                     try {
@@ -111,12 +114,8 @@ public class ControladorAgregarProducto implements Initializable {
                     }catch(Exception e){
                         e.printStackTrace();
                     }
-
-                        }
-                    }
-                });
-
-
+                }
+            });
     }
 
 

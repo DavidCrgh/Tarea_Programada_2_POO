@@ -69,11 +69,7 @@ public class ControladorPrincipalAdministrador implements Initializable {
 
 
         botonAgregar.setOnAction(event->{
-
                 Platillo platillo = (Platillo) tablaProductos.getSelectionModel().getSelectedItem();
-
-
-
                 try {
                     Stage primaryStage = new Stage();
                     FXMLLoader loader = new FXMLLoader();
