@@ -14,8 +14,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Platillo;
+import sockets.client.Usuario;
 
-import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -35,6 +35,8 @@ public class ControladorPrincipalCliente implements Initializable {
     private TableColumn columnaCalorias;
     @FXML
     private TableColumn columnaPrecio;
+
+    public Usuario usuario;
     @FXML
     public Button AgregarPedido;
 
@@ -45,7 +47,6 @@ public class ControladorPrincipalCliente implements Initializable {
             @Override
             public void handle(ActionEvent event) {
                 Stage primaryStage = new Stage();
-                //Parent root = FXMLLoader.load(getClass().getResource("AnnadirPedido.fxml"));
                 FXMLLoader loader = new FXMLLoader();
                 Parent root = null;
                 try {
@@ -63,7 +64,6 @@ public class ControladorPrincipalCliente implements Initializable {
         columnaCodigo.setCellValueFactory(
                 new PropertyValueFactory<Platillo,String>("codigo")
         );
-
 
         columnaNombre.setCellValueFactory(
                 new PropertyValueFactory<Platillo,String>("nombre")
@@ -83,7 +83,6 @@ public class ControladorPrincipalCliente implements Initializable {
                 platillos.remove(i);
                 i--;
             }
-
         }
 
         tablaProductos.setItems(FXCollections.observableList(platillos));

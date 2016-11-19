@@ -1,7 +1,6 @@
 package interfaz;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -15,7 +14,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Platillo;
+import sockets.client.Usuario;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -44,8 +45,8 @@ public class ControladorPrincipalAdministrador implements Initializable {
     @FXML
     private Button botonModificar;
 
-
     public ArrayList<Platillo> platillos;
+    public Usuario usuario;
 
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
         columnaCodigo.setCellValueFactory(
@@ -64,16 +65,10 @@ public class ControladorPrincipalAdministrador implements Initializable {
                 new PropertyValueFactory<Platillo,String>("disponibleString")
         );
 
-
         botonAgregar.setOnAction(new EventHandler<ActionEvent>(){
             @Override
             public void handle(ActionEvent event){
-
                 Platillo platillo = (Platillo) tablaProductos.getSelectionModel().getSelectedItem();
-
-
-
-
                 try {
                     Stage primaryStage = new Stage();
                    // FXMLLoader loader = new FXMLLoader();
@@ -84,24 +79,48 @@ public class ControladorPrincipalAdministrador implements Initializable {
                     primaryStage.show();
                 }catch(Exception e){
                     e.printStackTrace();
-
                 }
-
             }
         });
+        botonModificar.setOnAction(event -> {
+            Platillo platilloBuscado = (Platillo) tablaProductos.getSelectionModel().getSelectedItem();
+            for (Platillo platillo: platillos) {
+                if(platilloBuscado.getCodigo().equals(platillo.getCodigo())){
+                    platilloBuscado = platillo;
+                    break;
+                }
+            }
+            try {
+                Stage stage = new Stage();
+                FXMLLoader loader = new FXMLLoader();
+                Parent root = loader.load(getClass().getResource("AgregarProducto.fxml").openStream());
+                ControladorAgregarProducto controlador = (ControladorAgregarProducto) loader.getController();
+                stage.setTitle("Modificar Producto");
+                controlador.tituloVentana.setText("Modificar producto");
+                controlador.platillo = platilloBuscado;
+                controlador.precargarDatos(platilloBuscado);
+                controlador.controladorAdministrador = this;
+                stage.setScene(new Scene(root,600,400));
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+    }
 
-
-
-
-
-
+    public void enviarPlatoModificado(){
+        usuario.abrirConexion();
+        usuario.obtenerFlujos();
+        try {
+            usuario.getSalidaDatos().writeInt(3);
+            usuario.getSalidaObjetos().writeObject(platillos);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //usuario.cerrarConexion();
     }
 
     public void construirTabla(ArrayList<Platillo> platillos){
         tablaProductos.setItems(FXCollections.observableList(platillos));
     }
-
-
-
-
 }

@@ -131,4 +131,12 @@ public class Usuario {
             e.printStackTrace();
         }
     }
+
+    public void cerrarConexion(){
+        try {
+            socket.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
