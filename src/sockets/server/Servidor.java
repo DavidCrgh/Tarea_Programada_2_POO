@@ -1,5 +1,6 @@
 package sockets.server;
 
+import model.ListaPedidos;
 import model.Platillo;
 import model.Utilitarias;
 import org.xml.sax.SAXException;
@@ -24,6 +25,7 @@ public class Servidor {
     private ThreadPeticiones hiloPeticiones;
 
     ArrayList<Platillo> platillos;
+    ListaPedidos pedidos;
 
     public Servidor(int _puerto){
         this.puerto=_puerto;
@@ -38,6 +40,7 @@ public class Servidor {
         } catch (SAXException e) {
             e.printStackTrace();
         }
+        pedidos = new ListaPedidos();
     }
 
     public void iniciarServidor(){

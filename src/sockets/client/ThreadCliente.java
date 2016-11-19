@@ -19,19 +19,16 @@ import java.util.ArrayList;
 public class ThreadCliente extends Thread {
     private ControladorPrincipalAdministrador controladorAdministrador;
     private ControladorPrincipalCliente controladorCliente;
-    private DataInputStream entrada;
-    private ObjectInputStream entradaObjeto;
+    private Usuario usuario;
 
-    public ThreadCliente(ControladorPrincipalAdministrador ventana, DataInputStream _entrada, ObjectInputStream _entradaObjeto){
+    public ThreadCliente(ControladorPrincipalAdministrador ventana, Usuario _usuario){
         controladorAdministrador = ventana;
-        entrada = _entrada;
-        entradaObjeto = _entradaObjeto;
+        usuario = _usuario;
     }
 
-    public ThreadCliente(ControladorPrincipalCliente ventana, DataInputStream _entrada, ObjectInputStream _entradaObjeto){
+    public ThreadCliente(ControladorPrincipalCliente ventana, Usuario _usuario){
         controladorCliente = ventana;
-        entrada = _entrada;
-        entradaObjeto = _entradaObjeto;
+        usuario = _usuario;
     }
 
     public void run(){
@@ -40,10 +37,10 @@ public class ThreadCliente extends Thread {
         while(true){
             try{
                 sleep(1000);
-                opcion=entrada.readInt();
+                opcion = usuario.getEntradaDatos().readInt();
                 switch(opcion){
                     case 1:
-                        ArrayList<Platillo> platillos = (ArrayList<Platillo>) entradaObjeto.readObject();
+                        ArrayList<Platillo> platillos = (ArrayList<Platillo>) usuario.getEntradaObjetos().readObject();
 
                         if(controladorCliente != null){
                             Platform.runLater(() -> {

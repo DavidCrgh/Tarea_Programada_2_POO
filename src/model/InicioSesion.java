@@ -39,7 +39,6 @@ public class InicioSesion {
     public Socket abrirConexion() {
         try {
             cliente = new Socket("localhost", 8080);
-
         }
         catch (IOException e) {System.out.println(e);}
 

@@ -67,27 +67,19 @@ public class ControladorInicio implements Initializable{
                     if (buscado.isAdmin()) {
                         try{
                             Stage primaryStage = new Stage();
-                            // Parent root = FXMLLoader.load(getClass().getResource("PrincipalAdministrador.fxml"));
                             FXMLLoader loader = new FXMLLoader();
                             Parent root = loader.load(getClass().getResource("PrincipalAdministrador.fxml").openStream());
                             ControladorPrincipalAdministrador controladorAdministrador = (ControladorPrincipalAdministrador) loader.getController();
-
                             primaryStage.setTitle("Log as admin");
                             primaryStage.setScene(new Scene(root, 600, 400));
                             primaryStage.show();
-                            administrador= inicioSesion.abrirConexion();
-                            salidaDatoAdmin = new DataOutputStream(administrador.getOutputStream());
-                            salidaDatoAdmin.flush();
-                            entradaDatoAdmin = new DataInputStream(administrador.getInputStream());
 
-                            salidaObjetoAdmin = new ObjectOutputStream(administrador.getOutputStream());
-                            salidaObjetoAdmin.flush();
-                            entradaObjetoAdmin= new ObjectInputStream(administrador.getInputStream());
-
-                            ThreadCliente administrador = new ThreadCliente(controladorAdministrador,entradaDatoAdmin,entradaObjetoAdmin);
+                            buscado.abrirConexion();
+                            buscado.obtenerFlujos();
+                            ThreadCliente administrador = new ThreadCliente(controladorAdministrador,buscado);
                             administrador.start();
 
-                            salidaDatoAdmin.writeInt(1);
+                            buscado.getSalidaDatos().writeInt(1);
                         }
                         catch (IOException e){
                             System.out.println(e);
@@ -96,28 +88,19 @@ public class ControladorInicio implements Initializable{
                     else{
                         try{
                             Stage primaryStage = new Stage();
-                           // Parent root = FXMLLoader.load(getClass().getResource("PrincipalCliente.fxml"));
                             FXMLLoader loader = new FXMLLoader();
                             Parent root = loader.load(getClass().getResource("PrincipalCliente.fxml").openStream());
                             ControladorPrincipalCliente controladorCliente = (ControladorPrincipalCliente) loader.getController();
-
                             primaryStage.setTitle("Log as Client");
                             primaryStage.setScene(new Scene(root, 600, 400));
                             primaryStage.show();
-                            cliente= inicioSesion.abrirConexion();
-                            salidaDatoCliente = new DataOutputStream(cliente.getOutputStream());
-                            salidaDatoCliente.flush();
-                            entradaDatoCliente = new DataInputStream(cliente.getInputStream());
 
-                            salidaObjetoCliente = new ObjectOutputStream(cliente.getOutputStream());
-                            salidaObjetoCliente.flush();
-                            entradaObjetoCliente= new ObjectInputStream(cliente.getInputStream());
-
-
-
-                            ThreadCliente cliente = new ThreadCliente(controladorCliente,entradaDatoCliente,entradaObjetoCliente);
+                            buscado.abrirConexion();
+                            buscado.obtenerFlujos();
+                            ThreadCliente cliente = new ThreadCliente(controladorCliente,buscado);
                             cliente.start();
-                            salidaDatoCliente.writeInt(1);
+
+                            buscado.getSalidaDatos().writeInt(1);
                         }
                         catch (IOException e){
                             System.out.println(e);
@@ -142,16 +125,5 @@ public class ControladorInicio implements Initializable{
                 }
             }
         });
-
     }
-
-
-    public void actualizarVentana(){
-    for(int i=0;i<9999999;i++)
-        textUsuario.setText(""+i);
-
-
-    }
-
-
 }
