@@ -2,6 +2,8 @@ package interfaz;
 
 import com.sun.org.glassfish.gmbal.DescriptorFields;
 import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -10,9 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -34,7 +34,7 @@ public class ControladorAgregarProducto implements Initializable {
     @FXML
     private TextField textoNombre;
     @FXML
-    private TextField textoDescripcion;
+    private TextArea textoDescripcion;
     @FXML
     private TextField textoTamanoPorcion;
     @FXML
@@ -52,32 +52,56 @@ public class ControladorAgregarProducto implements Initializable {
     @FXML
     private Button botonAceptar;
 
+    boolean disponible;
+
+    public ControladorPrincipalAdministrador controladorAdministrador;
+    public Platillo platillo;
+
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
 
+        botonSi.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                disponible=true;
+            }
+        });
+        botonNo.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                disponible =false;
+            }
+        });
 
-        botonImagen.setOnAction(
-                new EventHandler<ActionEvent>() {
-                    @Override
-                    public void handle(final ActionEvent e) {
-                        Stage primaryStage = new Stage();
-                        // FXMLLoader loader = new FXMLLoader();
-                        try {
-                            Parent root = FXMLLoader.load(getClass().getResource("AgregarProducto.fxml"));
-                            // ControladorPrincipalAdministrador controladorAdministrador = (ControladorPrincipalAdministrador) loader.getController();
-                            primaryStage.setTitle("Agregar Producto");
-                            primaryStage.setScene(new Scene(root, 600, 400));
-                        }catch(Exception r){
-                            r.printStackTrace();
-                        }
-                        FileChooser fileChooser = new FileChooser();
-                        configurarFileChooser(fileChooser);
+        botonAceptar.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
 
-                        File contactos = fileChooser.showOpenDialog(primaryStage);
-                        if (contactos != null) {
+                if(platillo!=null){
 
-                        }
+
+                }
+                else{
+                    String codigo= textoCodigo.getText();
+                    String nombre = textoNombre.getText();
+                    String descripcion=textoDescripcion.getText();
+                    int tamanoPorcion = Integer.parseInt(textoTamanoPorcion.getText());
+                    int caloriasPorcion= Integer.parseInt(textoCaloriasPorcion.getText());
+                    int piezasPorcion = Integer.parseInt(textoPiezasPorcion.getText());
+                    int precio = Integer.parseInt(textoPrecio.getText());
+                    String imagen ="pathTemporal";
+
+                    Platillo platilloNuevo = new Platillo(codigo,nombre,descripcion,tamanoPorcion,caloriasPorcion,piezasPorcion,precio,imagen,disponible);
+                    try {
+                        controladorAdministrador.usuario.getSalidaDatos().writeInt(2);
+                        controladorAdministrador.usuario.getSalidaObjetos().writeObject(platilloNuevo);
+                    }catch(Exception e){
+                        e.printStackTrace();
                     }
-                });
+
+                }
+
+            }
+        });
 
 
     }

@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<menu>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><menu>
     <producto>
         <codigo>PRN-008</codigo>
         <nombre>Burrito</nombre>
@@ -47,4 +45,4 @@
         <imagen>recursos\imagenes\flan-coco-sencillo-delicioso_1_1851347[1].jpg</imagen>
         <disponible>Si</disponible>
     </producto>
-</menu>
+<producto><codigo>BEB-77</codigo><nombre>Cas</nombre><descripcion>yico</descripcion><tamanoPorcion>45</tamanoPorcion><piezasPorPorcion>76</piezasPorPorcion><caloriasPorPorcion>45</caloriasPorPorcion><precio>890</precio><imagen>pathTemporal</imagen><disponible>Si</disponible></producto></menu>

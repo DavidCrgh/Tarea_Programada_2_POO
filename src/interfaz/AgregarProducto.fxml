@@ -5,32 +5,35 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="440.0" prefWidth="591.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaz.ControladorAgregarProducto">
    <children>
-      <Label layoutX="62.0" layoutY="79.0" text="Código" />
-      <Label layoutX="60.0" layoutY="135.0" text="Nombre" />
-      <Label layoutX="50.0" layoutY="192.0" text="Descripcion" />
-      <Label layoutX="24.0" layoutY="249.0" text="Tamaño De Porcion" />
-      <Label layoutX="298.0" layoutY="135.0" text="Piezas Por Porción" />
-      <Label layoutX="293.0" layoutY="79.0" text="Calorías Por Porción" />
-      <Label layoutX="330.0" layoutY="194.0" text="Precio" />
-      <Label layoutX="295.0" layoutY="249.0" text="Seleccionar Imagen" />
-      <TextField fx:id="textoCodigo" layoutX="131.0" layoutY="75.0" />
-      <TextField fx:id="textoNombre" layoutX="131.0" layoutY="131.0" />
-      <TextField fx:id="textoDescripcion" layoutX="131.0" layoutY="190.0" />
-      <TextField fx:id="textoTamanoPorcion" layoutX="131.0" layoutY="245.0" />
-      <TextField fx:id="textoPiezasPorcion" layoutX="418.0" layoutY="131.0" />
-      <TextField fx:id="textoCaloriasPorcion" layoutX="418.0" layoutY="75.0" />
-      <TextField fx:id="textoPrecio" layoutX="418.0" layoutY="190.0" />
-      <Button fx:id="botonImagen" layoutX="464.0" layoutY="245.0" mnemonicParsing="false" text="Imagen" />
-      <RadioButton fx:id="botonSi" layoutX="132.0" layoutY="313.0" mnemonicParsing="false" text="Si" />
-      <RadioButton fx:id="botonNo" layoutX="132.0" layoutY="340.0" mnemonicParsing="false" text="No" />
-      <Label layoutX="54.0" layoutY="296.0" text="Disponible" />
-      <Label layoutX="216.0" layoutY="14.0" prefHeight="26.0" prefWidth="183.0" text="Agregar Producto">
+      <Label layoutX="55.0" layoutY="51.0" text="Código" />
+      <Label layoutX="53.0" layoutY="107.0" text="Nombre" />
+      <Label layoutX="44.0" layoutY="154.0" text="Descripcion" />
+      <Label layoutX="22.0" layoutY="299.0" text="Tamaño De Porcion" />
+      <Label layoutX="298.0" layoutY="107.0" text="Piezas Por Porción" />
+      <Label layoutX="293.0" layoutY="51.0" text="Calorías Por Porción" />
+      <Label layoutX="330.0" layoutY="166.0" text="Precio" />
+      <Label layoutX="316.0" layoutY="295.0" text="Seleccionar Imagen" />
+      <TextField fx:id="textoCodigo" layoutX="131.0" layoutY="47.0" />
+      <TextField fx:id="textoNombre" layoutX="131.0" layoutY="103.0" />
+      <TextField fx:id="textoTamanoPorcion" layoutX="134.0" layoutY="295.0" />
+      <TextField fx:id="textoPiezasPorcion" layoutX="418.0" layoutY="103.0" />
+      <TextField fx:id="textoCaloriasPorcion" layoutX="418.0" layoutY="47.0" />
+      <TextField fx:id="textoPrecio" layoutX="418.0" layoutY="162.0" />
+      <Button fx:id="botonImagen" layoutX="485.0" layoutY="291.0" mnemonicParsing="false" text="Imagen" />
+      <RadioButton fx:id="botonSi" layoutX="153.0" layoutY="347.0" mnemonicParsing="false" selected="true" text="Si">
+         <toggleGroup>
+            <ToggleGroup fx:id="grupoBotonesRadio" />
+         </toggleGroup></RadioButton>
+      <RadioButton fx:id="botonNo" layoutX="153.0" layoutY="374.0" mnemonicParsing="false" text="No" toggleGroup="$grupoBotonesRadio" />
+      <Label layoutX="75.0" layoutY="330.0" text="Disponible" />
+      <Label layoutX="216.0" layoutY="4.0" prefHeight="26.0" prefWidth="183.0" text="Agregar Producto">
          <font>
             <Font name="Georgia" size="23.0" />
          </font>
       </Label>
-      <Button fx:id="botonAceptar" layoutX="279.0" layoutY="345.0" mnemonicParsing="false" text="Aceptar" />
+      <Button fx:id="botonAceptar" layoutX="270.0" layoutY="400.0" mnemonicParsing="false" text="Aceptar" />
+      <TextArea fx:id="textoDescripcion" layoutX="127.0" layoutY="151.0" prefHeight="118.0" prefWidth="162.0" wrapText="true" />
    </children>
 </Pane>

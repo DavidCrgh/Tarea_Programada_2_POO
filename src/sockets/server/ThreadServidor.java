@@ -47,6 +47,14 @@ public class ThreadServidor extends Thread {
                         salidaDato.writeInt(1);
                         salidaObjeto.writeObject(servidor.platillos);
                         break;
+
+                    case 2:
+                        Platillo platilloLeido= (Platillo)entradaObjeto.readObject();
+                        servidor.platillos.add(platilloLeido);
+                        Utilitarias.agregarProducto(platilloLeido);
+                        salidaDato.writeInt(1);
+                        salidaObjeto.writeObject(servidor.platillos);
+                        break;
                 }
             } catch (Exception e){
                 e.printStackTrace();

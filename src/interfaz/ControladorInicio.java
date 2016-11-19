@@ -65,6 +65,9 @@ public class ControladorInicio implements Initializable{
 
                             buscado.abrirConexion();
                             buscado.obtenerFlujos();
+
+                            controladorAdministrador.usuario=buscado;
+
                             ThreadCliente administrador = new ThreadCliente(controladorAdministrador,buscado);
                             administrador.start();
 

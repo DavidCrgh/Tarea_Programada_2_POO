@@ -15,6 +15,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Platillo;
+import sockets.client.Usuario;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -43,6 +44,7 @@ public class ControladorPrincipalAdministrador implements Initializable {
     private Button botonEliminar;
     @FXML
     private Button botonModificar;
+    public Usuario usuario;
 
 
     public ArrayList<Platillo> platillos;
@@ -65,29 +67,27 @@ public class ControladorPrincipalAdministrador implements Initializable {
         );
 
 
-        botonAgregar.setOnAction(new EventHandler<ActionEvent>(){
-            @Override
-            public void handle(ActionEvent event){
+        botonAgregar.setOnAction(event->{
 
                 Platillo platillo = (Platillo) tablaProductos.getSelectionModel().getSelectedItem();
 
 
 
-
                 try {
                     Stage primaryStage = new Stage();
-                   // FXMLLoader loader = new FXMLLoader();
-                    Parent root = FXMLLoader.load(getClass().getResource("AgregarProducto.fxml"));
-                   // ControladorPrincipalAdministrador controladorAdministrador = (ControladorPrincipalAdministrador) loader.getController();
+                    FXMLLoader loader = new FXMLLoader();
+                    Parent root = loader.load(getClass().getResource("AgregarProducto.fxml").openStream());
+                    ControladorAgregarProducto controladorProducto= (ControladorAgregarProducto) loader.getController();
                     primaryStage.setTitle("Agregar Producto");
                     primaryStage.setScene(new Scene(root, 600, 400));
                     primaryStage.show();
+                    controladorProducto.controladorAdministrador=this;
                 }catch(Exception e){
                     e.printStackTrace();
 
                 }
 
-            }
+
         });
 
 
