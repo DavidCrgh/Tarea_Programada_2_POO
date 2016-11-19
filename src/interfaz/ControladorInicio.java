@@ -20,6 +20,8 @@ import java.io.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import static java.lang.Thread.sleep;
+
 public class ControladorInicio implements Initializable{
     private Utilitarias objetoUtilitario = new Utilitarias();
 
@@ -59,6 +61,7 @@ public class ControladorInicio implements Initializable{
                             FXMLLoader loader = new FXMLLoader();
                             Parent root = loader.load(getClass().getResource("PrincipalAdministrador.fxml").openStream());
                             ControladorPrincipalAdministrador controladorAdministrador = (ControladorPrincipalAdministrador) loader.getController();
+                            controladorAdministrador.usuario = buscado;
                             primaryStage.setTitle("Log as admin");
                             primaryStage.setScene(new Scene(root, 600, 400));
                             primaryStage.show();
@@ -83,6 +86,7 @@ public class ControladorInicio implements Initializable{
                             FXMLLoader loader = new FXMLLoader();
                             Parent root = loader.load(getClass().getResource("PrincipalCliente.fxml").openStream());
                             ControladorPrincipalCliente controladorCliente = (ControladorPrincipalCliente) loader.getController();
+                            controladorCliente.usuario = buscado;
                             primaryStage.setTitle("Log as Client");
                             primaryStage.setScene(new Scene(root, 600, 400));
                             primaryStage.show();

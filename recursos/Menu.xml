@@ -2,7 +2,7 @@
     <producto>
         <codigo>PRN-008</codigo>
         <nombre>Burrito</nombre>
-        <descripcion>Tortilla de trigo rellena de frijoles molidos, trozos de 
+        <descripcion>Tortilla de trigo rellena de frijoles molidos, trozos de
             pollo y queso mozarella, cubierta con lechuga, tomate, aguacate y natilla
         </descripcion>
         <tamanoPorcion>400</tamanoPorcion>

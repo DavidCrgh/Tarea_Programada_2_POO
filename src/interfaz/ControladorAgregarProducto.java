@@ -12,6 +12,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.FileChooser;
@@ -29,6 +33,8 @@ import java.util.ResourceBundle;
  */
 public class ControladorAgregarProducto implements Initializable {
 
+    @FXML
+    public Label tituloVentana;
     @FXML
     private TextField textoCodigo;
     @FXML
@@ -77,6 +83,14 @@ public class ControladorAgregarProducto implements Initializable {
             public void handle(ActionEvent event) {
 
                 if(platillo!=null){
+                    platillo.setCodigo(textoCodigo.getText());
+                    platillo.setNombre(textoNombre.getText());
+                    platillo.setDescripcion(textoDescripcion.getText());
+                    platillo.setTamanoPorcion(Integer.parseInt(textoTamanoPorcion.getText()));
+                    platillo.setCaloriasPorcion(Integer.parseInt(textoCaloriasPorcion.getText()));
+                    platillo.setPiezasPorcion(Integer.parseInt(textoPiezasPorcion.getText()));
+                    platillo.setPrecio(Integer.parseInt(textoPrecio.getText()));
+                    controladorAdministrador.enviarPlatoModificado();
 
 
                 }
@@ -98,10 +112,9 @@ public class ControladorAgregarProducto implements Initializable {
                         e.printStackTrace();
                     }
 
-                }
-
-            }
-        });
+                        }
+                    }
+                });
 
 
     }
@@ -113,6 +126,21 @@ public class ControladorAgregarProducto implements Initializable {
         );
     }
 
-
-
+    public void precargarDatos(Platillo platillo){
+        textoCodigo.setText(platillo.getCodigo());
+        textoNombre.setText(platillo.getNombre());
+        textoDescripcion.setText(""+platillo.getDescripcion());
+        textoTamanoPorcion.setText(""+platillo.getTamanoPorcion());
+        textoCaloriasPorcion.setText(""+platillo.getCaloriasPorcion());
+        textoPiezasPorcion.setText(""+platillo.getPiezasPorcion());
+        //textoCaloriasPieza.setText(""+platillo.get);
+        textoPrecio.setText(""+platillo.getPrecio());
+        if(platillo.isDisponible()){
+            botonSi.setSelected(true);
+            botonNo.setSelected(false);
+        }else{
+            botonSi.setSelected(false);
+            botonNo.setSelected(true);
+        }
+    }
 }

@@ -55,6 +55,10 @@ public class ThreadServidor extends Thread {
                         salidaDato.writeInt(1);
                         salidaObjeto.writeObject(servidor.platillos);
                         break;
+                    case 3:
+                        servidor.platillos = (ArrayList<Platillo>) entradaObjeto.readObject();
+                        Utilitarias.reconstruirMenuXML(servidor.platillos);
+                        break;
                 }
             } catch (Exception e){
                 e.printStackTrace();
