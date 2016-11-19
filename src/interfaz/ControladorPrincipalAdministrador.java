@@ -49,6 +49,7 @@ public class ControladorPrincipalAdministrador implements Initializable {
     public Usuario usuario;
 
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
+        tablaProductos.setEditable(true);
         columnaCodigo.setCellValueFactory(
                 new PropertyValueFactory<Platillo,String>("codigo")
         );
@@ -109,6 +110,7 @@ public class ControladorPrincipalAdministrador implements Initializable {
     }
 
     public void enviarPlatoModificado(){
+        tablaProductos.setItems(FXCollections.observableList(platillos));
         usuario.abrirConexion();
         usuario.obtenerFlujos();
         try {
@@ -117,7 +119,6 @@ public class ControladorPrincipalAdministrador implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        //usuario.cerrarConexion();
     }
 
     public void construirTabla(ArrayList<Platillo> platillos){

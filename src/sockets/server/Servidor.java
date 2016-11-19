@@ -18,10 +18,6 @@ public class Servidor {
     private int puerto;
     private Socket cliente1;
     private Socket cliente2;
-    private ObjectInputStream entradaObjeto;
-    private ObjectOutputStream salidaObjeto;
-    private DataInputStream entrada;
-    private DataOutputStream salida;
     private ThreadPeticiones hiloPeticiones;
 
     ArrayList<Platillo> platillos;
@@ -45,15 +41,5 @@ public class Servidor {
 
     public void iniciarServidor(){
         hiloPeticiones.start();
-    }
-
-    public void esucharPeticiones() throws IOException{
-        cliente1 = servidor.accept();
-        new ThreadServidor(this,cliente1).start();
-        System.out.println("Cliente Aceptado");
-
-        cliente2 = servidor.accept();
-        new ThreadServidor(this,cliente2).start();
-        System.out.println("Cliente Aceptado");
     }
 }

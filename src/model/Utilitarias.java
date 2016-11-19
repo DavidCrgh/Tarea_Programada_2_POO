@@ -12,6 +12,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
@@ -107,8 +108,6 @@ public class Utilitarias {
 
     }
 
-
-
     public ArrayList<Usuario> cargarCuentas ()throws Exception {
         ArrayList<Usuario> cuentas = new ArrayList<>();
         File fXmlFile = new File("recursos\\Cuentas.xml");
@@ -152,5 +151,71 @@ public class Utilitarias {
         return "false";
     }
 
+    public static void reconstruirMenuXML(ArrayList<Platillo> platillos){
+        try {
+            DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
 
+            Document doc = docBuilder.newDocument();
+            Element raizXML = doc.createElement("menu");
+            doc.appendChild(raizXML);
+
+            for (Platillo platillo: platillos) {
+                Element producto = doc.createElement("producto");
+                raizXML.appendChild(producto);
+
+                Element codigo = doc.createElement("codigo");
+                codigo.appendChild(doc.createTextNode(platillo.getCodigo()));
+                producto.appendChild(codigo);
+
+                Element nombre = doc.createElement("nombre");
+                nombre.appendChild(doc.createTextNode(platillo.getNombre()));
+                producto.appendChild(nombre);
+
+                Element descripcion = doc.createElement("descripcion");
+                descripcion.appendChild(doc.createTextNode(platillo.getDescripcion()));
+                producto.appendChild(descripcion);
+
+                Element tamanoPorcion = doc.createElement("tamanoPorcion");
+                tamanoPorcion.appendChild(doc.createTextNode(""+platillo.getTamanoPorcion()));
+                producto.appendChild(tamanoPorcion);
+
+                Element piezasPorPorcion = doc.createElement("piezasPorPorcion");
+                piezasPorPorcion.appendChild(doc.createTextNode(""+platillo.getPiezasPorcion()));
+                producto.appendChild(piezasPorPorcion);
+
+                Element caloriasPorPorcion = doc.createElement("caloriasPorPorcion");
+                caloriasPorPorcion.appendChild(doc.createTextNode(""+platillo.getCaloriasPorcion()));
+                producto.appendChild(caloriasPorPorcion);
+
+                Element precio = doc.createElement("precio");
+                precio.appendChild(doc.createTextNode(""+platillo.getPrecio()));
+                producto.appendChild(precio);
+
+                Element imagen = doc.createElement("imagen");
+                imagen.appendChild(doc.createTextNode(platillo.getImagen()));
+                producto.appendChild(imagen);
+
+                Element disponible = doc.createElement("disponible");
+                disponible.appendChild(doc.createTextNode(platillo.getDisponibleString()));
+                producto.appendChild(disponible);
+            }
+            // write the content into xml file
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer();
+            DOMSource source = new DOMSource(doc);
+            StreamResult result = new StreamResult(new File("recursos\\Menu.xml"));
+
+            // Output to console for testing
+            // StreamResult result = new StreamResult(System.out);
+
+            transformer.transform(source, result);
+
+            System.out.println("File saved!");
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+        } catch (TransformerException e) {
+            e.printStackTrace();
+        }
+    }
 }

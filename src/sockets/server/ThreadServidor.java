@@ -1,6 +1,7 @@
 package sockets.server;
 
 import model.Platillo;
+import model.Utilitarias;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -49,17 +50,13 @@ public class ThreadServidor extends Thread {
                     case 2:
                         break;
                     case 3:
-                        ArrayList<Platillo> arrayList = (ArrayList<Platillo>) entradaObjeto.readObject();
-                        for(int i = 0; i < arrayList.size(); i++){
-                            System.out.println(arrayList.get(i).getCodigo());
-                            System.out.println(arrayList.get(i).getNombre());
-                        }
+                        servidor.platillos = (ArrayList<Platillo>) entradaObjeto.readObject();
+                        Utilitarias.reconstruirMenuXML(servidor.platillos);
                         break;
                 }
             } catch (Exception e){
                 e.printStackTrace();
             }
-            //break;
         }
     }
 }
