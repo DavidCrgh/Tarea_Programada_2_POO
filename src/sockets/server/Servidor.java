@@ -19,7 +19,6 @@ public class Servidor {
     private Socket cliente1;
     private Socket cliente2;
     private ThreadPeticiones hiloPeticiones;
-
     ArrayList<Platillo> platillos;
     ListaPedidos pedidos;
 

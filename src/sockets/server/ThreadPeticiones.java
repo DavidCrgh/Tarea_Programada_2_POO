@@ -18,7 +18,7 @@ public class ThreadPeticiones extends Thread {
 
         servidor=_servidor;
         try {
-            socketPeticiones = new ServerSocket(8080);
+            socketPeticiones = new ServerSocket(6564);
         }catch(Exception e){
             e.printStackTrace();
         }

@@ -53,7 +53,6 @@ public class ControladorInicio implements Initializable{
                 String usuario = textUsuario.getText();
                 String contrasenna = textPassword.getText();
                 Usuario buscado = inicioSesion.buscarCuenta(usuario, contrasenna);
-
                 if(buscado!=null) {
                     if (buscado.isAdmin()) {
                         try{
@@ -73,8 +72,9 @@ public class ControladorInicio implements Initializable{
 
                             ThreadCliente administrador = new ThreadCliente(controladorAdministrador,buscado);
                             administrador.start();
-
                             buscado.getSalidaDatos().writeInt(1);
+                            Stage stage = (Stage)botonInicio.getScene().getWindow();
+                            stage.close();
                         }
                         catch (IOException e){
                             System.out.println(e);
@@ -97,6 +97,8 @@ public class ControladorInicio implements Initializable{
                             cliente.start();
 
                             buscado.getSalidaDatos().writeInt(1);
+                            Stage stage = (Stage)botonInicio.getScene().getWindow();
+                            stage.close();
                         }
                         catch (IOException e){
                             System.out.println(e);

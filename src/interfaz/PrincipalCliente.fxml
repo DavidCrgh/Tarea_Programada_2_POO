@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.76-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaz.ControladorPrincipalCliente">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.92" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaz.ControladorPrincipalCliente">
    <children>
       <TabPane layoutY="2.0" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -29,7 +29,7 @@
                            </columns></TableView>
                         <HBox layoutX="381.0" layoutY="2.0" spacing="10.0" />
                         <Button fx:id="AgregarPedido" layoutX="481.0" layoutY="2.0" mnemonicParsing="false" text="Agregar al Pedido" />
-                        <Button layoutX="393.0" layoutY="2.0" mnemonicParsing="false" text="Ver Pedido" />
+                        <Button fx:id="verPedido" layoutX="393.0" layoutY="2.0" mnemonicParsing="false" text="Ver Pedido" />
                         <Button layoutX="14.0" layoutY="2.0" mnemonicParsing="false" text="Ver Detalles" />
                      </children>
                   </AnchorPane>

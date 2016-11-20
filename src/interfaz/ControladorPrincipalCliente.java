@@ -1,5 +1,6 @@
 package interfaz;
 
+import com.oracle.jrockit.jfr.Producer;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -12,7 +13,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.shape.Line;
 import javafx.stage.Stage;
+import model.LineaPedido;
 import model.Platillo;
 import sockets.client.Usuario;
 
@@ -25,8 +28,9 @@ import java.util.ResourceBundle;
  * Created by Bryan on 11/10/2016.
  */
 public class ControladorPrincipalCliente implements Initializable {
+    private ArrayList<LineaPedido> pedidoActual;
     @FXML
-    private TableView tablaProductos;
+    private TableView<Platillo> tablaProductos;
     @FXML
     private TableColumn columnaCodigo;
     @FXML
@@ -35,36 +39,58 @@ public class ControladorPrincipalCliente implements Initializable {
     private TableColumn columnaCalorias;
     @FXML
     private TableColumn columnaPrecio;
-
+    @FXML
+    private Button verPedido;
     public Usuario usuario;
     @FXML
     public Button AgregarPedido;
 
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
         assert AgregarPedido != null : "fx:id=\"AgregarPedido\" was not injected: check your FXML file 'PrincipalCliente.fxml'.";
-
+        assert verPedido !=null : "fx:id=\"verPedido\" was not injected: check your FXML file 'PrincipalCliente.fxml'.";
+        pedidoActual=new ArrayList<>();
         AgregarPedido.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                Platillo platilloActual = tablaProductos.getSelectionModel().getSelectedItem();
+                System.out.println(platilloActual.getNombre());
                 Stage primaryStage = new Stage();
-                FXMLLoader loader = new FXMLLoader();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("AnnadirPedido.fxml"));
                 Parent root = null;
                 try {
-                    root = loader.load(getClass().getResource("AnnadirPedido.fxml"));
+                    root = loader.load();
+                    ControladorAnnadirPedido c = loader.getController();
+                    c.annadirPedidoSetLabel(platilloActual.getNombre());
+                    c.platillo=platilloActual;
+                    c.arrayProductos=pedidoActual;
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                ControladorPrincipalAdministrador controladorAdministrador = (ControladorPrincipalAdministrador) loader.getController();
-
-                primaryStage.setTitle("Log as admin");
-                primaryStage.setScene(new Scene(root, 600, 400));
+                primaryStage.setTitle("Confirmar Producto");
+                primaryStage.setScene(new Scene(root, 400, 150));
                 primaryStage.show();
             }
         });
+        verPedido.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                try {
+                    Stage primaryStage = new Stage();
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("ConfirmarPedido.fxml"));
+                    Parent root = loader.load();
+                    ControladorConfirmarPedido controladorConfirmarPedido = loader.getController();
+                    primaryStage.setTitle("Confirmar Pedido");
+                    primaryStage.setScene(new Scene(root, 520, 290));
+                    primaryStage.show();
+                    controladorConfirmarPedido.construirTabla(pedidoActual);
+                }
+                catch (IOException e){System.out.println(e);}
+            }
+        });
+
         columnaCodigo.setCellValueFactory(
                 new PropertyValueFactory<Platillo,String>("codigo")
         );
-
         columnaNombre.setCellValueFactory(
                 new PropertyValueFactory<Platillo,String>("nombre")
         );
