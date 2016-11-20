@@ -1,5 +1,7 @@
 package model;
 
+import sockets.client.Usuario;
+
 /**
  * Creado por David Valverde Garro - 2016034774
  * el 15-Nov-16.
@@ -8,7 +10,7 @@ public class Recoger extends Pedido {
     private Cliente clienteRecoge;
     private static int precioEmpaque;
 
-    public Recoger(Cliente _cliente, Cliente clienteRecoge) {
+    public Recoger(Usuario _cliente, Cliente clienteRecoge) {
         super(_cliente);
         this.clienteRecoge = clienteRecoge;
     }

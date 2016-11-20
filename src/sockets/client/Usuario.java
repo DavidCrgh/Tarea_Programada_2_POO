@@ -1,6 +1,7 @@
 package sockets.client;
 
 import javafx.beans.property.SimpleStringProperty;
+import model.Pedido;
 
 import java.io.*;
 import java.net.Socket;
@@ -9,7 +10,7 @@ import java.net.Socket;
  * Creado por David Valverde Garro - 2016034774
  * el 10-Nov-16.
  */
-public class Usuario {
+public class Usuario implements Serializable{
     private String usuario;
     private String clave;
     private String numeroCelular;
@@ -55,8 +56,12 @@ public class Usuario {
         return salidaDatos;
     }
 
-    public void setSalidaDatos(DataOutputStream salidaDatos) {
-        this.salidaDatos = salidaDatos;
+    public void setSalidaDatos(int s) {
+        try {
+            this.salidaDatos.writeInt(s);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public ObjectInputStream getEntradaObjetos() {
@@ -71,8 +76,12 @@ public class Usuario {
         return salidaObjetos;
     }
 
-    public void setSalidaObjetos(ObjectOutputStream salidaObjetos) {
-        this.salidaObjetos = salidaObjetos;
+    public void setSalidaObjetos(Pedido s) {
+        try {
+            this.salidaObjetos.writeObject(s);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void setAdmin(boolean _admin){
@@ -112,7 +121,7 @@ public class Usuario {
 
     public void abrirConexion() {
         try {
-            this.socket = new Socket("localhost", 8080);
+            this.socket = new Socket("localhost", 6564);
         }
         catch (IOException e) {
             e.printStackTrace();

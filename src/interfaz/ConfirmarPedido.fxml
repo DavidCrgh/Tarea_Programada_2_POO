@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.Pane?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="290.0" prefWidth="520.0" xmlns="http://javafx.com/javafx/8.0.92" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaz.ControladorConfirmarPedido">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="320.0" prefWidth="520.0" xmlns="http://javafx.com/javafx/8.0.92" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaz.ControladorConfirmarPedido">
    <children>
-      <Button fx:id="enviarPedido" layoutX="402.0" layoutY="243.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" text="Enviar" />
+      <Button fx:id="enviarPedido" layoutX="403.0" layoutY="256.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" text="Enviar" />
       <TableView fx:id="tabla" layoutX="10.0" layoutY="14.0" prefHeight="222.0" prefWidth="500.0">
         <columns>
            <TableColumn fx:id="columnaNombre" prefWidth="125.0" text="Nombre" />
@@ -18,5 +19,9 @@
       </TableView>
       <Button fx:id="Eliminar" layoutX="14.0" layoutY="243.0" mnemonicParsing="false" text="Eliminar Producto" />
       <Button fx:id="Modificar" layoutX="142.0" layoutY="243.0" mnemonicParsing="false" text="Modificar Producto" />
+      <Button fx:id="refrescar" layoutX="276.0" layoutY="243.0" mnemonicParsing="false" text="Refrescar Pedido" />
+      <CheckBox fx:id="recoger" layoutX="14.0" layoutY="279.0" mnemonicParsing="false" text="Recoger" />
+      <CheckBox fx:id="enSitio" layoutX="142.0" layoutY="279.0" mnemonicParsing="false" selected="true" text="En Sitio" />
+      <CheckBox fx:id="express" layoutX="276.0" layoutY="279.0" mnemonicParsing="false" text="Express" />
    </children>
 </Pane>

@@ -1,5 +1,6 @@
 package sockets.server;
 
+import model.Pedido;
 import model.Platillo;
 import model.Utilitarias;
 
@@ -59,6 +60,9 @@ public class ThreadServidor extends Thread {
                         servidor.platillos = (ArrayList<Platillo>) entradaObjeto.readObject();
                         Utilitarias.reconstruirMenuXML(servidor.platillos);
                         break;
+                    case 4:
+                        Pedido newPedido = (Pedido) entradaObjeto.readObject();
+                        servidor.pedidos.agregarPedido(newPedido);
                 }
             } catch (Exception e){
                 e.printStackTrace();

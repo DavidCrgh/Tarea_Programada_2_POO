@@ -1,15 +1,10 @@
 package sockets.client;
 
-import interfaz.ControladorInicio;
 import interfaz.ControladorPrincipalAdministrador;
 import interfaz.ControladorPrincipalCliente;
 import javafx.application.Platform;
 import model.Platillo;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 /**

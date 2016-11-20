@@ -4,14 +4,12 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.LineaPedido;
 import model.Platillo;
 
-import java.awt.*;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;

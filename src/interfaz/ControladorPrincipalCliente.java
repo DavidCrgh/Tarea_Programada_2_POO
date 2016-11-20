@@ -1,6 +1,5 @@
 package interfaz;
 
-import com.oracle.jrockit.jfr.Producer;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -13,7 +12,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.shape.Line;
 import javafx.stage.Stage;
 import model.LineaPedido;
 import model.Platillo;
@@ -28,7 +26,7 @@ import java.util.ResourceBundle;
  * Created by Bryan on 11/10/2016.
  */
 public class ControladorPrincipalCliente implements Initializable {
-    private ArrayList<LineaPedido> pedidoActual;
+    public ArrayList<LineaPedido> pedidoActual;
     @FXML
     private TableView<Platillo> tablaProductos;
     @FXML
@@ -41,6 +39,7 @@ public class ControladorPrincipalCliente implements Initializable {
     private TableColumn columnaPrecio;
     @FXML
     private Button verPedido;
+
     public Usuario usuario;
     @FXML
     public Button AgregarPedido;
@@ -80,9 +79,11 @@ public class ControladorPrincipalCliente implements Initializable {
                     Parent root = loader.load();
                     ControladorConfirmarPedido controladorConfirmarPedido = loader.getController();
                     primaryStage.setTitle("Confirmar Pedido");
-                    primaryStage.setScene(new Scene(root, 520, 290));
+                    primaryStage.setScene(new Scene(root, 520, 320));
                     primaryStage.show();
                     controladorConfirmarPedido.construirTabla(pedidoActual);
+                    controladorConfirmarPedido.pedidoFinal=pedidoActual;
+                    controladorConfirmarPedido.clienteEnvia=usuario;
                 }
                 catch (IOException e){System.out.println(e);}
             }

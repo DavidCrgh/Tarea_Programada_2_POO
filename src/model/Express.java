@@ -1,5 +1,7 @@
 package model;
 
+import sockets.client.Usuario;
+
 /**
  * Creado por David Valverde Garro - 2016034774
  * el 15-Nov-16.
@@ -7,7 +9,7 @@ package model;
 public class Express extends Pedido{
     private static int cobroTransporte;
 
-    public Express(Cliente _cliente) {
+    public Express(Usuario _cliente) {
         super(_cliente);
     }
 

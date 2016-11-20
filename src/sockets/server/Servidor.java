@@ -23,6 +23,7 @@ public class Servidor {
     ListaPedidos pedidos;
 
     public Servidor(int _puerto){
+        pedidos = new ListaPedidos();
         this.puerto=_puerto;
         hiloPeticiones= new ThreadPeticiones(this);
         iniciarServidor();
@@ -35,7 +36,6 @@ public class Servidor {
         } catch (SAXException e) {
             e.printStackTrace();
         }
-        pedidos = new ListaPedidos();
     }
 
     public void iniciarServidor(){
