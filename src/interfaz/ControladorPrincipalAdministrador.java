@@ -7,12 +7,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Platillo;
+import model.Utilitarias;
 import sockets.client.Usuario;
 
 import java.io.IOException;
@@ -45,6 +44,18 @@ public class ControladorPrincipalAdministrador implements Initializable {
     private Button botonModificar;
     @FXML
     private Button botonVerDetalles;
+    @FXML
+    private ToggleButton botonFiltar;
+    @FXML
+    private RadioButton botonFiltrarTipo;
+    @FXML
+    private RadioButton botonFiltrarDisponibilidad;
+    @FXML
+    private ChoiceBox cajaTipos;
+    @FXML
+    private ChoiceBox cajaDisponibilidad;
+
+    private ToggleGroup grupoBotonesFiltro;
 
     public Usuario usuario;
 
@@ -52,6 +63,28 @@ public class ControladorPrincipalAdministrador implements Initializable {
     public ArrayList<Platillo> platillos;
 
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
+        grupoBotonesFiltro = new ToggleGroup();
+        botonFiltrarTipo.setToggleGroup(grupoBotonesFiltro);
+        botonFiltrarDisponibilidad.setToggleGroup(grupoBotonesFiltro);
+        botonFiltrarTipo.setSelected(true);
+
+        botonFiltar.setOnAction(event -> {
+            if(botonFiltar.isSelected()){
+                if(botonFiltrarTipo.isSelected()){
+                    aplicarFiltro(cajaTipos.getSelectionModel().getSelectedItem().toString());
+                } else{
+                    aplicarFiltro(cajaDisponibilidad.getSelectionModel().getSelectedItem().toString());
+                }
+            } else{
+                construirTabla(platillos);
+            }
+        });
+
+        cajaTipos.setItems(FXCollections.observableArrayList("ENT","PRN","PTR","BEB"));
+        cajaTipos.getSelectionModel().selectFirst();
+        cajaDisponibilidad.setItems(FXCollections.observableArrayList("Disponible","No disponible"));
+        cajaDisponibilidad.getSelectionModel().selectFirst();
+
         tablaProductos.setEditable(true);
         columnaCodigo.setCellValueFactory(
                 new PropertyValueFactory<Platillo,String>("codigo")
@@ -164,5 +197,15 @@ public class ControladorPrincipalAdministrador implements Initializable {
 
     public void construirTabla(ArrayList<Platillo> platillos){
         tablaProductos.setItems(FXCollections.observableList(platillos));
+    }
+
+    public void aplicarFiltro(String filtro){
+        if(filtro.equals("Disponible")){
+            construirTabla(Utilitarias.filtrarPor(platillos,"Si"));
+        } else if(filtro.equals("No disponible")){
+            construirTabla(Utilitarias.filtrarPor(platillos,"No"));
+        } else {
+            construirTabla(Utilitarias.filtrarPor(platillos,filtro));
+        }
     }
 }

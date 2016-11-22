@@ -287,4 +287,15 @@ public class Utilitarias {
             e.printStackTrace();
         }
     }
+
+    public static ArrayList<Platillo> filtrarPor(ArrayList<Platillo> platillos, String filtro){
+        ArrayList<Platillo> filtrados = new ArrayList<>();
+        for(Platillo platillo : platillos){
+            String temp = platillo.getTipoCodigo();
+            if(platillo.getTipoCodigo().equals(filtro) || platillo.getDisponibleString().equals(filtro)){
+                filtrados.add(platillo);
+            }
+        }
+        return filtrados;
+    }
 }

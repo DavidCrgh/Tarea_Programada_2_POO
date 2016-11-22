@@ -111,11 +111,14 @@ public class Platillo implements Serializable{
         this.disponibleString = disponibleString;
     }
 
-
     private String disponibleString(boolean disponible){
 
         if(disponible)
             return "Si";
         return "No";
+    }
+
+    public String getTipoCodigo(){
+        return this.codigo.substring(0,3);
     }
 }
