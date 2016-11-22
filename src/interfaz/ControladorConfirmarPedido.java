@@ -19,6 +19,7 @@ import model.Pedido;
 import model.Platillo;
 import model.tipoPedido;
 import sockets.client.Usuario;
+import model.Cliente;
 
 import java.io.IOException;
 import java.net.URL;
@@ -54,6 +55,8 @@ public class ControladorConfirmarPedido implements Initializable{
     @FXML
     private TableView tabla;
 
+    public ControladorPrincipalCliente controladorCliente;
+
     public Usuario clienteEnvia;
 
     public Pedido pedidoSolicitud;
@@ -78,20 +81,32 @@ public class ControladorConfirmarPedido implements Initializable{
             @Override
             public void handle(ActionEvent event) {
                 if(enSitio.isSelected()){
-                    pedidoSolicitud = new Pedido(clienteEnvia, pedidoFinal);
+                    Cliente clienteTemporal= new Cliente(clienteEnvia.getUsuario(),clienteEnvia.getNumeroCelular(),clienteEnvia.getDireccion());
+                    pedidoSolicitud = new Pedido(clienteTemporal, pedidoFinal);
                 }
                 else{
                     if(recoger.isSelected()){
-                        pedidoSolicitud = new Pedido(clienteEnvia, pedidoFinal);
+                        Cliente clienteTemporal= new Cliente(clienteEnvia.getUsuario(),clienteEnvia.getNumeroCelular(),clienteEnvia.getDireccion());
+                        pedidoSolicitud = new Pedido(clienteTemporal, pedidoFinal);
                         pedidoSolicitud.setTipo(tipoPedido.RECOGER);
                     }
                     else{
-                        pedidoSolicitud = new Pedido(clienteEnvia, pedidoFinal);
+                        Cliente clienteTemporal= new Cliente(clienteEnvia.getUsuario(),clienteEnvia.getNumeroCelular(),clienteEnvia.getDireccion());
+                        pedidoSolicitud = new Pedido(clienteTemporal, pedidoFinal);
                         pedidoSolicitud.setTipo(tipoPedido.EXPRESS);
                     }
                 }
-                clienteEnvia.setSalidaDatos(4);
-                clienteEnvia.setSalidaObjetos(pedidoSolicitud);
+                try{
+                    clienteEnvia.getSalidaDatos().writeInt(4);
+                    clienteEnvia.getSalidaObjetos().writeObject(pedidoSolicitud);
+                 //   clienteEnvia.getSalidaDatos().flush();
+                   // clienteEnvia.getSalidaObjetos().flush();
+
+                    pedidoFinal.clear();
+                    controladorCliente.pedidoActual.clear();
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -168,6 +183,7 @@ public class ControladorConfirmarPedido implements Initializable{
         ArrayList<Platillo> platillosAux=new ArrayList<>();
         for(int j=0; j<platillos.size();j++){
             Platillo auxPlatillo = platillos.get(j).getPlatillo();
+            auxPlatillo.cantidad= Integer.toString(platillos.get(j).getCantidadPiezas());
             platillosAux.add(auxPlatillo);
         }
         tabla.setItems(FXCollections.observableList(platillosAux));

@@ -6,9 +6,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import model.*;
 import model.Platillo;
 import model.Utilitarias;
 import sockets.client.Usuario;
@@ -43,6 +48,20 @@ public class ControladorPrincipalAdministrador implements Initializable {
     private Button botonModificar;
     @FXML
     private Button botonVerDetalles;
+    @FXML
+    private Button botonVer;
+    @FXML
+    private Button botonCompletar;
+    @FXML
+    private TableView tablePedidos;
+    @FXML
+    private TableColumn columnaCliente;
+    @FXML
+    private TableColumn columnaFecha;
+    @FXML
+    private TableColumn columnaPrecioPedido;
+    @FXML
+    private Button botonActualizar;
     @FXML
     private ToggleButton botonFiltar;
     @FXML
@@ -103,6 +122,31 @@ public class ControladorPrincipalAdministrador implements Initializable {
         columnaDisponible.setCellValueFactory(
                 new PropertyValueFactory<Platillo,String>("disponibleString")
         );
+
+        tablePedidos.setEditable(true);
+        columnaCliente.setCellValueFactory(
+                new PropertyValueFactory<Cliente,String>("nombre")
+        );
+        columnaFecha.setCellValueFactory(
+                new PropertyValueFactory<Cliente,String>("fechaPedido")
+        );
+        columnaPrecioPedido.setCellValueFactory(
+                new PropertyValueFactory<Cliente,String>("precioPedido")
+        );
+
+
+
+        botonActualizar.setOnAction(event->{
+            try {
+                usuario.getSalidaDatos().writeInt(7);
+               // ListaPedidos listaPedidosClientes = (ListaPedidos)usuario.getEntradaObjetos().readObject();
+              //  construirTablaPedidos(listaPedidosClientes);
+            }catch(Exception e ){
+                e.printStackTrace();
+            }
+
+
+        });
 
         botonAgregar.setOnAction(event->{
                 try {
@@ -217,6 +261,26 @@ public class ControladorPrincipalAdministrador implements Initializable {
     public void construirTabla(ArrayList<Platillo> platillos){
         tablaProductos.setItems(FXCollections.observableList(platillos));
     }
+
+    public void construirTablaPedidos(ListaPedidos pedidos){
+            ArrayList<Cliente> clientes = new ArrayList<>();
+            int precioTotal=0;
+        for(Pedido pedidoTemporal:pedidos.getPedidos()){
+            precioTotal=0;
+            Cliente clienteTemporal = pedidoTemporal.getCliente();
+            for(LineaPedido lineaPedido: pedidoTemporal.getLineasPedido()){
+                precioTotal+=lineaPedido.getCantidad();
+            }
+            clienteTemporal.precioPedido=precioTotal+"";
+            clienteTemporal.fechaPedido= clienteTemporal.getFecha(pedidoTemporal.getFecha());
+            System.out.println(clienteTemporal.precioPedido);
+            System.out.println(clienteTemporal.fechaPedido);
+            clientes.add(pedidoTemporal.getCliente());
+        }
+        tablePedidos.setItems(FXCollections.observableList(clientes));
+    }
+
+
 
     public void aplicarFiltro(String filtro){
         if(filtro.equals("Disponible")){

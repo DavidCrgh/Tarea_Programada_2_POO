@@ -1,12 +1,13 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Creado por David Valverde Garro - 2016034774
  * el 15-Nov-16.
  */
-public class LineaPedido {
+public class LineaPedido implements Serializable {
     private int precio;
     private int cantidadPiezas;
     private Platillo platillo;

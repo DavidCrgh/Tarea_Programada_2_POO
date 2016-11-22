@@ -52,4 +52,8 @@ public class ListaPedidos implements Serializable{
         }
         return arreglo;
     }
+
+    public ArrayList<Pedido> getPedidos(){
+        return pedidos;
+    }
 }

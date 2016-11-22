@@ -104,12 +104,11 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView layoutY="30.0" prefHeight="315.0" prefWidth="600.0">
+                        <TableView fx:id="tablePedidos" layoutY="30.0" prefHeight="315.0" prefWidth="600.0">
                           <columns>
-                            <TableColumn prefWidth="75.0" text="Id" />
-                            <TableColumn prefWidth="75.0" text="Cliente" />
-                              <TableColumn prefWidth="75.0" text="Fecha" />
-                              <TableColumn prefWidth="75.0" text="Precio" />
+                            <TableColumn fx:id="columnaCliente" prefWidth="75.0" text="Cliente" />
+                              <TableColumn fx:id="columnaFecha" prefWidth="75.0" text="Fecha" />
+                              <TableColumn fx:id="columnaPrecioPedido" prefWidth="75.0" text="Precio" />
                           </columns>
                            <columnResizePolicy>
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -117,10 +116,11 @@
                         </TableView>
                         <HBox layoutX="470.0" layoutY="2.0" spacing="10.0">
                            <children>
-                              <Button layoutX="534.0" layoutY="2.0" mnemonicParsing="false" text="Ver" />
-                              <Button layoutX="430.0" layoutY="2.0" mnemonicParsing="false" text="Completar" />
+                              <Button fx:id="botonVer" layoutX="534.0" layoutY="2.0" mnemonicParsing="false" text="Ver" />
+                              <Button fx:id="botonCompletar" layoutX="430.0" layoutY="2.0" mnemonicParsing="false" text="Completar" />
                            </children>
                         </HBox>
+                        <Button fx:id="botonActualizar" layoutX="394.0" layoutY="2.0" mnemonicParsing="false" text="Actualizar" />
                      </children></AnchorPane>
             </content>
           </Tab>

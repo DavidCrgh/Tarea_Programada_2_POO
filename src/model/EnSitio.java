@@ -7,7 +7,7 @@ import sockets.client.Usuario;
  * el 15-Nov-16.
  */
 public class EnSitio extends Pedido {
-    public EnSitio(Usuario _cliente) {
+    public EnSitio(Cliente _cliente) {
         super(_cliente);
     }
 

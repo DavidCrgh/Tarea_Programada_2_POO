@@ -41,8 +41,8 @@ public class ControladorAgregarProducto implements Initializable {
     private RadioButton botonNo;
     @FXML
     private Button botonAceptar;
+    boolean disponible;
 
-    //boolean disponible;
 
     public ControladorPrincipalAdministrador controladorAdministrador;
     public Platillo platillo;
@@ -93,6 +93,8 @@ public class ControladorAgregarProducto implements Initializable {
 
                     Platillo platilloNuevo = new Platillo(codigo,nombre,descripcion,tamanoPorcion,caloriasPorcion,piezasPorcion,precio,imagen,disponible);
                     try {
+                        controladorAdministrador.platillos.add(platilloNuevo);
+                        controladorAdministrador.construirTabla(controladorAdministrador.platillos);
                         controladorAdministrador.usuario.getSalidaDatos().writeInt(2);
                         controladorAdministrador.usuario.getSalidaObjetos().writeObject(platilloNuevo);
                     }catch(Exception e){

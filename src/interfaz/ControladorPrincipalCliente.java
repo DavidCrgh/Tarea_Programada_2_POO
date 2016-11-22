@@ -72,9 +72,7 @@ public class ControladorPrincipalCliente implements Initializable {
                 primaryStage.show();
             }
         });
-        verPedido.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
+        verPedido.setOnAction(event-> {
                 try {
                     Stage primaryStage = new Stage();
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("ConfirmarPedido.fxml"));
@@ -86,9 +84,10 @@ public class ControladorPrincipalCliente implements Initializable {
                     controladorConfirmarPedido.construirTabla(pedidoActual);
                     controladorConfirmarPedido.pedidoFinal=pedidoActual;
                     controladorConfirmarPedido.clienteEnvia=usuario;
+                    controladorConfirmarPedido.controladorCliente=this;
                 }
                 catch (IOException e){System.out.println(e);}
-            }
+
         });
 
         botonVerDetalles.setOnAction(event -> {
@@ -121,6 +120,7 @@ public class ControladorPrincipalCliente implements Initializable {
         );
 
     }
+
 
     public void construirTabla(ArrayList<Platillo> platillos){
         for(int i=0;i<platillos.size();i++){

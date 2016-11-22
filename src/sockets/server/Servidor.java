@@ -17,9 +17,9 @@ import java.util.ArrayList;
 public class Servidor {
     private int puerto;
     private ThreadPeticiones hiloPeticiones;
-    ArrayList<Platillo> platillos;
-    ArrayList<Usuario> usuarios;
-    ListaPedidos pedidos;
+    public ArrayList<Platillo> platillos;
+    public ArrayList<Usuario> usuarios;
+    public ListaPedidos pedidos;
 
     public Servidor(int _puerto){
         pedidos = new ListaPedidos();

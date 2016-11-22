@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="387.0" prefWidth="531.0" xmlns="http://javafx.com/javafx/8.0.76-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaz.ControladorVerDetalles">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="387.0" prefWidth="531.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaz.ControladorVerDetalles">
    <children>
       <Label layoutX="17.0" layoutY="301.0" text="Descripcion" />
       <Label fx:id="descripcion" layoutX="17.0" layoutY="326.0" text="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" />
@@ -36,6 +39,6 @@
             </VBox>
          </children>
       </HBox>
-      <ImageView fx:id="imagen" fitHeight="269.0" fitWidth="262.0" layoutX="17.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="imagen" layoutX="17.0" layoutY="14.0" prefHeight="269.0" prefWidth="262.0" text="Label" />
    </children>
 </Pane>

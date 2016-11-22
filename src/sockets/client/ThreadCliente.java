@@ -3,6 +3,7 @@ package sockets.client;
 import interfaz.ControladorPrincipalAdministrador;
 import interfaz.ControladorPrincipalCliente;
 import javafx.application.Platform;
+import model.ListaPedidos;
 import model.Platillo;
 
 import java.util.ArrayList;
@@ -15,6 +16,7 @@ public class ThreadCliente extends Thread {
     private ControladorPrincipalAdministrador controladorAdministrador;
     private ControladorPrincipalCliente controladorCliente;
     private Usuario usuario;
+
 
     public ThreadCliente(ControladorPrincipalAdministrador ventana, Usuario _usuario){
         controladorAdministrador = ventana;
@@ -32,6 +34,7 @@ public class ThreadCliente extends Thread {
         while(true){
             try{
                 sleep(100);
+
                 opcion = usuario.getEntradaDatos().readInt();
                 switch(opcion){
                     case 1:
@@ -50,7 +53,14 @@ public class ThreadCliente extends Thread {
                             });
                         }
                         break;
+                    case 2:
+                        try {
+                            ListaPedidos pedidosClientes = (ListaPedidos) usuario.getEntradaObjetos().readObject();
 
+                            controladorAdministrador.construirTablaPedidos(pedidosClientes);
+                        }catch(Exception e){
+                            e.printStackTrace();
+                        }
                 }
             }catch(Exception e){
                 e.printStackTrace();

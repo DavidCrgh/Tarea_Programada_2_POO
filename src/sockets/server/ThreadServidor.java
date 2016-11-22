@@ -53,8 +53,8 @@ public class ThreadServidor extends Thread {
                         Platillo platilloLeido= (Platillo)entradaObjeto.readObject();
                         servidor.platillos.add(platilloLeido);
                         Utilitarias.agregarProducto(platilloLeido);
-                        salidaDato.writeInt(1);
-                        salidaObjeto.writeObject(servidor.platillos);
+                       // salidaDato.writeInt(1);
+                        //salidaObjeto.writeObject(servidor.platillos);
                         break;
                     case 3:
                         servidor.platillos = (ArrayList<Platillo>) entradaObjeto.readObject();
@@ -63,6 +63,10 @@ public class ThreadServidor extends Thread {
                     case 4:
                         Pedido newPedido = (Pedido) entradaObjeto.readObject();
                         servidor.pedidos.agregarPedido(newPedido);
+                        break;
+                    case 7:
+                        salidaDato.writeInt(2);
+                        salidaObjeto.writeObject(servidor.pedidos);
                         break;
                     case 5:
                         salidaObjeto.writeObject(servidor.usuarios);

@@ -14,12 +14,12 @@ import java.util.Date;
 public class Pedido implements Serializable{
     private static int pedidosRealizados;
     private Date fecha;
-    private Usuario cliente;
+    private Cliente cliente;
     private int numeroPedido;
     private ArrayList<LineaPedido> lineasPedido;
     public tipoPedido tipo;
 
-    public Pedido(Usuario _cliente){
+    public Pedido(Cliente _cliente){
         pedidosRealizados++;
         numeroPedido = pedidosRealizados;
         cliente = _cliente;
@@ -28,7 +28,7 @@ public class Pedido implements Serializable{
         tipo=tipoPedido.ENSITIO;
     }
 
-    public Pedido(Usuario _cliente, ArrayList<LineaPedido>arrayList){
+    public Pedido(Cliente _cliente, ArrayList<LineaPedido>arrayList){
         pedidosRealizados++;
         numeroPedido = pedidosRealizados;
         cliente = _cliente;
@@ -52,11 +52,11 @@ public class Pedido implements Serializable{
         this.fecha = fecha;
     }
 
-    public Usuario getCliente() {
+    public Cliente getCliente() {
         return cliente;
     }
 
-    public void setCliente(Usuario cliente) {
+    public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
 

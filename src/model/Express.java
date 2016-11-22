@@ -9,7 +9,7 @@ import sockets.client.Usuario;
 public class Express extends Pedido{
     private static int cobroTransporte;
 
-    public Express(Usuario _cliente) {
+    public Express(Cliente _cliente) {
         super(_cliente);
     }
 
