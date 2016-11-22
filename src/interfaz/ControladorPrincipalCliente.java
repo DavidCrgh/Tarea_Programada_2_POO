@@ -39,10 +39,12 @@ public class ControladorPrincipalCliente implements Initializable {
     private TableColumn columnaPrecio;
     @FXML
     private Button verPedido;
-
-    public Usuario usuario;
     @FXML
     public Button AgregarPedido;
+    @FXML
+    private Button botonVerDetalles;
+
+    public Usuario usuario;
 
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
         assert AgregarPedido != null : "fx:id=\"AgregarPedido\" was not injected: check your FXML file 'PrincipalCliente.fxml'.";
@@ -86,6 +88,22 @@ public class ControladorPrincipalCliente implements Initializable {
                     controladorConfirmarPedido.clienteEnvia=usuario;
                 }
                 catch (IOException e){System.out.println(e);}
+            }
+        });
+
+        botonVerDetalles.setOnAction(event -> {
+            try {
+                Stage stage = new Stage();
+                FXMLLoader loader = new FXMLLoader();
+                Parent root = loader.load(getClass().getResource("VerDetalles.fxml").openStream());
+                ControladorVerDetalles controlador = (ControladorVerDetalles) loader.getController();
+                Platillo platillo = tablaProductos.getSelectionModel().getSelectedItem();
+                controlador.precargarDatos(platillo);
+                stage.setTitle("Detalles de Producto");
+                stage.setScene(new Scene(root, 600,400));
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         });
 

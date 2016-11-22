@@ -1,7 +1,6 @@
 package interfaz;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -63,6 +62,7 @@ public class ControladorPrincipalAdministrador implements Initializable {
     public ArrayList<Platillo> platillos;
 
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
+
         grupoBotonesFiltro = new ToggleGroup();
         botonFiltrarTipo.setToggleGroup(grupoBotonesFiltro);
         botonFiltrarDisponibilidad.setToggleGroup(grupoBotonesFiltro);
@@ -102,7 +102,6 @@ public class ControladorPrincipalAdministrador implements Initializable {
                 new PropertyValueFactory<Platillo,String>("disponibleString")
         );
 
-
         botonAgregar.setOnAction(event->{
                 try {
                     Stage primaryStage = new Stage();
@@ -118,6 +117,7 @@ public class ControladorPrincipalAdministrador implements Initializable {
                 }
             }
         );
+
         botonModificar.setOnAction(event -> {
             Platillo platilloBuscado = (Platillo) tablaProductos.getSelectionModel().getSelectedItem();
             if (platilloBuscado != null) {
@@ -144,6 +144,7 @@ public class ControladorPrincipalAdministrador implements Initializable {
                 }
             }
         });
+
         botonEliminar.setOnAction(event -> {
             Platillo platilloEliminado = (Platillo) tablaProductos.getSelectionModel().getSelectedItem();
             if(platilloEliminado != null){
@@ -164,8 +165,8 @@ public class ControladorPrincipalAdministrador implements Initializable {
                     e.printStackTrace();
                 }
             }
-
         });
+
         botonVerDetalles.setOnAction(event -> {
             try {
                 Stage stage = new Stage();
