@@ -1,6 +1,7 @@
 package interfaz;
 
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -70,7 +71,6 @@ public class ControladorPrincipalAdministrador implements Initializable {
 
 
         botonAgregar.setOnAction(event->{
-                Platillo platillo = (Platillo) tablaProductos.getSelectionModel().getSelectedItem();
                 try {
                     Stage primaryStage = new Stage();
                     FXMLLoader loader = new FXMLLoader();
@@ -87,27 +87,51 @@ public class ControladorPrincipalAdministrador implements Initializable {
         );
         botonModificar.setOnAction(event -> {
             Platillo platilloBuscado = (Platillo) tablaProductos.getSelectionModel().getSelectedItem();
-            for (Platillo platillo: platillos) {
-                if(platilloBuscado.getCodigo().equals(platillo.getCodigo())){
-                    platilloBuscado = platillo;
-                    break;
+            if (platilloBuscado != null) {
+                for (Platillo platillo: platillos) {
+                    if(platilloBuscado.getCodigo().equals(platillo.getCodigo())){
+                        platilloBuscado = platillo;
+                        break;
+                    }
+                }
+                try {
+                    Stage stage = new Stage();
+                    FXMLLoader loader = new FXMLLoader();
+                    Parent root = loader.load(getClass().getResource("AgregarProducto.fxml").openStream());
+                    ControladorAgregarProducto controlador = (ControladorAgregarProducto) loader.getController();
+                    stage.setTitle("Modificar Producto");
+                    controlador.tituloVentana.setText("Modificar producto");
+                    controlador.platillo = platilloBuscado;
+                    controlador.precargarDatos(platilloBuscado);
+                    controlador.controladorAdministrador = this;
+                    stage.setScene(new Scene(root,600,400));
+                    stage.show();
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
             }
-            try {
-                Stage stage = new Stage();
-                FXMLLoader loader = new FXMLLoader();
-                Parent root = loader.load(getClass().getResource("AgregarProducto.fxml").openStream());
-                ControladorAgregarProducto controlador = (ControladorAgregarProducto) loader.getController();
-                stage.setTitle("Modificar Producto");
-                controlador.tituloVentana.setText("Modificar producto");
-                controlador.platillo = platilloBuscado;
-                controlador.precargarDatos(platilloBuscado);
-                controlador.controladorAdministrador = this;
-                stage.setScene(new Scene(root,600,400));
-                stage.show();
-            } catch (IOException e) {
-                e.printStackTrace();
+        });
+        botonEliminar.setOnAction(event -> {
+            Platillo platilloEliminado = (Platillo) tablaProductos.getSelectionModel().getSelectedItem();
+            if(platilloEliminado != null){
+                for (Platillo platillo:platillos) {
+                    if(platillo.getCodigo().equals(platilloEliminado.getCodigo())){
+                        platilloEliminado = platillo;
+                        break;
+                    }
+                }
+                platillos.remove(platilloEliminado);
+                construirTabla(platillos);
+                usuario.abrirConexion();
+                usuario.obtenerFlujos();
+                try {
+                    usuario.getSalidaDatos().writeInt(3);
+                    usuario.getSalidaObjetos().writeObject(platillos);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
+
         });
         botonVerDetalles.setOnAction(event -> {
             try {

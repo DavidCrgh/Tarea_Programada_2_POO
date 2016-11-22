@@ -6,6 +6,8 @@ import model.Pedido;
 import java.io.*;
 import java.net.Socket;
 
+import static java.lang.Thread.sleep;
+
 /**
  * Creado por David Valverde Garro - 2016034774
  * el 10-Nov-16.
@@ -100,7 +102,7 @@ public class Usuario implements Serializable{
         this.clave = clave;
     }
 
-    public String getNumeroCelualar() {
+    public String getNumeroCelular() {
         return numeroCelular;
     }
 
@@ -143,8 +145,11 @@ public class Usuario implements Serializable{
 
     public void cerrarConexion(){
         try {
+            sleep(500);
             socket.close();
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e){
             e.printStackTrace();
         }
     }

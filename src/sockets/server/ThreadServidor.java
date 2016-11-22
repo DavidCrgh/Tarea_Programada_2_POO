@@ -41,14 +41,13 @@ public class ThreadServidor extends Thread {
         int opcion;
         while(true){
             try{
-                sleep(1000);
+                sleep(100);
                 opcion= entradaDato.readInt();
                 switch(opcion){
                     case 1:
                         salidaDato.writeInt(1);
                         salidaObjeto.writeObject(servidor.platillos);
                         break;
-
                     case 2:
                         Platillo platilloLeido= (Platillo)entradaObjeto.readObject();
                         servidor.platillos.add(platilloLeido);

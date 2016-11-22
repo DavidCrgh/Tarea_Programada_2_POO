@@ -31,7 +31,7 @@ public class ThreadCliente extends Thread {
 
         while(true){
             try{
-                sleep(1000);
+                sleep(100);
                 opcion = usuario.getEntradaDatos().readInt();
                 switch(opcion){
                     case 1:
