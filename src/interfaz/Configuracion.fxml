@@ -48,5 +48,6 @@
       <Button fx:id="botonCancelar" layoutX="163.0" layoutY="306.0" mnemonicParsing="false" text="Cancelar" />
       <Button fx:id="botonAceptar" layoutX="97.0" layoutY="306.0" mnemonicParsing="false" text="Aceptar" />
       <Button fx:id="botonHacerAdmin" layoutX="328.0" layoutY="12.0" mnemonicParsing="false" text="Hacer Administrador" />
+      <Label layoutX="97.0" layoutY="235.0" />
    </children>
 </Pane>

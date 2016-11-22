@@ -277,6 +277,7 @@ public class Utilitarias {
         }
     }
 
+    //c
     public static void reconstruirCuentasXML(ArrayList<Usuario> usuarios){
         try {
             DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();

@@ -44,7 +44,7 @@ public class ControladorConfiguracion implements Initializable{
                         break;
                     }
                 }
-            }
+            }//c
             usuario.abrirConexion();
             usuario.obtenerFlujos();
             try {
