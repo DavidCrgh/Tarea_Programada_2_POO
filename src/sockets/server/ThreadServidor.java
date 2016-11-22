@@ -3,6 +3,7 @@ package sockets.server;
 import model.Pedido;
 import model.Platillo;
 import model.Utilitarias;
+import sockets.client.Usuario;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -65,6 +66,10 @@ public class ThreadServidor extends Thread {
                         break;
                     case 5:
                         salidaObjeto.writeObject(servidor.usuarios);
+                        break;
+                    case 6:
+                        servidor.usuarios = (ArrayList<Usuario>) entradaObjeto.readObject();
+                        Utilitarias.reconstruirCuentasXML(servidor.usuarios);
                         break;
                 }
             } catch (Exception e){

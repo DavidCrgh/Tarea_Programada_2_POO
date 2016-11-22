@@ -277,6 +277,58 @@ public class Utilitarias {
         }
     }
 
+    public static void reconstruirCuentasXML(ArrayList<Usuario> usuarios){
+        try {
+            DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+
+            Document doc = docBuilder.newDocument();
+            Element raizXML = doc.createElement("clients");
+            doc.appendChild(raizXML);
+
+            for(Usuario usuario : usuarios){
+                Element person = doc.createElement("person");
+                raizXML.appendChild(person);
+
+                Element username = doc.createElement("usuario");
+                username.appendChild(doc.createTextNode(usuario.getUsuario()));
+                person.appendChild(username);
+
+                Element clave = doc.createElement("clave");
+                clave.appendChild(doc.createTextNode(usuario.getClave()));
+                person.appendChild(clave);
+
+                Element numeroCelular = doc.createElement("numeroCelular");
+                numeroCelular.appendChild(doc.createTextNode(usuario.getNumeroCelular()));
+                person.appendChild(numeroCelular);
+
+                Element direccion = doc.createElement("direccion");
+                direccion.appendChild(doc.createTextNode(usuario.getDireccion()));
+                person.appendChild(direccion);
+
+                Element admin = doc.createElement("admin");
+                if(usuario.isAdmin()){
+                    admin.appendChild(doc.createTextNode("true"));
+                } else{
+                    admin.appendChild(doc.createTextNode("false"));
+                }
+                person.appendChild(admin);
+            }
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer();
+            DOMSource source = new DOMSource(doc);
+            StreamResult result = new StreamResult(new File("recursos\\Cuentas.xml"));
+
+            transformer.transform(source, result);
+
+            System.out.println("File saved!");
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+        } catch (TransformerException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static ArrayList<Platillo> filtrarPor(ArrayList<Platillo> platillos, String filtro){
         ArrayList<Platillo> filtrados = new ArrayList<>();
         for(Platillo platillo : platillos){
