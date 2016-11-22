@@ -26,16 +26,20 @@ public class Usuario implements Serializable{
     private ObjectInputStream entradaObjetos;
     private ObjectOutputStream salidaObjetos;
 
-    public String getDireccion() {
-        return direccion;
-    }
-
     public Usuario(String fName, String pClave, String pNumeroCelular, String pDireccion, String pEsAdmin) {
         this.usuario = fName;
         this.clave = pClave;
         this.numeroCelular = pNumeroCelular;
         this.direccion= pDireccion;
         this.admin = esAdmin(pEsAdmin);
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    public String getDireccion() {
+        return direccion;
     }
 
     public Socket getSocket() {

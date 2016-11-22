@@ -11,7 +11,6 @@ import java.util.ArrayList;
  */
 public class InicioSesion {
     public ArrayList<Usuario> cuentas;
-    private Socket cliente;
 
     Utilitarias objetoUtilitario = new Utilitarias();
 

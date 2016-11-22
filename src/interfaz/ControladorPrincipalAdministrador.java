@@ -53,6 +53,8 @@ public class ControladorPrincipalAdministrador implements Initializable {
     private ChoiceBox cajaTipos;
     @FXML
     private ChoiceBox cajaDisponibilidad;
+    @FXML
+    private MenuItem botonConfiguracion;
 
     private ToggleGroup grupoBotonesFiltro;
 
@@ -177,6 +179,22 @@ public class ControladorPrincipalAdministrador implements Initializable {
                 controlador.precargarDatos(platillo);
                 stage.setTitle("Detalles de Producto");
                 stage.setScene(new Scene(root, 600,400));
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+        botonConfiguracion.setOnAction(event -> {
+            try {
+                Stage stage = new Stage();
+                FXMLLoader loader = new FXMLLoader();
+                Parent root = loader.load(getClass().getResource("Configuracion.fxml").openStream());
+                ControladorConfiguracion controlador = (ControladorConfiguracion) loader.getController();
+                controlador.usuario = usuario;
+                controlador.pedirListaUsuarios();
+                stage.setTitle("Configuración de Aplicación");
+                stage.setScene(new Scene(root, 475,346));
                 stage.show();
             } catch (IOException e) {
                 e.printStackTrace();

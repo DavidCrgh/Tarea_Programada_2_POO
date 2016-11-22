@@ -62,6 +62,10 @@ public class ThreadServidor extends Thread {
                     case 4:
                         Pedido newPedido = (Pedido) entradaObjeto.readObject();
                         servidor.pedidos.agregarPedido(newPedido);
+                        break;
+                    case 5:
+                        salidaObjeto.writeObject(servidor.usuarios);
+                        break;
                 }
             } catch (Exception e){
                 e.printStackTrace();

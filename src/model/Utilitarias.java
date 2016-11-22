@@ -64,7 +64,6 @@ public class Utilitarias {
     }
 
     public void guardarUsuarioXML(String usuario, String contrasenna, String numeroCelular, String direccion, boolean quienRegistra)throws Exception{
-
         File archivoXML = new File("recursos\\Cuentas.xml");
         DocumentBuilderFactory factory=DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
@@ -177,26 +176,17 @@ public class Utilitarias {
 
     }
 
-    public ArrayList<Usuario> cargarCuentas ()throws Exception {
+    public static ArrayList<Usuario> cargarCuentas ()throws Exception {
         ArrayList<Usuario> cuentas = new ArrayList<>();
         File fXmlFile = new File("recursos\\Cuentas.xml");
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
         Document doc = dBuilder.parse(fXmlFile);
-
         doc.getDocumentElement().normalize();
-
-        System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
-
         NodeList nList = doc.getElementsByTagName("person");
 
-        System.out.println("----------------------------");
-
         for (int temp = 0; temp < nList.getLength(); temp++) {
-
             Node nNode = nList.item(temp);
-
-
             if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 
                 Element eElement = (Element) nNode;
@@ -209,7 +199,6 @@ public class Utilitarias {
                 Usuario actual = new Usuario(usuario, clave, numeroCelular, direccion, esAdmin);
                 cuentas.add(actual);
             }
-
         }
         return cuentas;
     }
@@ -291,7 +280,6 @@ public class Utilitarias {
     public static ArrayList<Platillo> filtrarPor(ArrayList<Platillo> platillos, String filtro){
         ArrayList<Platillo> filtrados = new ArrayList<>();
         for(Platillo platillo : platillos){
-            String temp = platillo.getTipoCodigo();
             if(platillo.getTipoCodigo().equals(filtro) || platillo.getDisponibleString().equals(filtro)){
                 filtrados.add(platillo);
             }
