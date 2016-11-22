@@ -63,6 +63,7 @@ public class ControladorPrincipalCliente implements Initializable {
                     ControladorAnnadirPedido c = loader.getController();
                     c.annadirPedidoSetLabel(platilloActual.getNombre());
                     c.platillo=platilloActual;
+                    c.arrayProductos.clear();
                     c.arrayProductos=pedidoActual;
                 } catch (IOException e) {
                     e.printStackTrace();
