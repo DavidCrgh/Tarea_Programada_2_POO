@@ -21,7 +21,7 @@ import javafx.scene.control.TextField;
 public class ControladorAnnadirPedido implements Initializable {
 
     public Platillo platillo;
-    public ArrayList<LineaPedido> arrayProductos;
+    public ArrayList<LineaPedido> arrayProductos=new ArrayList<>();
     @FXML
     private Button confirmarBoton;
     @FXML

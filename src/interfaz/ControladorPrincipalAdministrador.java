@@ -1,6 +1,8 @@
 package interfaz;
 
 import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -12,6 +14,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.paint.LinearGradient;
 import javafx.stage.Stage;
 import model.*;
 import model.Platillo;
@@ -19,6 +22,7 @@ import model.Utilitarias;
 import sockets.client.Usuario;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -61,6 +65,8 @@ public class ControladorPrincipalAdministrador implements Initializable {
     @FXML
     private TableColumn columnaPrecioPedido;
     @FXML
+    private TableColumn numeroPedido;
+    @FXML
     private Button botonActualizar;
     @FXML
     private ToggleButton botonFiltar;
@@ -79,8 +85,9 @@ public class ControladorPrincipalAdministrador implements Initializable {
 
     public Usuario usuario;
 
-
     public ArrayList<Platillo> platillos;
+
+    public ListaPedidos lineasTemporal;
 
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
 
@@ -88,6 +95,27 @@ public class ControladorPrincipalAdministrador implements Initializable {
         botonFiltrarTipo.setToggleGroup(grupoBotonesFiltro);
         botonFiltrarDisponibilidad.setToggleGroup(grupoBotonesFiltro);
         botonFiltrarTipo.setSelected(true);
+
+        botonVer.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                lineasTemporal.getPedidos();
+                try {
+                    Stage primaryStage = new Stage();
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("VerPedidoAdmi.fxml"));
+                    Parent root = loader.load();
+                    ControladorVerPedidoAdmi controladorVerPedidoAdmi = loader.getController();
+                    primaryStage.setTitle("Pedido");
+                    primaryStage.setScene(new Scene(root, 520, 320));
+                    primaryStage.show();/*
+                    controladorConfirmarPedido.construirTabla(pedidoActual);
+                    controladorConfirmarPedido.pedidoFinal=pedidoActual;
+                    controladorConfirmarPedido.clienteEnvia=usuario;
+                    controladorConfirmarPedido.controladorCliente=this;*/
+                }
+                catch (IOException e){System.out.println(e);}
+            }
+        });
 
         botonFiltar.setOnAction(event -> {
             if(botonFiltar.isSelected()){
@@ -122,7 +150,6 @@ public class ControladorPrincipalAdministrador implements Initializable {
         columnaDisponible.setCellValueFactory(
                 new PropertyValueFactory<Platillo,String>("disponibleString")
         );
-
         tablePedidos.setEditable(true);
         columnaCliente.setCellValueFactory(
                 new PropertyValueFactory<Cliente,String>("nombre")
@@ -132,6 +159,9 @@ public class ControladorPrincipalAdministrador implements Initializable {
         );
         columnaPrecioPedido.setCellValueFactory(
                 new PropertyValueFactory<Cliente,String>("precioPedido")
+        );
+        numeroPedido.setCellValueFactory(
+                new PropertyValueFactory<Cliente,String>("numeroPedido")
         );
 
 
@@ -263,18 +293,18 @@ public class ControladorPrincipalAdministrador implements Initializable {
     }
 
     public void construirTablaPedidos(ListaPedidos pedidos){
-            ArrayList<Cliente> clientes = new ArrayList<>();
-            int precioTotal=0;
+        lineasTemporal=pedidos;
+        ArrayList<Cliente> clientes = new ArrayList<>();
+        int precioTotal=0;
         for(Pedido pedidoTemporal:pedidos.getPedidos()){
             precioTotal=0;
             Cliente clienteTemporal = pedidoTemporal.getCliente();
             for(LineaPedido lineaPedido: pedidoTemporal.getLineasPedido()){
                 precioTotal+=lineaPedido.getCantidad();
             }
+            System.out.println(pedidoTemporal.getNumeroPedido());
             clienteTemporal.precioPedido=precioTotal+"";
             clienteTemporal.fechaPedido= clienteTemporal.getFecha(pedidoTemporal.getFecha());
-            System.out.println(clienteTemporal.precioPedido);
-            System.out.println(clienteTemporal.fechaPedido);
             clientes.add(pedidoTemporal.getCliente());
         }
         tablePedidos.setItems(FXCollections.observableList(clientes));

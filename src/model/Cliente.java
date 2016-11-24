@@ -74,7 +74,4 @@ public class Cliente implements Serializable {
     public void setPrecioPedido(String precioPedido) {
         this.precioPedido = precioPedido;
     }
-
-
-
 }

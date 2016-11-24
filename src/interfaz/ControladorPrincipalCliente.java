@@ -54,7 +54,6 @@ public class ControladorPrincipalCliente implements Initializable {
             @Override
             public void handle(ActionEvent event) {
                 Platillo platilloActual = tablaProductos.getSelectionModel().getSelectedItem();
-                System.out.println(platilloActual.getNombre());
                 Stage primaryStage = new Stage();
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("AnnadirPedido.fxml"));
                 Parent root = null;
@@ -130,7 +129,6 @@ public class ControladorPrincipalCliente implements Initializable {
                 i--;
             }
         }
-
         tablaProductos.setItems(FXCollections.observableList(platillos));
     }
 }

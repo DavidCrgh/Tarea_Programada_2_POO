@@ -104,6 +104,8 @@ public class ControladorConfirmarPedido implements Initializable{
 
                     pedidoFinal.clear();
                     controladorCliente.pedidoActual.clear();
+                    Stage stage = (Stage)enviarPedido.getScene().getWindow();
+                    stage.close();
                 }catch(Exception e){
                     e.printStackTrace();
                 }
