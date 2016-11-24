@@ -112,6 +112,7 @@ public class ControladorPrincipalCliente implements Initializable {
         columnaNombre.setCellValueFactory(
                 new PropertyValueFactory<Platillo,String>("nombre")
         );
+
         columnaCalorias.setCellValueFactory(
                 new PropertyValueFactory<Platillo,String>("caloriasPorcion")
         );
