@@ -79,7 +79,8 @@ public class ThreadServidor extends Thread {
                         escribirArchivo("Servidor reconstruye XML"+" "+fecha.toString());
                         break;
                     case 4:
-                        Pedido newPedido = (Pedido) entradaObjeto.readObject();
+                        sleep(10000);
+                        Pedido newPedido = (Pedido) entradaObjeto.readUnshared();
                         servidor.pedidos.agregarPedido(newPedido);
                         fecha = new Date();
                         escribirArchivo("Servidor recibe nuevo Pedido"+" "+fecha.toString());

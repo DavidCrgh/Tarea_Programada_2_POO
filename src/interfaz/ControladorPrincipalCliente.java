@@ -122,7 +122,6 @@ public class ControladorPrincipalCliente implements Initializable {
 
     }
 
-
     public void construirTabla(ArrayList<Platillo> platillos){
         for(int i=0;i<platillos.size();i++){
             if(!(platillos.get(i).isDisponible())){

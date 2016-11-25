@@ -103,7 +103,6 @@
                      <children>
                         <TableView fx:id="tablePedidos" layoutY="30.0" prefHeight="315.0" prefWidth="600.0">
                           <columns>
-                              <TableColumn fx:id="numeroPedido" prefWidth="75.0" text="Id Pedido" />
                             <TableColumn fx:id="columnaCliente" prefWidth="75.0" text="Cliente" />
                               <TableColumn fx:id="columnaFecha" prefWidth="75.0" text="Fecha" />
                               <TableColumn fx:id="columnaPrecioPedido" prefWidth="75.0" text="Precio" />

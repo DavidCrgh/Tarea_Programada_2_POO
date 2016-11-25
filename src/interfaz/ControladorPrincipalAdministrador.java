@@ -65,8 +65,6 @@ public class ControladorPrincipalAdministrador implements Initializable {
     @FXML
     private TableColumn columnaPrecioPedido;
     @FXML
-    private TableColumn numeroPedido;
-    @FXML
     private Button botonActualizar;
     @FXML
     private ToggleButton botonFiltar;
@@ -99,7 +97,7 @@ public class ControladorPrincipalAdministrador implements Initializable {
         botonVer.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                lineasTemporal.getPedidos();
+                Pedido pedidoSeleccionado = lineasTemporal.getPedidos().get(tablePedidos.getSelectionModel().getFocusedIndex());
                 try {
                     Stage primaryStage = new Stage();
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("VerPedidoAdmi.fxml"));
@@ -107,11 +105,8 @@ public class ControladorPrincipalAdministrador implements Initializable {
                     ControladorVerPedidoAdmi controladorVerPedidoAdmi = loader.getController();
                     primaryStage.setTitle("Pedido");
                     primaryStage.setScene(new Scene(root, 520, 320));
-                    primaryStage.show();/*
-                    controladorConfirmarPedido.construirTabla(pedidoActual);
-                    controladorConfirmarPedido.pedidoFinal=pedidoActual;
-                    controladorConfirmarPedido.clienteEnvia=usuario;
-                    controladorConfirmarPedido.controladorCliente=this;*/
+                    primaryStage.show();
+                    controladorVerPedidoAdmi.construirTabla(pedidoSeleccionado.getLineasPedido());
                 }
                 catch (IOException e){System.out.println(e);}
             }
@@ -160,11 +155,6 @@ public class ControladorPrincipalAdministrador implements Initializable {
         columnaPrecioPedido.setCellValueFactory(
                 new PropertyValueFactory<Cliente,String>("precioPedido")
         );
-        numeroPedido.setCellValueFactory(
-                new PropertyValueFactory<Cliente,String>("numeroPedido")
-        );
-
-
 
         botonActualizar.setOnAction(event->{
             try {

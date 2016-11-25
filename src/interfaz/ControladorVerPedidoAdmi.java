@@ -39,12 +39,6 @@ public class ControladorVerPedidoAdmi implements Initializable{
     @FXML
     private TableView tabla;
 
-    public ControladorPrincipalCliente controladorCliente;
-
-    public Pedido pedidoSolicitud;
-
-    public ArrayList<LineaPedido>pedidoFinal;
-
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
         assert columnaCodigo != null : "fx:id=\"columnaCodigo\" was not injected: check your FXML file 'VerPedidoAdmi.fxml'.";
         assert columnaNombre != null : "fx:id=\"columnaNombre\" was not injected: check your FXML file 'VerPedidoAdmi.fxml'.";

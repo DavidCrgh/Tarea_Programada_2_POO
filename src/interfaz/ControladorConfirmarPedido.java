@@ -80,6 +80,7 @@ public class ControladorConfirmarPedido implements Initializable{
         enviarPedido.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                pedidoSolicitud=null;
                 if(enSitio.isSelected()){
                     Cliente clienteTemporal= new Cliente(clienteEnvia.getUsuario(),clienteEnvia.getNumeroCelular(),clienteEnvia.getDireccion());
                     pedidoSolicitud = new Pedido(clienteTemporal, pedidoFinal);
@@ -98,10 +99,10 @@ public class ControladorConfirmarPedido implements Initializable{
                 }
                 try{
                     clienteEnvia.getSalidaDatos().writeInt(4);
-                    clienteEnvia.getSalidaObjetos().writeObject(pedidoSolicitud);
-                 //   clienteEnvia.getSalidaDatos().flush();
-                   // clienteEnvia.getSalidaObjetos().flush();
-
+                    clienteEnvia.getSalidaObjetos().reset();
+                    clienteEnvia.getSalidaObjetos().writeUnshared(pedidoSolicitud);
+                    //clienteEnvia.getSalidaDatos().flush();
+                    //clienteEnvia.getSalidaObjetos().flush();
                     pedidoFinal.clear();
                     controladorCliente.pedidoActual.clear();
                     Stage stage = (Stage)enviarPedido.getScene().getWindow();

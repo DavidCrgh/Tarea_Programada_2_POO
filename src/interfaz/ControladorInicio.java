@@ -57,8 +57,8 @@ public class ControladorInicio implements Initializable{
                     if (buscado.isAdmin()) {
                         try{
                             Stage primaryStage = new Stage();
-                            FXMLLoader loader = new FXMLLoader();
-                            Parent root = loader.load(getClass().getResource("PrincipalAdministrador.fxml").openStream());
+                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/interfaz/PrincipalAdministrador.fxml"));
+                            Parent root = loader.load();
                             ControladorPrincipalAdministrador controladorAdministrador = (ControladorPrincipalAdministrador) loader.getController();
                             controladorAdministrador.usuario = buscado;
                             primaryStage.setTitle("Log as admin");
@@ -77,7 +77,7 @@ public class ControladorInicio implements Initializable{
                             stage.close();
                         }
                         catch (IOException e){
-                            System.out.println(e);
+                            e.printStackTrace();
                         }
                     }
                     else{
@@ -116,7 +116,7 @@ public class ControladorInicio implements Initializable{
             try {
                 objetoUtilitario.guardarUsuarioXML(usuario, contrasenna, numero, direccion, false);
             }catch(Exception e){
-                System.out.println(e);
+                e.printStackTrace();
             }
         });
     }
