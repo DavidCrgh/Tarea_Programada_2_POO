@@ -57,7 +57,7 @@ public class ControladorPrincipalAdministrador implements Initializable {
     @FXML
     private Button botonCompletar;
     @FXML
-    private TableView tablePedidos;
+    public TableView<Cliente> tablePedidos;
     @FXML
     private TableColumn columnaCliente;
     @FXML
@@ -82,6 +82,8 @@ public class ControladorPrincipalAdministrador implements Initializable {
     private MenuItem consultaNoPedidos;
 
     private ToggleGroup grupoBotonesFiltro;
+
+    public ControladorConsultaNoPedidos controladorConsultaNoPedidos;
 
     public Usuario usuario;
 
@@ -167,6 +169,25 @@ public class ControladorPrincipalAdministrador implements Initializable {
                 e.printStackTrace();
             }
 
+
+        });
+
+        botonCompletar.setOnAction(event ->{
+
+            Cliente clientePedido = tablePedidos.getSelectionModel().getSelectedItem();
+            System.out.println("Precio del pedido del cliente" +clientePedido.precioPedido);
+            for(int i=0;i<clientePedido.pedidoEnviado.getLineasPedido().size();i++){
+                System.out.println(clientePedido.pedidoEnviado.getLineasPedido().get(i).getCantidadPiezas());
+                System.out.println(clientePedido.pedidoEnviado.getLineasPedido().get(i).getPlatillo().getNombre());
+                System.out.println(clientePedido.pedidoEnviado.tipo);
+            }
+            try {
+                usuario.getSalidaDatos().writeInt(8);
+                usuario.getSalidaObjetos().reset();
+                usuario.getSalidaObjetos().writeUnshared(clientePedido);
+            }catch(Exception e){
+                e.printStackTrace();
+            }
 
         });
 
@@ -267,6 +288,8 @@ public class ControladorPrincipalAdministrador implements Initializable {
             }
         });
 
+
+
         consultaNoPedidos.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -275,6 +298,14 @@ public class ControladorPrincipalAdministrador implements Initializable {
                     FXMLLoader loader = new FXMLLoader();
                     Parent root = loader.load(getClass().getResource("consultaNoPedidos.fxml").openStream());
                     ControladorConsultaNoPedidos controlador = (ControladorConsultaNoPedidos) loader.getController();
+                    controladorConsultaNoPedidos=controlador;
+
+                    try{
+                        usuario.getSalidaDatos().writeInt(10);
+                    }catch(Exception e){
+                        e.printStackTrace();
+                    }
+
                     controlador.construirTabla(platillos);
                     stage.setTitle("Nunca Pedidos");
                     stage.setScene(new Scene(root, 520,320));
@@ -317,6 +348,7 @@ public class ControladorPrincipalAdministrador implements Initializable {
             System.out.println(pedidoTemporal.getNumeroPedido());
             clienteTemporal.precioPedido=precioTotal+"";
             clienteTemporal.fechaPedido= clienteTemporal.getFecha(pedidoTemporal.getFecha());
+            clienteTemporal.pedidoEnviado=pedidoTemporal;
             clientes.add(pedidoTemporal.getCliente());
         }
         tablePedidos.setItems(FXCollections.observableList(clientes));

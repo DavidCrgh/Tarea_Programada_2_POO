@@ -68,7 +68,7 @@ public class ControladorInicio implements Initializable{
                             buscado.abrirConexion();
                             buscado.obtenerFlujos();
 
-                            controladorAdministrador.usuario=buscado;
+                           // controladorAdministrador.usuario=buscado;
 
                             ThreadCliente administrador = new ThreadCliente(controladorAdministrador,buscado);
                             administrador.start();
@@ -86,13 +86,14 @@ public class ControladorInicio implements Initializable{
                             FXMLLoader loader = new FXMLLoader();
                             Parent root = loader.load(getClass().getResource("PrincipalCliente.fxml").openStream());
                             ControladorPrincipalCliente controladorCliente = (ControladorPrincipalCliente) loader.getController();
-                            controladorCliente.usuario = buscado;
+                           // controladorCliente.usuario = buscado;
                             primaryStage.setTitle("Log as Client");
                             primaryStage.setScene(new Scene(root, 600, 400));
                             primaryStage.show();
 
                             buscado.abrirConexion();
                             buscado.obtenerFlujos();
+                            controladorCliente.usuario = buscado;
                             ThreadCliente cliente = new ThreadCliente(controladorCliente,buscado);
                             cliente.start();
 

@@ -1,8 +1,6 @@
 package sockets.server;
 
-import model.Pedido;
-import model.Platillo;
-import model.Utilitarias;
+import model.*;
 import sockets.client.Usuario;
 
 import java.io.*;
@@ -87,7 +85,7 @@ public class ThreadServidor extends Thread {
                         escribirArchivo("Servidor reconstruye XML"+" "+fecha.toString());
                         break;
                     case 4:
-                        sleep(10000);
+                        sleep(1000);
                         Pedido newPedido = (Pedido) entradaObjeto.readUnshared();
                         servidor.pedidos.agregarPedido(newPedido);
                         fecha = new Date();
@@ -106,11 +104,46 @@ public class ThreadServidor extends Thread {
                         break;
                     case 7:
                         salidaDato.writeInt(2);
-                        salidaObjeto.writeObject(servidor.pedidos);
+                        salidaObjeto.reset();
+                        salidaObjeto.writeUnshared(servidor.pedidos);
                         fecha = new Date();
                         escribirArchivo("Servidor envia lista de pedidos actuales"+" "+fecha.toString());
                         break;
                     case 8:
+                        Cliente clienteEnviado = (Cliente)entradaObjeto.readObject();
+                        Pedido pedidoCliente = clienteEnviado.pedidoEnviado;
+
+                        ArrayList<LineaPedido> productosCliente = clienteEnviado.pedidoEnviado.getLineasPedido();
+                        ArrayList<Pedido> pedidosTemporal= servidor.pedidos.getPedidos();
+
+                        for(int i=0;i<pedidosTemporal.size();i++) {
+                            if (pedidoCliente.getCliente().getNombre().equals(pedidosTemporal.get(i).getCliente().getNombre())) {
+                                ArrayList<LineaPedido> lineaTemporal = pedidosTemporal.get(i).getLineasPedido();
+                                int verificador =0;
+                                if(lineaTemporal.size()==productosCliente.size()){
+
+                                    for(int j=0;j<lineaTemporal.size();j++){
+
+                                        if(productosCliente.get(j).getCantidadPiezas()==lineaTemporal.get(j).getCantidadPiezas() &&
+                                                productosCliente.get(j).getPlatillo().getNombre().equals(lineaTemporal.get(j).getPlatillo().getNombre())){
+
+                                            verificador++;
+
+                                        }
+                                        else{
+                                            verificador=0;
+                                        }
+                                    }
+                                    if(verificador==lineaTemporal.size()){
+
+                                        servidor.pedidos.getPedidos().remove(i);
+
+                                    }
+                                }
+                            }
+                        }
+                        break;
+                    case 9:
                         ArrayList<Platillo>pedidos = (ArrayList<Platillo>) entradaObjeto.readUnshared();
                         for (Platillo pedido : pedidos) {
                             for (Platillo platillo : servidor.platillos) {
@@ -120,6 +153,10 @@ public class ThreadServidor extends Thread {
                             }
                         }
                         break;
+                    case 10:
+                        salidaDato.writeInt(3);
+                        salidaObjeto.reset();
+                        salidaObjeto.writeUnshared(servidor.platillos);
                 }
             } catch (Exception e){
                 e.printStackTrace();

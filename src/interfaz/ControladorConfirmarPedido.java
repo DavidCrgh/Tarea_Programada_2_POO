@@ -86,7 +86,7 @@ public class ControladorConfirmarPedido implements Initializable{
                     aux.add(lineaPedido.getPlatillo());
                 }
                 try {
-                    clienteEnvia.getSalidaDatos().writeInt(8);
+                    clienteEnvia.getSalidaDatos().writeInt(9);
                     clienteEnvia.getSalidaObjetos().reset();
                     clienteEnvia.getSalidaObjetos().writeUnshared(aux);
                 } catch (IOException e) {
@@ -95,6 +95,7 @@ public class ControladorConfirmarPedido implements Initializable{
                 if(enSitio.isSelected()){
                     Cliente clienteTemporal= new Cliente(clienteEnvia.getUsuario(),clienteEnvia.getNumeroCelular(),clienteEnvia.getDireccion());
                     pedidoSolicitud = new Pedido(clienteTemporal, pedidoFinal);
+                    pedidoSolicitud.setTipo(tipoPedido.ENSITIO);
                 }
                 else{
                     if(recoger.isSelected()){

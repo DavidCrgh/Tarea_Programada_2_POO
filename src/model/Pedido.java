@@ -19,7 +19,12 @@ public class Pedido implements Serializable{
     private ArrayList<LineaPedido> lineasPedido;
     public tipoPedido tipo;
 
+    public void setLineasPedido(ArrayList<LineaPedido> lineasPedido) {
+        this.lineasPedido = lineasPedido;
+    }
+
     public Pedido(Cliente _cliente){
+
         pedidosRealizados++;
         numeroPedido = pedidosRealizados;
         cliente = _cliente;

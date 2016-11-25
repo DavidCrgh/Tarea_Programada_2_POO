@@ -3,6 +3,7 @@ package sockets.client;
 import interfaz.ControladorPrincipalAdministrador;
 import interfaz.ControladorPrincipalCliente;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
 import model.ListaPedidos;
 import model.Platillo;
 
@@ -55,11 +56,20 @@ public class ThreadCliente extends Thread {
                     case 2:
                         try {
                             ListaPedidos pedidosClientes = (ListaPedidos) usuario.getEntradaObjetos().readObject();
-
-                            controladorAdministrador.construirTablaPedidos(pedidosClientes);
+                            Platform.runLater(()->{
+                                controladorAdministrador.construirTablaPedidos(pedidosClientes);
+                            });
                         }catch(Exception e){
                             e.printStackTrace();
                         }
+                        break;
+                    case 3:
+                        controladorAdministrador.platillos= (ArrayList<Platillo>) usuario.getEntradaObjetos().readUnshared();
+                        Platform.runLater(()->{
+                            controladorAdministrador.controladorConsultaNoPedidos.construirTabla(controladorAdministrador.platillos);
+
+                    });
+                        break;
                 }
             }catch(Exception e){
                 e.printStackTrace();

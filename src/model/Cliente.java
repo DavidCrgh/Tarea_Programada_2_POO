@@ -15,6 +15,7 @@ public class Cliente implements Serializable {
     private String direccion;
     public String fechaPedido;
     public String precioPedido;
+    public Pedido pedidoEnviado;
 
     public Cliente(String nombre, String numeroCelular, String direccion) {
         this.nombre = nombre;

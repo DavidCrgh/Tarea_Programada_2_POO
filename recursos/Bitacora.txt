@@ -176,3 +176,21 @@ Servidor envia lista de platillos Fri Nov 25 12:28:49 CST 2016
 Servidor recibe nuevo Pedido Fri Nov 25 12:29:10 CST 2016
 Servidor envia lista de platillos Fri Nov 25 12:29:20 CST 2016
 Servidor envia lista de pedidos actuales Fri Nov 25 12:29:28 CST 2016
+Servidor envia lista de platillos Fri Nov 25 15:14:50 CST 2016
+Servidor envia lista de platillos Fri Nov 25 15:16:04 CST 2016
+Servidor recibe nuevo Pedido Fri Nov 25 15:16:24 CST 2016
+Servidor envia lista de pedidos actuales Fri Nov 25 15:16:35 CST 2016
+Servidor recibe nuevo Pedido Fri Nov 25 15:16:54 CST 2016
+Servidor envia lista de pedidos actuales Fri Nov 25 15:16:56 CST 2016
+Servidor envia lista de platillos Fri Nov 25 15:18:05 CST 2016
+Servidor envia lista de platillos Fri Nov 25 15:18:41 CST 2016
+Servidor recibe nuevo Pedido Fri Nov 25 15:19:05 CST 2016
+Servidor envia lista de pedidos actuales Fri Nov 25 15:19:06 CST 2016
+Servidor envia lista de pedidos actuales Fri Nov 25 15:19:19 CST 2016
+Servidor envia lista de platillos Fri Nov 25 15:29:13 CST 2016
+Servidor recibe nuevo Pedido Fri Nov 25 15:29:44 CST 2016
+Servidor envia lista de platillos Fri Nov 25 15:30:04 CST 2016
+Servidor envia lista de platillos Fri Nov 25 15:47:23 CST 2016
+Servidor envia lista de platillos Fri Nov 25 15:47:50 CST 2016
+Servidor recibe nuevo Pedido Fri Nov 25 15:48:40 CST 2016
+Servidor recibe nuevo Pedido Fri Nov 25 15:48:56 CST 2016

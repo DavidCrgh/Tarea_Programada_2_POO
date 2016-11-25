@@ -49,10 +49,11 @@ public class ControladorPrincipalCliente implements Initializable {
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
         assert AgregarPedido != null : "fx:id=\"AgregarPedido\" was not injected: check your FXML file 'PrincipalCliente.fxml'.";
         assert verPedido !=null : "fx:id=\"verPedido\" was not injected: check your FXML file 'PrincipalCliente.fxml'.";
-        pedidoActual=new ArrayList<>();
+        pedidoActual= new ArrayList<LineaPedido>();
         AgregarPedido.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+
                 Platillo platilloActual = tablaProductos.getSelectionModel().getSelectedItem();
                 Stage primaryStage = new Stage();
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("AnnadirPedido.fxml"));
@@ -62,7 +63,6 @@ public class ControladorPrincipalCliente implements Initializable {
                     ControladorAnnadirPedido c = loader.getController();
                     c.annadirPedidoSetLabel(platilloActual.getNombre());
                     c.platillo=platilloActual;
-                    c.arrayProductos.clear();
                     c.arrayProductos=pedidoActual;
                 } catch (IOException e) {
                     e.printStackTrace();
