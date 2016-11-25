@@ -42,58 +42,30 @@ public class Usuario implements Serializable{
         return direccion;
     }
 
-    public Socket getSocket() {
-        return socket;
-    }
-
-    public void setSocket(Socket socket) {
-        this.socket = socket;
-    }
-
     public DataInputStream getEntradaDatos() {
         return entradaDatos;
-    }
-
-    public void setEntradaDatos(DataInputStream entradaDatos) {
-        this.entradaDatos = entradaDatos;
     }
 
     public DataOutputStream getSalidaDatos() {
         return salidaDatos;
     }
 
-    public void setSalidaDatos(int s) {
-        try {
-            this.salidaDatos.writeInt(s);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     public ObjectInputStream getEntradaObjetos() {
         return entradaObjetos;
-    }
-
-    public void setEntradaObjetos(ObjectInputStream entradaObjetos) {
-        this.entradaObjetos = entradaObjetos;
     }
 
     public ObjectOutputStream getSalidaObjetos() {
         return salidaObjetos;
     }
 
-    public void setSalidaObjetos(Pedido s) {
-        try {
-            this.salidaObjetos.writeObject(s);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     public void setAdmin(boolean _admin){
         this.admin = _admin;
     }
 
+    /**
+     * Verifica si el usuario es administrador  cliente
+     * @return true -> administrador false -> cliente
+     */
     public boolean isAdmin() {
         return admin;
     }
@@ -102,16 +74,8 @@ public class Usuario implements Serializable{
         return clave;
     }
 
-    public void setClave(String clave) {
-        this.clave = clave;
-    }
-
     public String getNumeroCelular() {
         return numeroCelular;
-    }
-
-    public void setNumeroCelualar(String numeroCelualar) {
-        this.numeroCelular = numeroCelualar;
     }
 
     public String getUsuario() {
@@ -125,6 +89,9 @@ public class Usuario implements Serializable{
         return false;
     }
 
+    /**
+     * hace la peticion para conectrse al servidor
+     */
     public void abrirConexion() {
         try {
             this.socket = new Socket("localhost", 6564);
@@ -134,6 +101,10 @@ public class Usuario implements Serializable{
         }
     }
 
+    /**
+     * obtiene la entrad y salida de datos y obtejos
+     * del usuario
+     */
     public void obtenerFlujos(){
         try {
             salidaDatos = new DataOutputStream(socket.getOutputStream());
@@ -147,6 +118,9 @@ public class Usuario implements Serializable{
         }
     }
 
+    /**
+     * cierra la conexion con el servidor
+     */
     public void cerrarConexion(){
         try {
             sleep(500);

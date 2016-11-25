@@ -22,8 +22,16 @@ import java.util.ArrayList;
 
 /**
  * Created by Francisco Contreras on 16/11/2016.
+ * Clase utilitaria se utiliza para escribir y leer de los archivos xml
  */
 public class Utilitarias {
+    /**
+     * Parsea el xml del menu y lo conviente en un array de platillos
+     * @return
+     * @throws ParserConfigurationException
+     * @throws IOException
+     * @throws SAXException
+     */
     public static ArrayList<Platillo> cargarMenu() throws ParserConfigurationException, IOException, SAXException{
         ArrayList<Platillo> platillos = new ArrayList<>();
         File fXmlFile = new File("recursos\\Menu.xml" );
@@ -63,6 +71,15 @@ public class Utilitarias {
         return platillos;
     }
 
+    /**
+     * Guarda un nuevo usuario en el archivo xml
+     * @param usuario nombre de usuario
+     * @param contrasenna contraseña del usuario
+     * @param numeroCelular numero celular del usuario
+     * @param direccion direccion del usuario
+     * @param quienRegistra dicta si el nuevo usuario es administrador o no
+     * @throws Exception
+     */
     public void guardarUsuarioXML(String usuario, String contrasenna, String numeroCelular, String direccion, boolean quienRegistra)throws Exception{
         File archivoXML = new File("recursos\\Cuentas.xml");
         DocumentBuilderFactory factory=DocumentBuilderFactory.newInstance();
@@ -107,6 +124,10 @@ public class Utilitarias {
 
     }
 
+    /**
+     * Agrega un nuevo platillo al xml del menu
+     * @param platillo platillo por agregar
+     */
     public static void agregarProducto(Platillo platillo){
         try {
             File archivoXML = new File("recursos\\Menu.xml");
@@ -176,6 +197,11 @@ public class Utilitarias {
 
     }
 
+    /**
+     * Lee el archivo xml de los usuarios
+     * @return usuarios que existen en el xml
+     * @throws Exception
+     */
     public static ArrayList<Usuario> cargarCuentas ()throws Exception {
         ArrayList<Usuario> cuentas = new ArrayList<>();
         File fXmlFile = new File("recursos\\Cuentas.xml");
@@ -203,12 +229,21 @@ public class Utilitarias {
         return cuentas;
     }
 
+    /**
+     *
+     * @param quienRegistra boolean si es admi=true si es cliente=false
+     * @return String, true->usuario es admi false->usuario no es admi
+     */
     private String registroCuenta(boolean quienRegistra){
         if(quienRegistra)
             return "true";
         return "false";
     }
 
+    /**
+     * Reconstruye el xml del menu
+     * @param platillos lista de platillos que van a estar en el xml
+     */
     public static void reconstruirMenuXML(ArrayList<Platillo> platillos){
         try {
             DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
@@ -277,6 +312,10 @@ public class Utilitarias {
         }
     }
 
+    /**
+     * Reconstruye el xml de las cuentas de usuario
+     * @param usuarios cuentas de usuarios que van a estar en el xml
+     */
     public static void reconstruirCuentasXML(ArrayList<Usuario> usuarios){
         try {
             DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
@@ -329,6 +368,12 @@ public class Utilitarias {
         }
     }
 
+    /**
+     * Filtra los platillos del menu
+     * @param platillos array de platillos para filtar
+     * @param filtro filtro a utilizar
+     * @return platillos que cumplen con el filtro
+     */
     public static ArrayList<Platillo> filtrarPor(ArrayList<Platillo> platillos, String filtro){
         ArrayList<Platillo> filtrados = new ArrayList<>();
         for(Platillo platillo : platillos){

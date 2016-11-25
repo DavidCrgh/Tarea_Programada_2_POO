@@ -17,9 +17,9 @@ import java.util.ArrayList;
 public class Servidor {
     private int puerto;
     private ThreadPeticiones hiloPeticiones;
-    public ArrayList<Platillo> platillos;
-    public ArrayList<Usuario> usuarios;
-    public ListaPedidos pedidos;
+    public ArrayList<Platillo> platillos;//Array con todos los platillos disponibles, se carga cuando se inicializa el servidor.
+    public ArrayList<Usuario> usuarios;//ArrayList con los usuarios y contraseñas
+    public ListaPedidos pedidos;//array list con los pedidos hechos al servidor
 
     public Servidor(int _puerto){
         pedidos = new ListaPedidos();
@@ -27,14 +27,14 @@ public class Servidor {
         hiloPeticiones= new ThreadPeticiones(this);
         iniciarServidor();
         try {
-            platillos = Utilitarias.cargarMenu();
-            usuarios = Utilitarias.cargarCuentas();
+            platillos = Utilitarias.cargarMenu();//carga los platillos definidos en el xml
+            usuarios = Utilitarias.cargarCuentas();//carga las cuentas definidas en el xml
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     public void iniciarServidor(){
-        hiloPeticiones.start();
+        hiloPeticiones.start();//pone a correr el hilo que aceta nuevos usuarios al servidor
     }
 }

@@ -25,6 +25,10 @@ public class ThreadPeticiones extends Thread {
 
     }
 
+    /**
+     * Un hilo que acepta peticiones de acceso al servidor, esto permite
+     * tener a mas de un usuario conetado al servidor
+     */
     public void run(){
 
         while(true){

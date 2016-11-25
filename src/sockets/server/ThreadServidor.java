@@ -28,6 +28,10 @@ public class ThreadServidor extends Thread {
         this.usuarioSocket = _usuarioSocket;
     }
 
+    /**
+     * Escribe las lineas de comandos realizads por el servidor en la bitacora de funcionamiento
+     * @param comando accion realizada por el servidor
+     */
     public void escribirArchivo(String comando) {
         File file = new File("recursos\\Bitacora.txt");
         String buffer;
@@ -42,6 +46,10 @@ public class ThreadServidor extends Thread {
         }
     }
 
+    /**
+     * Recibe peticiones de los clientes y las procsa enviandoles la informacion que solicitan o almacenado
+     * los objetos que recibe
+     */
     public void run(){
         try{
             salidaDato = new DataOutputStream(usuarioSocket.getOutputStream());
