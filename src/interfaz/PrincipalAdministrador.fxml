@@ -29,7 +29,7 @@
             <Menu mnemonicParsing="false" text="Consultas">
               <items>
                   <MenuItem mnemonicParsing="false" text="Top 10" />
-                  <MenuItem mnemonicParsing="false" text="Nunca Pedidos" />
+                  <MenuItem fx:id="consultaNoPedidos" mnemonicParsing="false" text="Nunca Pedidos" />
                   <MenuItem mnemonicParsing="false" text="Relaciones Porcentuales" />
               </items>
             </Menu>

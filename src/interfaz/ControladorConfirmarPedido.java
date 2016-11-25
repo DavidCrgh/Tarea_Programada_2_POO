@@ -81,6 +81,17 @@ public class ControladorConfirmarPedido implements Initializable{
             @Override
             public void handle(ActionEvent event) {
                 pedidoSolicitud=null;
+                ArrayList<Platillo> aux = new ArrayList<>();
+                for (LineaPedido lineaPedido : pedidoFinal) {
+                    aux.add(lineaPedido.getPlatillo());
+                }
+                try {
+                    clienteEnvia.getSalidaDatos().writeInt(8);
+                    clienteEnvia.getSalidaObjetos().reset();
+                    clienteEnvia.getSalidaObjetos().writeUnshared(aux);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 if(enSitio.isSelected()){
                     Cliente clienteTemporal= new Cliente(clienteEnvia.getUsuario(),clienteEnvia.getNumeroCelular(),clienteEnvia.getDireccion());
                     pedidoSolicitud = new Pedido(clienteTemporal, pedidoFinal);

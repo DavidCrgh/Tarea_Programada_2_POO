@@ -16,12 +16,14 @@ public class Platillo implements Serializable{
     private int precio;
     private String imagen;
     private boolean disponible;
+    public boolean yaPedido;
     private String disponibleString;
     public String cantidad;
 
 
 
     public Platillo(String codigo, String nombre, String descripcion, int tamanoPorcion, int caloriasPorcion, int piezasPorcion, int precio, String imagen, boolean disponible) {
+        this.yaPedido=false;
         this.codigo = codigo;
         this.nombre = nombre;
         this.descripcion = descripcion;

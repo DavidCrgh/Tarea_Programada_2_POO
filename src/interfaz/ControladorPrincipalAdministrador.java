@@ -78,6 +78,8 @@ public class ControladorPrincipalAdministrador implements Initializable {
     private ChoiceBox cajaDisponibilidad;
     @FXML
     private MenuItem botonConfiguracion;
+    @FXML
+    private MenuItem consultaNoPedidos;
 
     private ToggleGroup grupoBotonesFiltro;
 
@@ -264,7 +266,27 @@ public class ControladorPrincipalAdministrador implements Initializable {
                 e.printStackTrace();
             }
         });
+
+        consultaNoPedidos.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                try {
+                    Stage stage = new Stage();
+                    FXMLLoader loader = new FXMLLoader();
+                    Parent root = loader.load(getClass().getResource("consultaNoPedidos.fxml").openStream());
+                    ControladorConsultaNoPedidos controlador = (ControladorConsultaNoPedidos) loader.getController();
+                    controlador.construirTabla(platillos);
+                    stage.setTitle("Nunca Pedidos");
+                    stage.setScene(new Scene(root, 520,320));
+                    stage.show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
+
+
 
     public void enviarPlatoModificado(){
         tablaProductos.setItems(FXCollections.observableList(platillos));
@@ -299,8 +321,6 @@ public class ControladorPrincipalAdministrador implements Initializable {
         }
         tablePedidos.setItems(FXCollections.observableList(clientes));
     }
-
-
 
     public void aplicarFiltro(String filtro){
         if(filtro.equals("Disponible")){

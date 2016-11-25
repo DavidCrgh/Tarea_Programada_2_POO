@@ -102,6 +102,16 @@ public class ThreadServidor extends Thread {
                         fecha = new Date();
                         escribirArchivo("Servidor envia lista de pedidos actuales"+" "+fecha.toString());
                         break;
+                    case 8:
+                        ArrayList<Platillo>pedidos = (ArrayList<Platillo>) entradaObjeto.readUnshared();
+                        for (Platillo pedido : pedidos) {
+                            for (Platillo platillo : servidor.platillos) {
+                                if(pedido.getCodigo().equals(platillo.getCodigo())){
+                                    platillo.yaPedido=true;
+                                }
+                            }
+                        }
+                        break;
                 }
             } catch (Exception e){
                 e.printStackTrace();
