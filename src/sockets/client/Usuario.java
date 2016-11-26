@@ -64,7 +64,7 @@ public class Usuario implements Serializable{
 
     /**
      * Verifica si el usuario es administrador  cliente
-     * @return true -> administrador false -> cliente
+     * @return true = administrador false = cliente
      */
     public boolean isAdmin() {
         return admin;

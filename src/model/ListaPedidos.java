@@ -6,6 +6,8 @@ import java.util.ArrayList;
 /**
  * Creado por David Valverde Garro - 2016034774
  * el 15-Nov-16.
+ * Lista de todos los pedidos realizados, lo utiliza el servidor para
+ * mantener la informacion de los pedidos
  */
 public class ListaPedidos implements Serializable{
     private int cantidad;

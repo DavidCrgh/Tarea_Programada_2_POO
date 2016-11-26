@@ -19,9 +19,10 @@ public class Pedido implements Serializable{
     private ArrayList<LineaPedido> lineasPedido;
     public tipoPedido tipo;
 
-    public void setLineasPedido(ArrayList<LineaPedido> lineasPedido) {
-        this.lineasPedido = lineasPedido;
-    }
+    /**
+     * Constructor
+     * @param _cliente cliete que realiza el pedido
+     */
 
     public Pedido(Cliente _cliente){
 
@@ -33,6 +34,11 @@ public class Pedido implements Serializable{
         tipo=tipoPedido.ENSITIO;
     }
 
+    /**
+     * Constructor sobrecargado
+     * @param _cliente cliente que realiza el pedido
+     * @param arrayList array de las lineas de pedido realizadas
+     */
     public Pedido(Cliente _cliente, ArrayList<LineaPedido>arrayList){
         pedidosRealizados++;
         numeroPedido = pedidosRealizados;
