@@ -6,6 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import sockets.client.Usuario;
 
 import java.io.IOException;
@@ -35,6 +36,29 @@ public class ControladorConfiguracion implements Initializable{
     public ArrayList<Usuario> usuarios;
 
     public void initialize(URL fxmlFileLocation, ResourceBundle resources){
+
+        botonCancelar.setOnAction(event ->{
+            Stage stage = (Stage) botonCancelar.getScene().getWindow();
+            stage.close();
+
+        });
+
+        botonAceptar.setOnAction(event->{
+            int costoEmpaque = Integer.parseInt(cuadroCostoEmpaque.getText());
+            int costoExpress = Integer.parseInt(cuadroCostoExpress.getText());
+            try{
+                usuario.getSalidaDatos().writeInt(11);
+                usuario.getSalidaDatos().writeInt(costoEmpaque);
+                usuario.getSalidaDatos().writeInt(costoExpress);
+
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+            Stage stage = (Stage)botonAceptar.getScene().getWindow();
+            stage.close();
+
+        });
+
         botonHacerAdmin.setOnAction(event -> {
             String usuarioSelecionado = (String) listaUsuarios.getSelectionModel().getSelectedItem();
             if(usuarioSelecionado != null){

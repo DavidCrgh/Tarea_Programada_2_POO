@@ -8,10 +8,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.Label;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.LineaPedido;
@@ -21,6 +20,7 @@ import model.tipoPedido;
 import sockets.client.Usuario;
 import model.Cliente;
 
+import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -54,6 +54,17 @@ public class ControladorConfirmarPedido implements Initializable{
     private TableColumn columnaCantidad;
     @FXML
     private TableView tabla;
+    @FXML
+    public Label labelPrecioTotal;
+    @FXML
+    public Label labelTotalCalorias;
+    @FXML
+    public Tooltip tipRecoger;
+    @FXML
+    public Tooltip tipExpress;
+
+    public int costoExpress;
+    public int costoEmpaque;
 
     public ControladorPrincipalCliente controladorCliente;
 
@@ -76,6 +87,9 @@ public class ControladorConfirmarPedido implements Initializable{
         assert recoger != null : "fx:id=\"recoger\" was not injected: check your FXML file 'ConfirmarPedido.fxml'.";
         assert express != null : "fx:id=\"express\" was not injected: check your FXML file 'ConfirmarPedido.fxml'.";
         assert enSitio != null : "fx:id=\"enSitio\" was not injected: check your FXML file 'ConfirmarPedido.fxml'.";
+
+        tipRecoger.setText("Picha no toques aqui");
+        tipExpress.setText("aqui tampoco xDXdxdxD");
 
         enviarPedido.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -123,6 +137,13 @@ public class ControladorConfirmarPedido implements Initializable{
                     e.printStackTrace();
                 }
             }
+        });
+
+        recoger.setOnAction(event ->{
+            verificarPreciosCheckBoxes(recoger,costoEmpaque);
+        });
+        express.setOnAction(event -> {
+            verificarPreciosCheckBoxes(express,costoExpress);
         });
 
         Eliminar.setOnAction(new EventHandler<ActionEvent>() {
@@ -202,5 +223,22 @@ public class ControladorConfirmarPedido implements Initializable{
             platillosAux.add(auxPlatillo);
         }
         tabla.setItems(FXCollections.observableList(platillosAux));
+    }
+
+    public void actualizarToolTips(){
+
+        tipRecoger.setText("Recoger el pedido tiene un costo por empaque de: "+costoEmpaque);
+        tipExpress.setText("Solicitar pedido Express tiene un monto adicional de: "+costoExpress);
+
+    }
+
+    public void verificarPreciosCheckBoxes(CheckBox checkboxActual,int montoAdicional){
+        int precioActual = Integer.parseInt(labelPrecioTotal.getText());
+        if (checkboxActual.isSelected())
+            precioActual += montoAdicional;
+        else
+            precioActual -= montoAdicional;
+        labelPrecioTotal.setText("" + precioActual);
+
     }
 }

@@ -49,19 +49,6 @@ public class ControladorAgregarProducto implements Initializable {
 
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
 
-        /*botonSi.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                disponible=true;
-            }
-        });
-        botonNo.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                disponible =false;
-            }
-        });*/
-
         botonAceptar.setOnAction(event ->  {
                 if(platillo!=null){
                     platillo.setCodigo(textoCodigo.getText());

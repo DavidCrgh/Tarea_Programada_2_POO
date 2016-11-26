@@ -70,6 +70,11 @@ public class ThreadCliente extends Thread {
 
                     });
                         break;
+                    case 4:
+                        int costoEmpaque = usuario.getEntradaDatos().readInt();
+                        int costoExpress = usuario.getEntradaDatos().readInt();
+                        controladorCliente.costoEmpaque = costoEmpaque;
+                        controladorCliente.costoExpress = costoExpress;
                 }
             }catch(Exception e){
                 e.printStackTrace();

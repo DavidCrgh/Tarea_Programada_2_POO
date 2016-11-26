@@ -20,10 +20,14 @@ public class Servidor {
     public ArrayList<Platillo> platillos;//Array con todos los platillos disponibles, se carga cuando se inicializa el servidor.
     public ArrayList<Usuario> usuarios;//ArrayList con los usuarios y contraseñas
     public ListaPedidos pedidos;//array list con los pedidos hechos al servidor
+    private int costoExpress;
+    private int costoEmpaque;
 
     public Servidor(int _puerto){
         pedidos = new ListaPedidos();
         this.puerto=_puerto;
+        costoExpress=0;
+        costoEmpaque=0;
         hiloPeticiones= new ThreadPeticiones(this);
         iniciarServidor();
         try {
@@ -37,4 +41,17 @@ public class Servidor {
     public void iniciarServidor(){
         hiloPeticiones.start();//pone a correr el hilo que aceta nuevos usuarios al servidor
     }
+
+    public void setCostoExpress(int nuevoCosto){
+
+        costoExpress=nuevoCosto;
+    }
+
+    public void setCostoEmpaque(int nuevoCostoEmpaque){
+        costoEmpaque=nuevoCostoEmpaque;
+    }
+
+    public int getCostoEmpaque(){return costoEmpaque;}
+
+    public int getCostoExpress(){return costoExpress;}
 }

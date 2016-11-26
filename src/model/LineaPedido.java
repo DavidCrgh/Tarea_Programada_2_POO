@@ -43,10 +43,9 @@ public class LineaPedido implements Serializable {
     }
 
     public int calcularTotalCalorias(){
-        return 0;//TODO Determinar como se calcula el total
+
+        return cantidadPiezas* platillo.getCaloriasPorcion();
     }
 
-    public int calculartotalCosto(){
-        return 0; //TODO Determinar como se calcula el total
-    }
+
 }

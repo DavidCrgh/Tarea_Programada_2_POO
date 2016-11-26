@@ -1,5 +1,6 @@
 package interfaz;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -14,6 +15,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.LineaPedido;
+import model.Pedido;
 import model.Platillo;
 import sockets.client.Usuario;
 
@@ -43,6 +45,9 @@ public class ControladorPrincipalCliente implements Initializable {
     public Button AgregarPedido;
     @FXML
     private Button botonVerDetalles;
+
+    public int costoEmpaque;
+    public int costoExpress;
 
     public Usuario usuario;
 
@@ -74,6 +79,7 @@ public class ControladorPrincipalCliente implements Initializable {
         });
         verPedido.setOnAction(event-> {
                 try {
+                    solicitarCostosConfiguraciones();
                     Stage primaryStage = new Stage();
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("ConfirmarPedido.fxml"));
                     Parent root = loader.load();
@@ -81,10 +87,28 @@ public class ControladorPrincipalCliente implements Initializable {
                     primaryStage.setTitle("Confirmar Pedido");
                     primaryStage.setScene(new Scene(root, 520, 320));
                     primaryStage.show();
+                    controladorConfirmarPedido.costoEmpaque= this.costoEmpaque;
+                    controladorConfirmarPedido.costoExpress=this.costoExpress;
+                    controladorConfirmarPedido.actualizarToolTips();
                     controladorConfirmarPedido.construirTabla(pedidoActual);
                     controladorConfirmarPedido.pedidoFinal=pedidoActual;
                     controladorConfirmarPedido.clienteEnvia=usuario;
                     controladorConfirmarPedido.controladorCliente=this;
+
+                    Platform.runLater(()->{
+                        int totalPrecio=0;
+                        int calorias=0;
+                        for(int i=0;i<controladorConfirmarPedido.pedidoFinal.size();i++){
+                            LineaPedido lineaTemporal = controladorConfirmarPedido.pedidoFinal.get(i);
+
+                            totalPrecio+=controladorConfirmarPedido.pedidoFinal.get(i).getCantidad();
+                            calorias+= lineaTemporal.calcularTotalCalorias();
+                        }
+                        controladorConfirmarPedido.labelPrecioTotal.setText(totalPrecio+"");
+                        controladorConfirmarPedido.labelTotalCalorias.setText(calorias+"");
+
+
+                    });
                 }
                 catch (IOException e){System.out.println(e);}
 
@@ -130,5 +154,14 @@ public class ControladorPrincipalCliente implements Initializable {
             }
         }
         tablaProductos.setItems(FXCollections.observableList(platillos));
+    }
+
+    public void solicitarCostosConfiguraciones(){
+        try {
+            usuario.getSalidaDatos().writeInt(12);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 }

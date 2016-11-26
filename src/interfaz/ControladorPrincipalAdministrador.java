@@ -375,4 +375,5 @@ public class ControladorPrincipalAdministrador implements Initializable {
             construirTabla(Utilitarias.filtrarPor(platillos,filtro));
         }
     }
+
 }
