@@ -1,5 +1,6 @@
 package interfaz;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -102,15 +103,27 @@ public class ControladorPrincipalAdministrador implements Initializable {
             @Override
             public void handle(ActionEvent event) {
                 Pedido pedidoSeleccionado = lineasTemporal.getPedidos().get(tablePedidos.getSelectionModel().getFocusedIndex());
+
                 try {
                     Stage primaryStage = new Stage();
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("VerPedidoAdmi.fxml"));
                     Parent root = loader.load();
                     ControladorVerPedidoAdmi controladorVerPedidoAdmi = loader.getController();
                     primaryStage.setTitle("Pedido");
-                    primaryStage.setScene(new Scene(root, 520, 320));
+                    primaryStage.setScene(new Scene(root, 595,465));
                     primaryStage.show();
                     controladorVerPedidoAdmi.construirTabla(pedidoSeleccionado.getLineasPedido());
+                    Platform.runLater(()->{
+
+                        controladorVerPedidoAdmi.cargarInformacion(pedidoSeleccionado);
+
+                        if(pedidoSeleccionado.tipo==tipoPedido.ENSITIO)
+                            controladorVerPedidoAdmi.labelTipoPedido.setText("En Sitio");
+                        else if(pedidoSeleccionado.tipo==tipoPedido.RECOGER)
+                            controladorVerPedidoAdmi.labelTipoPedido.setText("Recoger");
+                        else
+                            controladorVerPedidoAdmi.labelTipoPedido.setText("Express");
+                    });
                 }
                 catch (IOException e){System.out.println(e);}
             }
@@ -287,7 +300,6 @@ public class ControladorPrincipalAdministrador implements Initializable {
                 e.printStackTrace();
             }
         });
-
 
 
         consultaNoPedidos.setOnAction(new EventHandler<ActionEvent>() {

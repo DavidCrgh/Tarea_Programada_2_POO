@@ -48,8 +48,8 @@ public class ControladorVerDetalles implements Initializable{
         precio.setText(""+platillo.getPrecio());
         disponible.setText(platillo.getDisponibleString());
 
-        Image imagenComida= new Image(getClass().getResourceAsStream("flan-coco-sencillo-delicioso_1_1851347[1].jpg"));
-        imagen.setGraphic(new ImageView(imagenComida));
+      //  Image imagenComida= new Image(getClass().getResourceAsStream("flan-coco-sencillo-delicioso_1_1851347[1].jpg"));
+      //  imagen.setGraphic(new ImageView(imagenComida));
 
        // imagen.setImage(new Image("recursos\\imagenes\\maxresdefault.jpg"));
     }
