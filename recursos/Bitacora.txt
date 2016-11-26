@@ -6,3 +6,8 @@ Servidor envia lista de platillos Sat Nov 26 02:24:13 CST 2016
 Servidor envia lista de platillos Sat Nov 26 02:25:47 CST 2016
 Servidor envia lista de platillos Sat Nov 26 02:33:15 CST 2016
 Servidor envia lista de platillos Sat Nov 26 02:34:41 CST 2016
+Servidor envia lista de platillos Sat Nov 26 02:51:46 CST 2016
+Servidor annade nuevo platillo Sat Nov 26 02:53:23 CST 2016
+Servidor reconstruye XML Sat Nov 26 02:53:54 CST 2016
+Servidor envia lista de platillos Sat Nov 26 02:57:53 CST 2016
+Servidor envia lista de platillos Sat Nov 26 03:01:21 CST 2016

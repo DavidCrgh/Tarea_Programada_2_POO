@@ -127,9 +127,9 @@ public class ControladorAgregarProducto implements Initializable {
             botonNo.setSelected(true);
         }
     }
-    private static void configurarFileChooser(FileChooser fileChooser) {
-        fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("PNG", "*.png","JPG","*.jpg")
+    private void configurarFileChooser(FileChooser fileChooser) {
+        fileChooser.getExtensionFilters().add(
+                new FileChooser.ExtensionFilter("Imágenes(*.PNG,*.JPG)","*.png","*.jpg")
         );
     }
 }
