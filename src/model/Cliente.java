@@ -8,6 +8,7 @@ import java.util.Date;
 /**
  * Creado por David Valverde Garro - 2016034774
  * el 15-Nov-16.
+ * Clase platilloAuxiliar, s eutiliza para construir la tabla de platillos en la interfaz
  */
 public class Cliente implements Serializable {
     private String nombre;

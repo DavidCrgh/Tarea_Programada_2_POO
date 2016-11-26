@@ -232,7 +232,7 @@ public class Utilitarias {
     /**
      *
      * @param quienRegistra boolean si es admi=true si es cliente=false
-     * @return String, true->usuario es admi false->usuario no es admi
+     * @return String, true=usuario es admi false=usuario no es admi
      */
     private String registroCuenta(boolean quienRegistra){
         if(quienRegistra)

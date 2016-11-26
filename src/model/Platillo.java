@@ -5,6 +5,7 @@ import java.io.Serializable;
 /**
  * Creado por David Valverde Garro - 2016034774
  * el 15-Nov-16.
+ * Estructura de un platillo
  */
 public class Platillo implements Serializable{
     private String codigo;
@@ -20,8 +21,9 @@ public class Platillo implements Serializable{
     private String disponibleString;
     public String cantidad;
 
-
-
+    /**
+     * Constructor
+     */
     public Platillo(String codigo, String nombre, String descripcion, int tamanoPorcion, int caloriasPorcion, int piezasPorcion, int precio, String imagen, boolean disponible) {
         this.yaPedido=false;
         this.codigo = codigo;
@@ -124,7 +126,6 @@ public class Platillo implements Serializable{
     public void setCantidad(String cantidad) {
         this.cantidad = cantidad;
     }
-
 
     private String disponibleString(boolean disponible){
 

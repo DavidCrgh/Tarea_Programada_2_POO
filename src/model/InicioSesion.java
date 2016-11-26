@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 /**
  * Created by Bryan on 11/15/2016.
+ * Esta clase se utiliza para comprobar que el usuario y la contraseña digitados sean los mismos que los datos en el xml de las cuentas
  */
 public class InicioSesion {
     public ArrayList<Usuario> cuentas;
