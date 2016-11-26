@@ -7,8 +7,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.*;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import model.Platillo;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -41,6 +44,7 @@ public class ControladorAgregarProducto implements Initializable {
     private RadioButton botonNo;
     @FXML
     private Button botonAceptar;
+    private File imagen;
     boolean disponible;
 
 
@@ -49,47 +53,61 @@ public class ControladorAgregarProducto implements Initializable {
 
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
 
-        botonAceptar.setOnAction(event ->  {
-                if(platillo!=null){
-                    platillo.setCodigo(textoCodigo.getText());
-                    platillo.setNombre(textoNombre.getText());
-                    platillo.setDescripcion(textoDescripcion.getText());
-                    platillo.setTamanoPorcion(Integer.parseInt(textoTamanoPorcion.getText()));
-                    platillo.setCaloriasPorcion(Integer.parseInt(textoCaloriasPorcion.getText()));
-                    platillo.setPiezasPorcion(Integer.parseInt(textoPiezasPorcion.getText()));
-                    platillo.setPrecio(Integer.parseInt(textoPrecio.getText()));
-                    if(botonSi.isSelected()){
-                        platillo.setDisponible(true);
-                        platillo.setDisponibleString("Si");
-                    }else{
-                        platillo.setDisponible(false);
-                        platillo.setDisponibleString("No");
-                    }
-                    controladorAdministrador.enviarPlatoModificado();
-                }
-                else{
-                    String codigo= textoCodigo.getText();
-                    String nombre = textoNombre.getText();
-                    String descripcion=textoDescripcion.getText();
-                    int tamanoPorcion = Integer.parseInt(textoTamanoPorcion.getText());
-                    int caloriasPorcion= Integer.parseInt(textoCaloriasPorcion.getText());
-                    int piezasPorcion = Integer.parseInt(textoPiezasPorcion.getText());
-                    int precio = Integer.parseInt(textoPrecio.getText());
-                    String imagen ="pathTemporal";
-                    boolean disponible = botonSi.isSelected();
+        botonImagen.setOnAction(event -> {
+            Stage stage = (Stage) botonImagen.getScene().getWindow();
 
-                    Platillo platilloNuevo = new Platillo(codigo,nombre,descripcion,tamanoPorcion,caloriasPorcion,piezasPorcion,precio,imagen,disponible);
-                    try {
-                        controladorAdministrador.platillos.add(platilloNuevo);
-                        controladorAdministrador.construirTabla(controladorAdministrador.platillos);
-                        controladorAdministrador.usuario.getSalidaDatos().writeInt(2);
-                        controladorAdministrador.usuario.getSalidaObjetos().writeObject(platilloNuevo);
-                    }catch(Exception e){
-                        e.printStackTrace();
-                    }
+            FileChooser fileChooser = new FileChooser();
+            configurarFileChooser(fileChooser);
+
+            imagen = fileChooser.showOpenDialog(stage);
+
+        });
+
+
+        botonAceptar.setOnAction(event -> {
+            final File imagenPlatillo = imagen;
+            if (platillo != null) {
+                platillo.setCodigo(textoCodigo.getText());
+                platillo.setNombre(textoNombre.getText());
+                platillo.setDescripcion(textoDescripcion.getText());
+                platillo.setTamanoPorcion(Integer.parseInt(textoTamanoPorcion.getText()));
+                platillo.setCaloriasPorcion(Integer.parseInt(textoCaloriasPorcion.getText()));
+                platillo.setPiezasPorcion(Integer.parseInt(textoPiezasPorcion.getText()));
+                platillo.setPrecio(Integer.parseInt(textoPrecio.getText()));
+                if (botonSi.isSelected()) {
+                    platillo.setDisponible(true);
+                    platillo.setDisponibleString("Si");
+                } else {
+                    platillo.setDisponible(false);
+                    platillo.setDisponibleString("No");
                 }
-            });
+                controladorAdministrador.enviarPlatoModificado();
+            } else {
+                String codigo = textoCodigo.getText();
+                String nombre = textoNombre.getText();
+                String descripcion = textoDescripcion.getText();
+                int tamanoPorcion = Integer.parseInt(textoTamanoPorcion.getText());
+                int caloriasPorcion = Integer.parseInt(textoCaloriasPorcion.getText());
+                int piezasPorcion = Integer.parseInt(textoPiezasPorcion.getText());
+                int precio = Integer.parseInt(textoPrecio.getText());
+                String imagen = imagenPlatillo.getName();
+                System.out.println(imagen);
+
+                boolean disponible = botonSi.isSelected();
+
+                Platillo platilloNuevo = new Platillo(codigo, nombre, descripcion, tamanoPorcion, caloriasPorcion, piezasPorcion, precio, imagen, disponible);
+                try {
+                    controladorAdministrador.platillos.add(platilloNuevo);
+                    controladorAdministrador.construirTabla(controladorAdministrador.platillos);
+                    controladorAdministrador.usuario.getSalidaDatos().writeInt(2);
+                    controladorAdministrador.usuario.getSalidaObjetos().writeObject(platilloNuevo);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
+
 
 
     public void precargarDatos(Platillo platillo){
@@ -108,5 +126,10 @@ public class ControladorAgregarProducto implements Initializable {
             botonSi.setSelected(false);
             botonNo.setSelected(true);
         }
+    }
+    private static void configurarFileChooser(FileChooser fileChooser) {
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("PNG", "*.png","JPG","*.jpg")
+        );
     }
 }

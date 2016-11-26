@@ -39,6 +39,6 @@
             </VBox>
          </children>
       </HBox>
-      <Label fx:id="imagen" layoutX="17.0" layoutY="14.0" prefHeight="269.0" prefWidth="262.0" text="Label" />
+      <Label fx:id="imagen" layoutX="17.0" layoutY="14.0" prefHeight="269.0" prefWidth="262.0" text="" />
    </children>
 </Pane>

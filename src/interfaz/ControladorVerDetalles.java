@@ -7,6 +7,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import model.Platillo;
 
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -48,9 +52,30 @@ public class ControladorVerDetalles implements Initializable{
         precio.setText(""+platillo.getPrecio());
         disponible.setText(platillo.getDisponibleString());
 
-      //  Image imagenComida= new Image(getClass().getResourceAsStream("flan-coco-sencillo-delicioso_1_1851347[1].jpg"));
-      //  imagen.setGraphic(new ImageView(imagenComida));
+        System.out.println(platillo.getImagen());
+
+        ImageView imagenComida = new ImageView(new Image(this.getClass().getResourceAsStream(platillo.getImagen())));
+        imagenComida.setFitWidth(262);
+        imagenComida.setFitHeight(269);
+      //  imagenComida.fitHeightProperty().bind(imagen.heightProperty());
+        //imagenComida.fitWidthProperty().bind(imagen.widthProperty());
+       // Image imagenComida= new Image(getClass().getResourceAsStream(platillo.getImagen()));
+      //  imagenComida.bind(imagen.heightProperty());
+       // BufferedImage imagenReducir;
+       // BufferedImage imagenNuevoTamano;
+
+       // try {
+           //  imagenReducir = ImageIO.read(new File(platillo.getImagen()));
+           //  imagenNuevoTamano= resize(imagenReducir,262,269);
+            imagen.setGraphic(imagenComida);
+
+      //  }catch(Exception e){
+        //    e.printStackTrace();
+       // }
+
+
 
        // imagen.setImage(new Image("recursos\\imagenes\\maxresdefault.jpg"));
     }
+
 }
