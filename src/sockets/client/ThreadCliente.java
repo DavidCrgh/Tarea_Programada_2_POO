@@ -82,6 +82,7 @@ public class ThreadCliente extends Thread {
                             controladorAdministrador.controladorTop10.construirTabla(controladorAdministrador.platillos);
 
                         });
+                        break;
                 }
             }catch(Exception e){
                 e.printStackTrace();

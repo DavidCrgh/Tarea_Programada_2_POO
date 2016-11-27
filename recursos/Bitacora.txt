@@ -79,3 +79,4 @@ Servidor recibe nuevo Pedido Sun Nov 27 15:21:22 CST 2016
 Servidor envia lista de platillos Sun Nov 27 15:37:07 CST 2016
 Servidor reconstruye XML Sun Nov 27 15:37:34 CST 2016
 Servidor reconstruye XML Sun Nov 27 15:38:13 CST 2016
+Servidor envia lista de platillos Sun Nov 27 15:51:01 CST 2016

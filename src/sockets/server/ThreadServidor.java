@@ -82,32 +82,32 @@ public class ThreadServidor extends Thread {
                         servidor.platillos = (ArrayList<Platillo>) entradaObjeto.readObject();
                         Utilitarias.reconstruirMenuXML(servidor.platillos);
                         fecha = new Date();
-                        escribirArchivo("Servidor reconstruye XML"+" "+fecha.toString());
+                        escribirArchivo("Servidor reconstruye el XML correspondiente a los platillos"+" "+fecha.toString());
                         break;
                     case 4:
                         sleep(1000);
                         Pedido newPedido = (Pedido) entradaObjeto.readUnshared();
                         servidor.pedidos.agregarPedido(newPedido);
                         fecha = new Date();
-                        escribirArchivo("Servidor recibe nuevo Pedido"+" "+fecha.toString());
+                        escribirArchivo("Servidor recibe un nuevo pedido y lo almacena"+" "+fecha.toString());
                         break;
                     case 5:
                         salidaObjeto.writeObject(servidor.usuarios);
                         fecha = new Date();
-                        escribirArchivo("Servidor envia lista de usuarios"+" "+fecha.toString());
+                        escribirArchivo("Servidor envia lista de usuarios al administrador"+" "+fecha.toString());
                         break;
                     case 6:
                         servidor.usuarios = (ArrayList<Usuario>) entradaObjeto.readObject();
                         Utilitarias.reconstruirCuentasXML(servidor.usuarios);
                         fecha=new Date();
-                        escribirArchivo("Servidor annade nuevo usuario"+" "+fecha.toString());
+                        escribirArchivo("Servidor modifica el XML de los usuarios"+" "+fecha.toString());
                         break;
                     case 7:
                         salidaDato.writeInt(2);
                         salidaObjeto.reset();
                         salidaObjeto.writeUnshared(servidor.pedidos);
                         fecha = new Date();
-                        escribirArchivo("Servidor envia lista de pedidos actuales"+" "+fecha.toString());
+                        escribirArchivo("Servidor envia la lista de pedidos actuales al administrador"+" "+fecha.toString());
                         break;
                     case 8:
                         Cliente clienteEnviado = (Cliente)entradaObjeto.readObject();
@@ -142,6 +142,8 @@ public class ThreadServidor extends Thread {
                                 }
                             }
                         }
+                        fecha = new Date();
+                        escribirArchivo("Servidor elimina de la lista de pedidos, el pedido seleccionado por el administrador "+" "+fecha.toString());
                         break;
                     case 9:
                         ArrayList<Platillo>pedidos = (ArrayList<Platillo>) entradaObjeto.readUnshared();
@@ -153,27 +155,37 @@ public class ThreadServidor extends Thread {
                                 }
                             }
                         }
+                        fecha = new Date();
+                        escribirArchivo("Servidor actualiza sus platillos, dependiendo del platillo que haya sido ordenado "+" "+fecha.toString());
                         break;
                     case 10:
                         salidaDato.writeInt(3);
                         salidaObjeto.reset();
                         salidaObjeto.writeUnshared(servidor.platillos);
+                        fecha = new Date();
+                        escribirArchivo("Servidor envia la lista de pedidos actuales al administrador para desplegar los platillos nunca pedidos "+" "+fecha.toString());
                         break;
                     case 11:
                         int costoEmpaque= entradaDato.readInt();
                         int costoExpress = entradaDato.readInt();
                         servidor.setCostoEmpaque(costoEmpaque);
                         servidor.setCostoExpress(costoExpress);
+                        fecha = new Date();
+                        escribirArchivo("El servidor actualiza el Costo de Empaque y el Costo de Express "+" "+fecha.toString());
                         break;
                     case 12:
                         salidaDato.writeInt(4);
                         salidaDato.writeInt(servidor.getCostoEmpaque());
                         salidaDato.writeInt(servidor.getCostoExpress());
+                        fecha = new Date();
+                        escribirArchivo("El servidor envia al cliente, los costos de empaque y express "+" "+fecha.toString());
                         break;
                     case 13:
                         salidaDato.writeInt(5);
                         salidaObjeto.reset();
                         salidaObjeto.writeUnshared(servidor.platillos);
+                        fecha = new Date();
+                        escribirArchivo("Servidor envia la lista de pedidos actuales al administrador para desplegar el top 10 "+" "+fecha.toString());
                         break;
                 }
             } catch (Exception e){
