@@ -90,7 +90,13 @@ public class ControladorAgregarProducto implements Initializable {
                 int caloriasPorcion = Integer.parseInt(textoCaloriasPorcion.getText());
                 int piezasPorcion = Integer.parseInt(textoPiezasPorcion.getText());
                 int precio = Integer.parseInt(textoPrecio.getText());
-                String imagen = imagenPlatillo.getName();
+                String imagen;
+                if(imagenPlatillo==null){
+                    imagen ="No existe";
+                }
+                else {
+                     imagen = imagenPlatillo.getName();
+                }
                 System.out.println(imagen);
 
                 boolean disponible = botonSi.isSelected();

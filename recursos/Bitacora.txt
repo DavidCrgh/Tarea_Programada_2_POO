@@ -11,3 +11,6 @@ Servidor annade nuevo platillo Sat Nov 26 02:53:23 CST 2016
 Servidor reconstruye XML Sat Nov 26 02:53:54 CST 2016
 Servidor envia lista de platillos Sat Nov 26 02:57:53 CST 2016
 Servidor envia lista de platillos Sat Nov 26 03:01:21 CST 2016
+Servidor envia lista de platillos Sun Nov 27 10:43:47 CST 2016
+Servidor annade nuevo platillo Sun Nov 27 10:44:26 CST 2016
+Servidor reconstruye XML Sun Nov 27 10:45:02 CST 2016

@@ -53,29 +53,13 @@ public class ControladorVerDetalles implements Initializable{
         disponible.setText(platillo.getDisponibleString());
 
         System.out.println(platillo.getImagen());
-
-        ImageView imagenComida = new ImageView(new Image(this.getClass().getResourceAsStream(platillo.getImagen())));
-        imagenComida.setFitWidth(262);
-        imagenComida.setFitHeight(269);
-      //  imagenComida.fitHeightProperty().bind(imagen.heightProperty());
-        //imagenComida.fitWidthProperty().bind(imagen.widthProperty());
-       // Image imagenComida= new Image(getClass().getResourceAsStream(platillo.getImagen()));
-      //  imagenComida.bind(imagen.heightProperty());
-       // BufferedImage imagenReducir;
-       // BufferedImage imagenNuevoTamano;
-
-       // try {
-           //  imagenReducir = ImageIO.read(new File(platillo.getImagen()));
-           //  imagenNuevoTamano= resize(imagenReducir,262,269);
+        if(!(platillo.getImagen().equals("No existe"))) {
+            ImageView imagenComida = new ImageView(new Image(this.getClass().getResourceAsStream(platillo.getImagen())));
+            imagenComida.setFitWidth(262);
+            imagenComida.setFitHeight(269);
             imagen.setGraphic(imagenComida);
+        }
 
-      //  }catch(Exception e){
-        //    e.printStackTrace();
-       // }
-
-
-
-       // imagen.setImage(new Image("recursos\\imagenes\\maxresdefault.jpg"));
     }
 
 }

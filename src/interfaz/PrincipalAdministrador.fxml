@@ -32,9 +32,9 @@
                </items></Menu>
             <Menu mnemonicParsing="false" text="Consultas">
               <items>
-                  <MenuItem mnemonicParsing="false" text="Top 10" />
+                  <MenuItem fx:id="consultaTop10" mnemonicParsing="false" text="Top 10" />
                   <MenuItem fx:id="consultaNoPedidos" mnemonicParsing="false" text="Nunca Pedidos" />
-                  <MenuItem mnemonicParsing="false" text="Relaciones Porcentuales" />
+                  <MenuItem fx:id="consultaRelacionesPorcentuales" mnemonicParsing="false" text="Relaciones Porcentuales" />
               </items>
             </Menu>
         </menus>

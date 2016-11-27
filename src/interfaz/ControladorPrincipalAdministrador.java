@@ -81,6 +81,10 @@ public class ControladorPrincipalAdministrador implements Initializable {
     private MenuItem botonConfiguracion;
     @FXML
     private MenuItem consultaNoPedidos;
+    @FXML
+    private MenuItem consultaTop10;
+    @FXML
+    private MenuItem consultaRelacionesPorcentuales;
 
     private ToggleGroup grupoBotonesFiltro;
 
@@ -301,6 +305,11 @@ public class ControladorPrincipalAdministrador implements Initializable {
             }
         });
 
+        consultaTop10.setOnAction(event->{
+
+
+
+        });
 
         consultaNoPedidos.setOnAction(new EventHandler<ActionEvent>() {
             @Override

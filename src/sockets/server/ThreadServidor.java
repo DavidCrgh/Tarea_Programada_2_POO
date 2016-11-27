@@ -149,6 +149,7 @@ public class ThreadServidor extends Thread {
                             for (Platillo platillo : servidor.platillos) {
                                 if(pedido.getCodigo().equals(platillo.getCodigo())){
                                     platillo.yaPedido=true;
+                                    platillo.cantidad=Integer.parseInt(platillo.cantidad)+1+"";
                                 }
                             }
                         }
