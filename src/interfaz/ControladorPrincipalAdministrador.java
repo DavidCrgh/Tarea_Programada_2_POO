@@ -90,6 +90,8 @@ public class ControladorPrincipalAdministrador implements Initializable {
 
     public ControladorConsultaNoPedidos controladorConsultaNoPedidos;
 
+    public ControladorTop10 controladorTop10;
+
     public Usuario usuario;
 
     public ArrayList<Platillo> platillos;
@@ -307,6 +309,21 @@ public class ControladorPrincipalAdministrador implements Initializable {
 
         consultaTop10.setOnAction(event->{
 
+            try {
+                Stage stage = new Stage();
+                FXMLLoader loader = new FXMLLoader();
+                Parent root = loader.load(getClass().getResource("Top10.fxml").openStream());
+                ControladorTop10 controlador = loader.getController();
+                controladorTop10=controlador;
+
+                usuario.getSalidaDatos().writeInt(13);
+
+                stage.setTitle("Top 10 de platillos");
+                stage.setScene(new Scene(root,600,400));
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
 
         });

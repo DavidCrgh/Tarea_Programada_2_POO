@@ -75,6 +75,13 @@ public class ThreadCliente extends Thread {
                         int costoExpress = usuario.getEntradaDatos().readInt();
                         controladorCliente.costoEmpaque = costoEmpaque;
                         controladorCliente.costoExpress = costoExpress;
+                        break;
+                    case 5:
+                        controladorAdministrador.platillos= (ArrayList<Platillo>) usuario.getEntradaObjetos().readUnshared();
+                        Platform.runLater(()->{
+                            controladorAdministrador.controladorTop10.construirTabla(controladorAdministrador.platillos);
+
+                        });
                 }
             }catch(Exception e){
                 e.printStackTrace();

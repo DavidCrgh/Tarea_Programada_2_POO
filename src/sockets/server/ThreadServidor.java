@@ -170,6 +170,11 @@ public class ThreadServidor extends Thread {
                         salidaDato.writeInt(servidor.getCostoEmpaque());
                         salidaDato.writeInt(servidor.getCostoExpress());
                         break;
+                    case 13:
+                        salidaDato.writeInt(5);
+                        salidaObjeto.reset();
+                        salidaObjeto.writeUnshared(servidor.platillos);
+                        break;
                 }
             } catch (Exception e){
                 e.printStackTrace();

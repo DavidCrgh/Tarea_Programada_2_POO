@@ -74,6 +74,16 @@ public class ControladorAgregarProducto implements Initializable {
                 platillo.setCaloriasPorcion(Integer.parseInt(textoCaloriasPorcion.getText()));
                 platillo.setPiezasPorcion(Integer.parseInt(textoPiezasPorcion.getText()));
                 platillo.setPrecio(Integer.parseInt(textoPrecio.getText()));
+                String imagenModificada;
+                if(imagenPlatillo==null){
+                    imagenModificada ="No existe";
+                    platillo.setImagen(imagenModificada);
+                }
+                else {
+                    imagenModificada = imagenPlatillo.getName();
+                    platillo.setImagen(imagenModificada);
+                }
+
                 if (botonSi.isSelected()) {
                     platillo.setDisponible(true);
                     platillo.setDisponibleString("Si");
@@ -82,6 +92,9 @@ public class ControladorAgregarProducto implements Initializable {
                     platillo.setDisponibleString("No");
                 }
                 controladorAdministrador.enviarPlatoModificado();
+                Stage stage = (Stage)botonAceptar.getScene().getWindow();
+                stage.close();
+
             } else {
                 String codigo = textoCodigo.getText();
                 String nombre = textoNombre.getText();

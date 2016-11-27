@@ -36,7 +36,7 @@ public class Platillo implements Serializable{
         this.imagen = imagen;
         this.disponible = disponible;
         this.disponibleString = disponibleString(this.disponible);
-        this.cantidad="";
+        this.cantidad="0";
     }
 
     public String getCodigo() {

@@ -4,14 +4,13 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="441.0" prefWidth="799.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaz.ControladorTop10">
    <children>
-      <TableView layoutX="8.0" layoutY="14.0" prefHeight="382.0" prefWidth="590.0">
+      <TableView fx:id="tablaTop10" layoutX="8.0" layoutY="14.0" prefHeight="419.0" prefWidth="784.0">
         <columns>
-          <TableColumn prefWidth="146.0" text="Código" />
-          <TableColumn minWidth="4.0" prefWidth="142.0" text="Nombre" />
-            <TableColumn minWidth="4.0" prefWidth="171.0" text="Descripción" />
+          <TableColumn fx:id="columnaCodigo" prefWidth="146.0" text="Código" />
+          <TableColumn fx:id="columnaNombre" minWidth="4.0" prefWidth="171.0" text="Nombre" />
+            <TableColumn fx:id="columnaDescripcion" minWidth="4.0" prefWidth="271.0" text="Descripción" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
