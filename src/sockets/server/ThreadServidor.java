@@ -187,6 +187,11 @@ public class ThreadServidor extends Thread {
                         fecha = new Date();
                         escribirArchivo("Servidor envia la lista de pedidos actuales al administrador para desplegar el top 10 "+" "+fecha.toString());
                         break;
+                    case 14:
+                        salidaDato.writeInt(6);
+                        salidaObjeto.reset();
+                        salidaObjeto.writeUnshared(servidor.pedidos);
+                        break;
                 }
             } catch (Exception e){
                 e.printStackTrace();

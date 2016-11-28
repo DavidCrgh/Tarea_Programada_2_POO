@@ -92,6 +92,8 @@ public class ControladorPrincipalAdministrador implements Initializable {
 
     public ControladorTop10 controladorTop10;
 
+    public ControladorRelacionesPorcentuales controladorRelaciones;
+
     public Usuario usuario;
 
     public ArrayList<Platillo> platillos;
@@ -145,6 +147,29 @@ public class ControladorPrincipalAdministrador implements Initializable {
             } else{
                 construirTabla(platillos);
             }
+        });
+
+        consultaRelacionesPorcentuales.setOnAction(event->{
+            try {
+                Stage stage = new Stage();
+                FXMLLoader loader = new FXMLLoader();
+                Parent root = loader.load(getClass().getResource("RelacionesPorcentuales.fxml").openStream());
+                ControladorRelacionesPorcentuales controlador = loader.getController();
+                controladorRelaciones=controlador;
+
+                usuario.getSalidaDatos().writeInt(14);
+
+
+                stage.setTitle("Relaciones Porcentuales");
+                stage.setScene(new Scene(root,405,312));
+                stage.show();
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+
+
+
+
         });
 
         cajaTipos.setItems(FXCollections.observableArrayList("ENT","PRN","PTR","BEB"));

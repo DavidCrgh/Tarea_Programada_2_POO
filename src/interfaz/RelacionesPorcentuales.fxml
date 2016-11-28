@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="312.0" prefWidth="405.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaz.ControladorRelacionesPorcentuales">
+   <children>
+      <Label layoutX="22.0" layoutY="273.0" text="Cantidad de Pedidos:" />
+      <Label fx:id="labelTotalPedidos" layoutX="142.0" layoutY="273.0" prefHeight="17.0" prefWidth="121.0" />
+      <ListView fx:id="tablaRelaciones" layoutX="22.0" layoutY="14.0" prefHeight="237.0" prefWidth="362.0" />
+   </children>
+</Pane>

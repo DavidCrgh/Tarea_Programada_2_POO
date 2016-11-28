@@ -83,6 +83,18 @@ public class ThreadCliente extends Thread {
 
                         });
                         break;
+                    case 6:
+                        ListaPedidos pedidoLeido = (ListaPedidos) usuario.getEntradaObjetos().readUnshared();
+                        pedidoLeido.calcularRelacionRES();
+                        pedidoLeido.imprimirInfo();
+                        pedidoLeido.popularArrayList();
+                        Platform.runLater(()->{
+
+                            controladorAdministrador.controladorRelaciones.construirTabla(pedidoLeido.arregloPorcentajes);
+                            controladorAdministrador.controladorRelaciones.labelTotalPedidos.setText(""+pedidoLeido.getPedidos().size());
+
+                        });
+                        break;
                 }
             }catch(Exception e){
                 e.printStackTrace();
